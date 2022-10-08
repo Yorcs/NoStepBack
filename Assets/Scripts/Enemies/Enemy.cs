@@ -9,16 +9,21 @@ public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private float moveSpeed = 2f;
 
     Rigidbody2D enemyRB;
+    EnemyManager manager;
 
     private int damage = 1;
+
+
 
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
 
         enemyRB = GetComponent<Rigidbody2D>();
+        manager = GetComponentInParent<EnemyManager>();
 
         Assert.IsNotNull(enemyRB);
+        Assert.IsNotNull(manager);
     }
 
     // Update is called once per frame
@@ -32,7 +37,11 @@ public class Enemy : MonoBehaviour, IEnemy {
 
         if (IsDead()) {
             //todo: Drops/Pickups
+            manager.LootDrop(transform.position);
+
             Destroy(gameObject);
+
+
         }
     }
 

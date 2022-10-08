@@ -17,17 +17,19 @@ public class PickupFactory : MonoBehaviour {
         Debug.Log(weapons.Length);
     }
 
-    public void CreatePickup() {
+    public void CreatePickup(Vector2 position) {
         //Todo: less hard code
         //Todo: Drop chances/randomness
         GameObject GO = Instantiate(pickup);
+        pickup.transform.position = position;
         Pickup newPickup = GO.GetComponent<Pickup>();
 
         Assert.IsNotNull(newPickup);
 
-        int itemIndex = Random.Range(0, weapons.Length - 1);
+        int itemIndex = Random.Range(0, weapons.Length);
 
         GameObject item = Instantiate(weapons[itemIndex]);
+        item.transform.position = position;
 
         newPickup.SetItem(item);
     }

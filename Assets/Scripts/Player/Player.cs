@@ -85,6 +85,7 @@ public class Player : MonoBehaviour {
             newItem.transform.position = transform.position + new Vector3(1,0,0);
             weapon = newItem.GetComponent<AbstractWeapon>();
 
+            Destroy(pickup);
         }
     }
 }
