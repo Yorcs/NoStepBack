@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class WasdKeyboard : MonoBehaviour, IController {
 
+    private bool upAxisDownLast;
+    private bool downAxisDownLast;
+
     public bool isUpButton() {
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetButtonDown("WasdUp")) {
             return true;
         }
         return false;
     }
 
     public bool isDownButton() {
-        if (Input.GetKeyDown(KeyCode.S)) {
+        if (Input.GetButtonDown("WasdDown")) {
             return true;
         }
         return false;
     }
 
     public bool isForwardButton() {
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetAxisRaw("WasdHorizontal") == 1) {
             return true;
         }
         return false;
     }
 
     public bool isSpecialButton() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetButtonDown("WasdSpecial")) {
             return true;
         }
         return false;
