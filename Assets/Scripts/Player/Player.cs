@@ -76,16 +76,25 @@ public class Player : MonoBehaviour {
 
             GameObject newItem = pickup.GetItem();
 
-            //Todo: account for different types of equipment
-            //Todo: Account for not picking up duplicates
-            //Todo: consistent offset for weapon
-            Destroy(weapon.gameObject);
+            //Todo: Button input for special
+            //Todo: consistent offset for weapons
+            if(pickup != weapon)
+            {
+                if(Input.GetButtonDown("WasdSpecial"))
+                {
+                    Destroy(weapon.gameObject);
             
-            newItem.transform.SetParent(transform);
-            newItem.transform.position = transform.position + new Vector3(1,0,0);
-            weapon = newItem.GetComponent<AbstractWeapon>();
+                    newItem.transform.SetParent(transform);
+                    newItem.transform.position = transform.position + new Vector3(1,0,0);
+                    weapon = newItem.GetComponent<AbstractWeapon>();
 
-            Destroy(pickup);
+                    Destroy(pickup);
+                }
+            }
+            else{
+                newItem.transform.SetParent(transform);
+                newItem.transform.position = transform.position + new Vector3(1,0,0);
+            }
         }
     }
 }
