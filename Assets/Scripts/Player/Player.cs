@@ -50,13 +50,13 @@ public class Player : MonoBehaviour {
 
     public void Special() {
         Debug.Log("Special NYI");
-        
+
     }
 
     public void TakeDamage(int damage) {
         currentHitPoints -= damage;
 
-        if(IsDead()) {
+        if (IsDead()) {
             Debug.Log("Dead!");
         }
     }
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour {
     }
 
     private bool IsDead() {
-        if(currentHitPoints <= 0) {
+        if (currentHitPoints <= 0) {
             return true;
         }
         return false;
@@ -87,21 +87,29 @@ public class Player : MonoBehaviour {
                 }
             }
 
+            bool itemTaken = false;
             IEquipment newItem = closestPickup.GetItem();
-            AbstractWeapon newWeapon = (AbstractWeapon)newItem;
+            switch (newItem.GetEquipmentType()) {
+                case equipmentType.WEAPON:
+                    AbstractWeapon newWeapon = (AbstractWeapon)newItem;
+                    itemTaken = pickupWeapon(newWeapon);
+                    break;
+                case equipmentType.SUBWEAPON:
+                    //take subweapon
+                    break;
+                case equipmentType.MOD:
+                    //take Mod
+                    break;
+                default:
+                    Debug.Log("Invalid Item");
+                    break;
+            }
 
-            //Todo: consistent offset for weapons
-            if (newWeapon.GetType() != weapon.GetType()) {
-                //Todo: Drop current as pickup
-                Destroy(weapon.gameObject);
-
-                newWeapon.gameObject.transform.SetParent(transform);
-                newWeapon.gameObject.transform.position = transform.position + new Vector3(1, 0, 0);
-                weapon = newWeapon;
-
+            if (itemTaken) {
                 currentPickups.Remove(closestPickup);
                 Destroy(closestPickup.gameObject);
-            } 
+            }
+
             // else {
             //    newItem.transform.SetParent(transform);
             //    newItem.transform.position = transform.position + new Vector3(1, 0, 0);
@@ -109,8 +117,23 @@ public class Player : MonoBehaviour {
         }
     }
 
+    //Todo: consistent offset for weapons
+    private bool pickupWeapon(AbstractWeapon newWeapon) {
+        if (newWeapon.GetType() != weapon.GetType()) {
+            //Todo: Drop current as pickup
+            Destroy(weapon.gameObject);
+
+            //TOodo: fix size
+            newWeapon.gameObject.transform.SetParent(transform);
+            newWeapon.gameObject.transform.position = transform.position + new Vector3(1, 0, 0);
+            weapon = newWeapon;
+            return true;
+        }
+        return false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.gameObject.tag.Equals("Pickup")) {
+        if (collision.gameObject.tag.Equals("Pickup")) {
             Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
             currentPickups.Add(foundPickup);
         }

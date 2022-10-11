@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
+    private equipmentType equipType = equipmentType.WEAPON;
 
     [SerializeField] protected int fireRate;
     private int fireTimer = 0;
@@ -35,5 +36,9 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
         newBullet.setDamage(damage);
 
         return newBullet;
+    }
+
+    public equipmentType GetEquipmentType() {
+        return equipType;
     }
 }
