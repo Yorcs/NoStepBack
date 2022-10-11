@@ -198,9 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd974c0cd154c2e4ebd8aec89e2250aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 6562146867658032944, guid: 4f595a1a9e84e754cb9cc826142a1397, type: 3}
-  - {fileID: 380263765587492935, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
+  weapons: []
   subWeapons: []
   mods: []
   pickup: {fileID: 5573623285849131510, guid: 23f9fb869d406cd4d8ccb495c926653d, type: 3}
@@ -295,7 +293,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
