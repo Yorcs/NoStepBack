@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public abstract class AbstractWeapon : MonoBehaviour {
+public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
 
     [SerializeField] protected int fireRate;

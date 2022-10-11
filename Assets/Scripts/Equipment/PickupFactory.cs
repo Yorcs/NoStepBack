@@ -32,12 +32,14 @@ public class PickupFactory : MonoBehaviour {
         Assert.IsNotNull(newPickup);
 
         randomNumber = Random.Range(1,10);
-        if(randomNumber < 3) //30% chance
+        if(randomNumber < 11) //30% chance
         {
             int itemIndex = Random.Range(0, weapons.Length);
-            GameObject item = Instantiate(weapons[itemIndex]);           
+            GameObject item = Instantiate(weapons[itemIndex]);        
             item.transform.position = position;
-            newPickup.SetItem(item);  
+            IEquipment newEquip = item.GetComponent<IEquipment>();
+            Assert.IsNotNull(newEquip);
+            newPickup.SetItem(newEquip);  
         }
         else if(randomNumber < 5) //50% chance
         {

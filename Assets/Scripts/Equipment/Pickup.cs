@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour {
-    public GameObject item;
+    public IEquipment equipment;
 
-    public GameObject GetItem() {
-        return item;
+    public IEquipment GetItem() {
+        return equipment;
     }
 
-    public void SetItem(GameObject item) {
-        this.item = item;
+    public void SetItem(IEquipment equipment) {
+        this.equipment = equipment;
     }
 }

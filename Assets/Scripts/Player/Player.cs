@@ -86,19 +86,21 @@ public class Player : MonoBehaviour {
                     shortestDist = currentDist;
                 }
             }
-            GameObject newItem = closestPickup.GetItem();
+
+            IEquipment newItem = closestPickup.GetItem();
+            AbstractWeapon newWeapon = (AbstractWeapon)newItem;
 
             //Todo: consistent offset for weapons
-            if (newItem.GetType() != weapon.GetType()) {
+            if (newWeapon.GetType() != weapon.GetType()) {
                 //Todo: Drop current as pickup
                 Destroy(weapon.gameObject);
 
-                newItem.transform.SetParent(transform);
-                newItem.transform.position = transform.position + new Vector3(1, 0, 0);
-                weapon = newItem.GetComponent<AbstractWeapon>();
+                newWeapon.gameObject.transform.SetParent(transform);
+                newWeapon.gameObject.transform.position = transform.position + new Vector3(1, 0, 0);
+                weapon = newWeapon;
 
                 currentPickups.Remove(closestPickup);
-                Destroy(closestPickup);
+                Destroy(closestPickup.gameObject);
             } 
             // else {
             //    newItem.transform.SetParent(transform);
