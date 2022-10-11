@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 
     private int pushBackDamage = 5;
 
+    private List<Pickup> currentPickups = new List<Pickup>();
+
     // Start is called before the first frame update
     void Start() {
         currentHitPoints = maxHitpoints;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour {
         weapon = GetComponentInChildren<AbstractWeapon>();
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
+        Assert.IsNotNull(currentPickups);
     }
 
     // Update is called once per frame
@@ -42,11 +45,12 @@ public class Player : MonoBehaviour {
     }
 
     public void Crouch() {
-        Debug.Log("Crouch NYI");
+        PickupItem();
     }
 
     public void Special() {
         Debug.Log("Special NYI");
+        
     }
 
     public void TakeDamage(int damage) {
@@ -69,31 +73,52 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.gameObject.tag.Equals("Pickup")) {
-            Pickup pickup = collision.gameObject.GetComponent<Pickup>();
-            Assert.IsNotNull(pickup);
+    private void PickupItem() {
+        Debug.Log("Crouch Worked!");
+        if (currentPickups.Count > 0) {
+            Pickup closestPickup = currentPickups[0];
+            float shortestDist = Vector2.Distance(transform.position, currentPickups[0].transform.position);
 
-            GameObject newItem = pickup.GetItem();
-
-            //Todo: Button input for special
-            //Todo: consistent offset for weapons
-            if(pickup != weapon)
-            {
-                if(Input.GetButtonDown("WasdSpecial"))
-                {
-                    Destroy(weapon.gameObject);
-            
-                    newItem.transform.SetParent(transform);
-                    newItem.transform.position = transform.position + new Vector3(1,0,0);
-                    weapon = newItem.GetComponent<AbstractWeapon>();
-
-                    Destroy(pickup);
+            foreach (Pickup pickup in currentPickups) {
+                float currentDist = Vector2.Distance(transform.position, pickup.transform.position);
+                if (currentDist < shortestDist) {
+                    closestPickup = pickup;
+                    shortestDist = currentDist;
                 }
             }
-            else{
+            GameObject newItem = closestPickup.GetItem();
+
+            //Todo: consistent offset for weapons
+            if (newItem.GetType() != weapon.GetType()) {
+                //Todo: Drop current as pickup
+                Destroy(weapon.gameObject);
+
                 newItem.transform.SetParent(transform);
-                newItem.transform.position = transform.position + new Vector3(1,0,0);
+                newItem.transform.position = transform.position + new Vector3(1, 0, 0);
+                weapon = newItem.GetComponent<AbstractWeapon>();
+
+                currentPickups.Remove(closestPickup);
+                Destroy(closestPickup);
+            } 
+            // else {
+            //    newItem.transform.SetParent(transform);
+            //    newItem.transform.position = transform.position + new Vector3(1, 0, 0);
+            //}
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.gameObject.tag.Equals("Pickup")) {
+            Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
+            currentPickups.Add(foundPickup);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag.Equals("Pickup")) {
+            Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
+            if (currentPickups.Contains(foundPickup)) {
+                currentPickups.Remove(foundPickup);
             }
         }
     }
