@@ -16,7 +16,7 @@ public class PickupFactory : MonoBehaviour {
     private void Start() {
         Assert.IsNotNull(weapons);
         weapons = Resources.LoadAll<GameObject>("Weapons");
-        // subWeapons = Resources.LoadAll<GameObject>("SubWeapons");
+        subWeapons = Resources.LoadAll<GameObject>("SubWeapons");
         // mods = Resources.LoadAll<GameObject>("Mods");
 
         Debug.Log(weapons.Length);
@@ -32,7 +32,7 @@ public class PickupFactory : MonoBehaviour {
         Assert.IsNotNull(newPickup);
 
         randomNumber = Random.Range(1,10);
-        if(randomNumber < 11) //30% chance
+        if(randomNumber < 3) //40% chance
         {
             int itemIndex = Random.Range(0, weapons.Length);
             GameObject item = Instantiate(weapons[itemIndex], position, Quaternion.identity);
@@ -40,15 +40,15 @@ public class PickupFactory : MonoBehaviour {
             Assert.IsNotNull(newEquip);
             newPickup.SetItem(newEquip);  
         }
-        else if(randomNumber < 5) //50% chance
+        else if(randomNumber < 5) //20% chance
         {
             //SubWeapons
-            // int itemIndex = Random.Range(0, subWeapons.Length);
-            // GameObject item = Instantiate(subWeapons[itemIndex]);           
-            // item.transform.position = position;
-            // newPickup.SetItem(item);  
+            int itemIndex = Random.Range(0, subWeapons.Length);
+            GameObject item = Instantiate(subWeapons[itemIndex], position, Quaternion.identity);   
+            IEquipment newEquip = item.GetComponent<IEquipment>();
+            newPickup.SetItem(newEquip);
         }
-        else if(randomNumber < 8) // 80% chance
+        else if(randomNumber < 8) // 15% chance
         {
             //Mods
             // int itemIndex = Random.Range(0, mods.Length);

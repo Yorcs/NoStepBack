@@ -28,7 +28,7 @@ public class Player : MonoBehaviour {
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(currentPickups);
-        
+
         //Are Starting subweapons a thing???
         //Assert.IsNotNull(subweapon);
     }
@@ -54,8 +54,9 @@ public class Player : MonoBehaviour {
     }
 
     public void Special() {
-        subweapon.UseSubweapon();
-
+        if (subweapon != null) {
+            subweapon.UseSubweapon();
+        }
     }
 
     public void TakeDamage(int damage) {
@@ -100,7 +101,8 @@ public class Player : MonoBehaviour {
                     itemTaken = pickupWeapon(newWeapon);
                     break;
                 case equipmentType.SUBWEAPON:
-                    //take subweapon
+                    AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
+                    itemTaken = pickupSubweapon(newSubweapon);
                     break;
                 case equipmentType.MOD:
                     //take Mod
@@ -136,6 +138,22 @@ public class Player : MonoBehaviour {
         }
         return false;
     }
+
+    private bool pickupSubweapon(AbstractSubweapon newSubweapon) {
+        if (subweapon == null || newSubweapon.GetType() != subweapon.GetType()) {
+            //Todo: Drop current as pickup
+            if (subweapon != null) {
+                Destroy(subweapon.gameObject);
+            }
+            //Todo: fix size
+            newSubweapon.gameObject.transform.SetParent(transform);
+            newSubweapon.gameObject.transform.position = transform.position;
+            subweapon = newSubweapon;
+            return true;
+        }
+        return false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag.Equals("Pickup")) {
