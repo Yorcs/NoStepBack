@@ -13,17 +13,14 @@ public class CameraMovement : MonoBehaviour
     //todo: use state to change inbetween players number so it doesn't crash. or use loop?
     //todo: use math.lerp to calculate the distance between the players so that the camera always follow the group
 
-    private void Start()
-    {
-        playersNumber.AddRange(GetComponentsInChildren<IController>());
-    }
-
     private void Update()
     {
         Vector3 newPosition = Target.position;
         newPosition.z = -10;
-                transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        newPosition.y = 0;
+        transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
 
 
-        }
     }
+    
+}
