@@ -6,6 +6,7 @@ public class Shotgun : AbstractWeapon
 {
     private void Start()
     {
+        numBullets = 5;
         fireRate = 90;
         spread = 30;
         bulletSpeed = 12f;

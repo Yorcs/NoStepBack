@@ -8,6 +8,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     private equipmentType equipType = equipmentType.WEAPON;
 
     [SerializeField] protected float spread;
+    protected int numBullets;
 
     [SerializeField] protected int fireRate;
     private int fireTimer = 0;
@@ -19,8 +20,9 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
         fireTimer++;
         if (fireTimer % fireRate == 0) {
             fireTimer = 0;
-
+            for(int i = 0; i < numBullets; i++){
             Bullet newBullet = SpawnBullet();
+            }
         }
 
     }
@@ -31,9 +33,8 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
         GO.transform.rotation = transform.rotation;
 
         //randomizing spread
-        var xSpread = Random.Range(0f, spread) * 90;
-        var ySpread = Random.Range(0f, spread) * 90;
-        var spreadvec = new Vector3(xSpread, ySpread, 0);
+        var zSpread = Random.Range(-spread, spread);
+        var spreadvec = new Vector3(0, 0, zSpread);
 
         //adding the spread
 
