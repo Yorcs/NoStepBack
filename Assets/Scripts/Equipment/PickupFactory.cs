@@ -25,8 +25,8 @@ public class PickupFactory : MonoBehaviour {
     public void CreatePickup(Vector2 position) {
         //Todo: less hard code
         //Todo: implement more item variations
-        GameObject GO = Instantiate(pickup);
-        pickup.transform.position = position;
+        //Todo: Drop tables probably
+        GameObject GO = Instantiate(pickup, position, Quaternion.identity);
         Pickup newPickup = GO.GetComponent<Pickup>();
 
         Assert.IsNotNull(newPickup);
@@ -35,8 +35,7 @@ public class PickupFactory : MonoBehaviour {
         if(randomNumber < 11) //30% chance
         {
             int itemIndex = Random.Range(0, weapons.Length);
-            GameObject item = Instantiate(weapons[itemIndex]);
-            item.transform.position = position;
+            GameObject item = Instantiate(weapons[itemIndex], position, Quaternion.identity);
             IEquipment newEquip = item.GetComponent<IEquipment>();
             Assert.IsNotNull(newEquip);
             newPickup.SetItem(newEquip);  

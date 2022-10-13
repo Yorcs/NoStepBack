@@ -17,7 +17,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
         fireRate = 5;
         damage = 150;
         fuse = 120;
-        radius = 1;
+        radius = 5;
     }
 
     public override void UseSubweapon() {
