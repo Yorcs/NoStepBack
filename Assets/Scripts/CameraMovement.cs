@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        playersNumber.AddRange(GetComponentsInChildren<IController>());
+        playersNumber.AddRange(GetComponentsInChildren<IController>();
     }
 
     private void Update()
