@@ -7,7 +7,7 @@ public class Pistol : AbstractWeapon {
 
     private void Start() {
         fireRate = 60;
-
+        spread = 0;
         bulletSpeed = 12f;
         damage = 10;
     }
