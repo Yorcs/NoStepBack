@@ -31,9 +31,9 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
 
         Assert.IsNotNull(newBullet);
 
-        newBullet.setDirection(Vector2.right);
-        newBullet.setSpeed(bulletSpeed);
-        newBullet.setDamage(damage);
+        newBullet.SetDirection(Vector2.right);
+        newBullet.SetSpeed(bulletSpeed);
+        newBullet.SetDamage(damage);
 
         return newBullet;
     }

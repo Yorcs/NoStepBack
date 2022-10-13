@@ -4,27 +4,22 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Bullet : AbstractProjectile {
-    private Vector2 direction = new Vector2(1,0);
+    private Vector2 direction = new Vector2(1, 0);
     private float bulletSpeed = 1f;
     private int damage = 1;
 
-    
 
-    public void setDirection(Vector2 direction) {
+
+    public void SetDirection(Vector2 direction) {
         this.direction = direction;
     }
 
-    public void setSpeed(float bulletSpeed) {
+    public void SetSpeed(float bulletSpeed) {
         this.bulletSpeed = bulletSpeed;
     }
 
-    public void setDamage(int damage) {
+    public void SetDamage(int damage) {
         this.damage = damage;
-    }
-
-    // Start is called before the first frame update
-    void Start() {
-
     }
 
     // Update is called once per frame
@@ -33,7 +28,7 @@ public class Bullet : AbstractProjectile {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag.Equals("Enemy")) {
+        if (other.gameObject.tag.Equals("Enemy")) {
             IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
             Assert.IsNotNull(enemyHit);
 

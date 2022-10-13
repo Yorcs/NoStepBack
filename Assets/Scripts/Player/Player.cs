@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class Player : MonoBehaviour {
     private Rigidbody2D playerRB;
     private AbstractWeapon weapon;
+    private AbstractSubweapon subweapon;
 
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
@@ -23,9 +24,13 @@ public class Player : MonoBehaviour {
 
         playerRB = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<AbstractWeapon>();
+        subweapon = GetComponentInChildren<AbstractSubweapon>();
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(currentPickups);
+        
+        //Are Starting subweapons a thing???
+        //Assert.IsNotNull(subweapon);
     }
 
     // Update is called once per frame
@@ -49,7 +54,7 @@ public class Player : MonoBehaviour {
     }
 
     public void Special() {
-        Debug.Log("Special NYI");
+        subweapon.UseSubweapon();
 
     }
 
