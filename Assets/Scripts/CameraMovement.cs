@@ -15,21 +15,15 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        playersNumber.AddRange(GetComponentsInChildren<IController>();
+        playersNumber.AddRange(GetComponentsInChildren<IController>());
     }
 
     private void Update()
     {
         Vector3 newPosition = Target.position;
         newPosition.z = -10;
-        switch()
-        {
-            case playersNumber < 2:
                 transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
-                break;
-            case playersNumber > 2:
 
 
         }
     }
-}
