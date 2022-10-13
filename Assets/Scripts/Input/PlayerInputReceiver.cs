@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.Assertions;
 public class PlayerInputReceiver : MonoBehaviour {
 
-    [SerializeField] private WasdKeyboard controller;
+    [SerializeField] private Controller controller;
     public Player player;
 
     private void Start() {
         Assert.IsNotNull(controller);
     }
 
-    void Update() { 
-        if(controller.isUpButton()) {
+    void Update() {
+        if (controller.isUpButton()) {
             Debug.Log("up");
             player.Jump();
         }
@@ -28,5 +28,9 @@ public class PlayerInputReceiver : MonoBehaviour {
             Debug.Log("special");
             player.Special();
         }
+    }
+
+    public void SetController(Controller controller) {
+        this.controller = controller;
     }
 }

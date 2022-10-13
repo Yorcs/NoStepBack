@@ -32,14 +32,15 @@ public class Bullet : AbstractProjectile {
         transform.Translate(direction * bulletSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.tag.Equals("Enemy")) {
-            IEnemy enemyHit = collision.gameObject.GetComponent<IEnemy>();
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag.Equals("Enemy")) {
+            IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
             Assert.IsNotNull(enemyHit);
 
             enemyHit.TakeDamage(damage);
 
             //Todo: piercing?
+            //Todo: Stopping power?
             Destroy(gameObject);
         }
     }

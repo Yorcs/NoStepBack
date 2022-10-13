@@ -2,31 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WasdKeyboard : MonoBehaviour, IController {
-    
+public class Controller : MonoBehaviour {
+    [SerializeField] string upButton;
+    [SerializeField] string downButton;
+    [SerializeField] string forwardButton;
+    [SerializeField] string specialButton;
+
     public bool isUpButton() {
-        if (Input.GetButtonDown("WasdUp")) {
+        if (Input.GetButtonDown(upButton)) {
             return true;
         }
         return false;
     }
 
     public bool isDownButton() {
-        if (Input.GetButtonDown("WasdDown")) {
+        if (Input.GetButtonDown(downButton)) {
             return true;
         }
         return false;
     }
 
     public bool isForwardButton() {
-        if (Input.GetAxisRaw("WasdHorizontal") == 1) {
+        if (Input.GetAxisRaw(forwardButton) == 1) {
             return true;
         }
         return false;
     }
 
     public bool isSpecialButton() {
-        if (Input.GetButtonDown("WasdSpecial")) {
+        if (Input.GetButtonDown(specialButton)) {
             return true;
         }
         return false;
