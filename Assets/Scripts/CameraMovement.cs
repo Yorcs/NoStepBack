@@ -4,23 +4,37 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float FollowSpeed = 2f;
-    public Transform Target;
+    public List<Transform> targets;
 
-    private List<IController> playersNumber = new List<IController>();
+    public Vector3 offset;
 
-    //Todo: Check how many players are connected
-    //todo: use state to change inbetween players number so it doesn't crash. or use loop?
-    //todo: use math.lerp to calculate the distance between the players so that the camera always follow the group
-
-    private void Update()
+    void LateUpdate()
     {
-        Vector3 newPosition = Target.position;
-        newPosition.z = -10;
-        newPosition.y = 0;
-        transform.position = Vector3.Slerp(transform.position, newPosition, FollowSpeed * Time.deltaTime);
+        if (targets.Count == 0)
+        {
+            return;
+        }
+        Vector3 centerPoint = GetCenterPoint();
 
+        Vector3 newPosition = centerPoint + offset;
 
+        transform.position = newPosition;
     }
-    
+
+    Vector3 GetCenterPoint()
+    {
+        if (targets.Count == 1)
+        {
+            return targets[0].position;
+        }
+
+        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        for (int i = 0; i < targets.Count; i++)
+        {
+            bounds.Encapsulate(targets[i].position);
+        }
+
+        return bounds.center;
+    }
 }
+

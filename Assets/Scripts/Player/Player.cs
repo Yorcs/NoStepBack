@@ -117,10 +117,6 @@ public class Player : MonoBehaviour {
                 Destroy(closestPickup.gameObject);
             }
 
-            // else {
-            //    newItem.transform.SetParent(transform);
-            //    newItem.transform.position = transform.position + new Vector3(1, 0, 0);
-            //}
         }
     }
 
