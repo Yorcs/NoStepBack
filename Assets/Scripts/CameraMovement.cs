@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour
     public List<Transform> targets;
 
     public Vector3 offset;
+    private Vector3 velocity;
+    public float smoothTime = .5f;
 
     void LateUpdate()
     {
@@ -18,7 +20,7 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 newPosition = centerPoint + offset;
 
-        transform.position = newPosition;
+        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
     }
 
     Vector3 GetCenterPoint()
