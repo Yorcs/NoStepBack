@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour {
     [SerializeField] string downButton;
     [SerializeField] string forwardButton;
     [SerializeField] string specialButton;
+    [SerializeField] string leftButton;
 
     public bool isUpButton() {
         if (Input.GetButtonDown(upButton)) {
@@ -24,6 +25,15 @@ public class Controller : MonoBehaviour {
 
     public bool isForwardButton() {
         if (Input.GetAxisRaw(forwardButton) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public bool isLeftButton()
+    {
+        if (Input.GetAxisRaw(forwardButton) == -1)
+        {
             return true;
         }
         return false;

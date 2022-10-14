@@ -25,6 +25,15 @@ public class WasdKeyboard : MonoBehaviour, IController {
         return false;
     }
 
+    public bool isLeftButton()
+    {
+        if (Input.GetAxisRaw("WasdHorizontal") == -1)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool isSpecialButton() {
         if (Input.GetButtonDown("WasdSpecial")) {
             return true;

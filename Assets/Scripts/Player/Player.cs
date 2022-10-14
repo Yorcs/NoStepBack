@@ -59,6 +59,13 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void Backwards()
+    {
+        Vector2 position = transform.position;
+        position.x -= walkSpeed * Time.deltaTime;
+        transform.position = position;
+    }
+
     public void TakeDamage(int damage) {
         currentHitPoints -= damage;
 

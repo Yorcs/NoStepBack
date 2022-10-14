@@ -7,4 +7,5 @@ public interface IController {
     bool isUpButton();
     bool isDownButton();
     bool isSpecialButton();
+    bool isLeftButton();
 }
