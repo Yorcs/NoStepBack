@@ -8,10 +8,16 @@ public class Bullet : AbstractProjectile {
     private float bulletSpeed = 1f;
     private int damage = 1;
     private int bulletTime = 1; //for poisoning purposes
+    private int stoppingTime = 1;
 
     public void SetBulletTime(int bulletTime)
     {
         this.bulletTime = bulletTime;
+    }
+
+    public void SetStoppingTime(int stoppingTime)
+    {
+        this.stoppingTime = stoppingTime;
     }
 
     public void SetDirection(Vector2 direction) {
@@ -34,15 +40,23 @@ public class Bullet : AbstractProjectile {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag.Equals("Enemy")) {
             IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
+            Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(enemyHit);
 
+            //poisoning
             for (int i = 0; i < bulletTime; i++)
             {
                 enemyHit.TakeDamage(damage);
             }
 
+            //stopping power
+            for (int i = 0; i < stoppingTime; i++)
+            {
+                rbEnemy.velocity = Vector3.zero;
+            }
+
             //Todo: piercing?
-            //Todo: Stopping power?
+
             Destroy(gameObject);
         }
     }

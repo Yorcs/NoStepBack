@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class Pistol : AbstractWeapon {
 
     private void Start() {
+        stoppingTime = 1;
         numBullets = 1;
         bulletTime = 1;
         fireRate = 60;

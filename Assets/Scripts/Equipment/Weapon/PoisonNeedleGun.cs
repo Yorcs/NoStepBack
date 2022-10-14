@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PoisonNeedleGun : AbstractWeapon
 {
-    void Start()
+    private void Start()
     {
+        stoppingTime = 1;
         numBullets = 1;
         bulletTime = 3;
         fireRate = 30;

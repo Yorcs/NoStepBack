@@ -14,7 +14,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     private int fireTimer = 0;
 
     [SerializeField] protected float bulletSpeed;
-    [SerializeField] protected int damage, bulletTime;
+    [SerializeField] protected int damage, bulletTime, stoppingTime;
 
     public void Fire(Vector2 target) {
         fireTimer++;
@@ -44,6 +44,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
 
         Assert.IsNotNull(newBullet);
 
+        newBullet.SetStoppingTime(stoppingTime);
         newBullet.SetBulletTime(bulletTime);
         newBullet.SetDirection(Vector2.right);
         newBullet.SetSpeed(bulletSpeed);
