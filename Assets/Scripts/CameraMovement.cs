@@ -6,9 +6,10 @@ public class CameraMovement : MonoBehaviour
 {
     public List<Transform> targets;
 
-    public Vector3 offset;
+    [SerializeField] Vector3 offset;
     private Vector3 velocity;
-    public float smoothTime = .5f;
+    [SerializeField] float smoothTime = .5f;
+    [SerializeField] Vector3 minValues, maxValue;
 
     void LateUpdate()
     {
@@ -16,11 +17,17 @@ public class CameraMovement : MonoBehaviour
         {
             return;
         }
+
         Vector3 centerPoint = GetCenterPoint();
-
         Vector3 newPosition = centerPoint + offset;
+        Vector3 boundPosition = new Vector3(
+            Mathf.Clamp(newPosition.x, minValues.x, maxValue.x),
+            Mathf.Clamp(newPosition.y, minValues.y, maxValue.y),
+            Mathf.Clamp(newPosition.z, minValues.z, maxValue.z));
 
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, boundPosition, smoothTime * Time.fixedDeltaTime);
+
+        transform.position = smoothPosition;
     }
 
     Vector3 GetCenterPoint()
