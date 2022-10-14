@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     private AbstractWeapon weapon;
     private AbstractSubweapon subweapon;
 
+    private Camera mainCam;
+
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
 
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour {
         playerRB = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<AbstractWeapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
+        mainCam = Camera.main;
+
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(currentPickups);
@@ -38,9 +42,14 @@ public class Player : MonoBehaviour {
         weapon.Fire(Vector2.right);
     }
 
-    public void Walk() {
+    public void WalkHorizontal(int direction) {
         Vector2 position = transform.position;
-        position.x += walkSpeed * Time.deltaTime;
+        position.x += walkSpeed * Time.deltaTime * direction;
+        float leftOfScreen = mainCam.ScreenToWorldPoint(Vector3.zero).x;
+        float rightOfScreen = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
+
+        position.x = Mathf.Clamp(position.x, leftOfScreen, rightOfScreen);
+        Debug.Log(position);
         transform.position = position;
     }
 

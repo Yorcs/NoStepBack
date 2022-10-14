@@ -19,7 +19,7 @@ public class PlayerInputReceiver : MonoBehaviour {
         if (controller.isLeftButton())
         {
             Debug.Log("left");
-            player.Backwards();
+            player.WalkHorizontal(-1);
         }
         if (controller.isDownButton()) {
             Debug.Log("crouch");
@@ -27,7 +27,7 @@ public class PlayerInputReceiver : MonoBehaviour {
         }
         if (controller.isForwardButton()) {
             Debug.Log("walk");
-            player.Walk();
+            player.WalkHorizontal(1);
         }
         if (controller.isSpecialButton()) {
             Debug.Log("special");
