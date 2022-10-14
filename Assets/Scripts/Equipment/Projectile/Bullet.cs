@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Bullet : AbstractProjectile {
     private int damage = 1;
     private int bulletTime = 1; //for poisoning purposes
     private int stoppingTime = 1;
+    private int penetration = 1;
 
     public void SetBulletTime(int bulletTime)
     {
@@ -30,6 +32,10 @@ public class Bullet : AbstractProjectile {
 
     public void SetDamage(int damage) {
         this.damage = damage;
+    }
+
+    public void SetPenetration(int penetration) {
+        this.penetration = penetration;
     }
 
     // Update is called once per frame
@@ -56,8 +62,12 @@ public class Bullet : AbstractProjectile {
             }
 
             //Todo: piercing?
-
-            Destroy(gameObject);
+            penetration -= 1;
+            if(penetration <= 0) {
+               Destroy(gameObject);
+            }
         }
     }
+
+    
 }

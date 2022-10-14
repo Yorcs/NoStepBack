@@ -14,7 +14,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     private int fireTimer = 0;
 
     [SerializeField] protected float bulletSpeed;
-    [SerializeField] protected int damage, bulletTime, stoppingTime;
+    [SerializeField] protected int damage, bulletTime, stoppingTime, penetration;
 
     public void Fire(Vector2 target) {
         fireTimer++;
@@ -49,6 +49,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
         newBullet.SetDirection(Vector2.right);
         newBullet.SetSpeed(bulletSpeed);
         newBullet.SetDamage(damage);
+        newBullet.SetPenetration(penetration);
 
         return newBullet;
     }
