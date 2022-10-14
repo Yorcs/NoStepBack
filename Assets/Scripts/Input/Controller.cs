@@ -5,9 +5,8 @@ using UnityEngine;
 public class Controller : MonoBehaviour {
     [SerializeField] string upButton;
     [SerializeField] string downButton;
-    [SerializeField] string forwardButton;
+    [SerializeField] string horizontalAxis;
     [SerializeField] string specialButton;
-    [SerializeField] string leftButton;
 
     public bool isUpButton() {
         if (Input.GetButtonDown(upButton)) {
@@ -17,14 +16,14 @@ public class Controller : MonoBehaviour {
     }
 
     public bool isDownButton() {
-        if (Input.GetButtonDown(downButton)) {
+        if (Input.GetAxisRaw(downButton) == -1) {
             return true;
         }
         return false;
     }
 
     public bool isForwardButton() {
-        if (Input.GetAxisRaw(forwardButton) == 1) {
+        if (Input.GetAxisRaw(horizontalAxis) == 1) {
             return true;
         }
         return false;
@@ -32,7 +31,7 @@ public class Controller : MonoBehaviour {
 
     public bool isLeftButton()
     {
-        if (Input.GetAxisRaw(forwardButton) == -1)
+        if (Input.GetAxisRaw(horizontalAxis) == -1)
         {
             return true;
         }
