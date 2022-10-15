@@ -6,12 +6,13 @@ public class PoisonNeedleGun : AbstractWeapon
 {
     private void Start()
     {
-        stoppingTime = 1;
+        doesPoison = true;
+        statusDuration = 3;
+        statusDamage = 15;
         numBullets = 1;
-        bulletTime = 3;
         fireRate = 30;
         spread = 0;
         bulletSpeed = 12f;
-        damage = 2;
+        damage = 5;
     }
 }

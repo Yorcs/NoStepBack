@@ -8,20 +8,12 @@ public class Bullet : AbstractProjectile {
     private Vector2 direction = new Vector2(1, 0);
     private float bulletSpeed = 1f;
     private int damage = 1;
-    private int bulletTime = 1; //for poisoning purposes
-    private int stoppingTime = 1;
     private int penetration = 1;
-    private bool isPoisoned, isFrozen;
+    //status stuff to refactor later
+    private bool doesPoison, doesFreeze;
+    private float statusDuration = 0; //for poisoning purposes
+    private int statusDamage = 0;
 
-    public void SetBulletTime(int bulletTime)
-    {
-        this.bulletTime = bulletTime;
-    }
-
-    public void SetStoppingTime(int stoppingTime)
-    {
-        this.stoppingTime = stoppingTime;
-    }
 
     public void SetDirection(Vector2 direction) {
         this.direction = direction;
@@ -39,15 +31,25 @@ public class Bullet : AbstractProjectile {
         this.penetration = penetration;
     }
 
-/*    public void SetIsPoisoned(bool isPoisoned)
+    //status stuff
+    public void SetIsPoisoned(bool doesPoison)
     {
-        this.isPoisoned = isPoisoned;
+        this.doesPoison = doesPoison;
     }
 
-    public void SetIsFrozen(bool isFrozen)
+    public void SetIsFrozen(bool doesFreeze)
     {
-        this.isFrozen = isFrozen;
-    }*/
+        this.doesFreeze = doesFreeze;
+    }
+    public void SetStatusDuration(float statusDuration)
+    {
+        this.statusDuration = statusDuration;
+    }
+
+    public void SetStatusDamage(int statusDamage)
+    {
+        this.statusDamage = statusDamage;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -60,6 +62,15 @@ public class Bullet : AbstractProjectile {
             Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(enemyHit);
 
+            enemyHit.TakeDamage(damage);
+
+            if(doesPoison) {
+                enemyHit.SetPoison(statusDuration, statusDamage);
+            }
+            if(doesFreeze) {
+                enemyHit.SetFreeze(statusDuration);
+            }
+
             //Todo: piercing?
             penetration -= 1;
             if(penetration <= 0) {
@@ -67,6 +78,4 @@ public class Bullet : AbstractProjectile {
             }
         }
     }
-
-    
 }

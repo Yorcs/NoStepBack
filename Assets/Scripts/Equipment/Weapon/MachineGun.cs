@@ -6,11 +6,9 @@ using UnityEngine.Assertions;
 public class MachineGun : AbstractWeapon {
 
     void Start() {
-        stoppingTime = 1;
         numBullets = 1;
-        bulletTime = 1;
         fireRate = 20;
-        spread = 0;
+        spread = 5;
         bulletSpeed = 12f;
         damage = 5;
     }

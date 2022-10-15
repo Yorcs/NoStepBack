@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,19 @@ using UnityEngine.Assertions;
 
 public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private int maxHealth = 50;
-    private int currentHealth;
+    public int currentHealth;
     [SerializeField] private float moveSpeed = 2f;
 
     Rigidbody2D enemyRB;
     EnemyManager manager;
 
     private int damage = 1;
-    //[SerializeField] protected int bulletDamage = 1;
+
+    private bool isPoisoned, isFrozen;
+
+    public float poisonDuration, freezeDuration;
+    public float timeSinceLastPoison;
+    private int statusDamage;
 
 
 
@@ -28,22 +34,41 @@ public class Enemy : MonoBehaviour, IEnemy {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         //todo: pick player to follow
-        transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        if(!isFrozen) {
+            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        }
+        else {
+            DoFreezeTick();
+        }
         //poisoning
-/*        for (int i = 0; i < bulletTime; i++)
+        if(isPoisoned)
         {
-            bullet.SetIsPoisoned(true);
-            isPoisoned();
+            doPoisonTick();
         }
 
-        //stopping power
-        for (int i = 0; i < stoppingTime; i++)
-        {
-            bullet.SetIsFrozen(true);
-            isFrozen();
-        }*/
+        
+    }
+
+    private void doPoisonTick() {
+        poisonDuration -= Time.deltaTime;
+        if(poisonDuration <= 0) {
+            isPoisoned = false;
+            timeSinceLastPoison = 0;
+        }
+        timeSinceLastPoison += Time.deltaTime;
+        if(timeSinceLastPoison >= 1) {
+            TakeDamage(statusDamage);
+            timeSinceLastPoison = 0;
+        }
+    }
+
+    private void DoFreezeTick() {
+        freezeDuration -= Time.deltaTime;
+        if(freezeDuration <= 0) {
+            isFrozen = false;
+        }
     }
 
     public void TakeDamage(int damage) {
@@ -54,8 +79,6 @@ public class Enemy : MonoBehaviour, IEnemy {
             manager.LootDrop(transform.position);
 
             Destroy(gameObject);
-
-
         }
     }
 
@@ -69,16 +92,18 @@ public class Enemy : MonoBehaviour, IEnemy {
 
 
 
-/*    private void isPoisoned()
+    public void SetPoison(float duration, int damage)
     {
-        bullet.damage = bulletDamage;
-        TakeDamage(bulletDamage);
+        isPoisoned = true;
+        poisonDuration = duration;
+        statusDamage = damage;
     }
 
-    private void isFrozen()
+    public void SetFreeze(float duration)
     {
-        enemyRB.velocity = Vector3.zero;
-    }*/
+        isFrozen = true;
+        freezeDuration = duration;
+    }
 
     public void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag.Equals("Player")) {

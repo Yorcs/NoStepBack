@@ -14,8 +14,11 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
     private int fireTimer = 0;
 
     [SerializeField] protected float bulletSpeed;
-    [SerializeField] protected int damage, bulletTime, stoppingTime, penetration;
-    //protected bool isFrozen, isPoisoned;
+    [SerializeField] protected int damage, penetration;
+    //Status things to factor out later
+    [SerializeField] protected bool doesFreeze, doesPoison = false;
+    [SerializeField] protected float statusDuration = 0;
+    [SerializeField] protected int statusDamage = 0;
 
     public void Fire(Vector2 target) {
         fireTimer++;
@@ -45,14 +48,16 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
 
         Assert.IsNotNull(newBullet);
 
-        /*newBullet.SetIsPoisoned(isPoisoned);
-        newBullet.SetIsFrozen(isFrozen);*/
-        newBullet.SetStoppingTime(stoppingTime);
-        newBullet.SetBulletTime(bulletTime);
         newBullet.SetDirection(Vector2.right);
         newBullet.SetSpeed(bulletSpeed);
         newBullet.SetDamage(damage);
         newBullet.SetPenetration(penetration);
+        
+        //Status Stuff to refactor later
+        newBullet.SetIsPoisoned(doesPoison);
+        newBullet.SetIsFrozen(doesFreeze);
+        newBullet.SetStatusDuration(statusDuration);
+        newBullet.SetStatusDamage(statusDamage);
 
         return newBullet;
     }
