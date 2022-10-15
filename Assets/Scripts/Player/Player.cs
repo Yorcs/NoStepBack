@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     private int currentHitPoints;
 
     public float walkSpeed = 7f;
-    public float jumpStrength = 20f;
+    public float jumpStrength = 15f;
     private bool isAirborne = false;
     private bool onPassableGround = false;
     private Collider2D passableGround;
@@ -32,12 +32,17 @@ public class Player : MonoBehaviour {
         playerRB = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<AbstractWeapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
+        passableGround = GameObject.FindGameObjectWithTag("PassableGround").GetComponent<Collider2D>();
+
         mainCam = Camera.main;
 
         Assert.IsNotNull(playerColl);
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(currentPickups);
+        Assert.IsNotNull(passableGround);
+
+
 
         //Are Starting subweapons a thing???
         //Assert.IsNotNull(subweapon);
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour {
 
     public void Jump() {
         if(!isAirborne) {
-            playerRB.AddForce(Vector2.up * jumpStrength);
+            playerRB.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
         }
     }
 
@@ -197,17 +202,18 @@ public class Player : MonoBehaviour {
         }
     }
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.layer.Equals("Ground")) {
+        if(other.gameObject.tag.Equals("Ground")) {
             isAirborne = false;
         }
         if(other.gameObject.tag.Equals("PassableGround")) {
+            isAirborne = false;
             onPassableGround = true;
             passableGround = other.gameObject.GetComponent<Collider2D>();
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        if(other.gameObject.layer.Equals("Ground")) {
+        if(other.gameObject.tag.Equals("Ground")) {
             isAirborne = true;
         }
         if(other.gameObject.tag.Equals("PassableGround")) {
