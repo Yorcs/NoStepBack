@@ -23,6 +23,13 @@ public class Controller : MonoBehaviour {
         return false;
     }
 
+    public bool releaseCrouch() {
+        if (Input.GetButtonUp(downButton)) {
+            return true;
+        }
+        return false;
+    }
+
     public bool isForwardButton() {
         if (Input.GetAxisRaw(forwardButton) == 1) {
             return true;

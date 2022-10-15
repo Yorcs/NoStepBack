@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Pickup
   - Ground
+  - PassableGround
   layers:
   - Default
   - TransparentFX

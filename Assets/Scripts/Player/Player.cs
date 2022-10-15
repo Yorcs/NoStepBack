@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Player : MonoBehaviour {
+    private Collider2D playerColl;
     private Rigidbody2D playerRB;
     private AbstractWeapon weapon;
     private AbstractSubweapon subweapon;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour {
     public float walkSpeed = 7f;
     public float jumpStrength = 20f;
     private bool isAirborne = false;
+    private bool onPassableGround = false;
+    private Collider2D passableGround;
 
     private int pushBackDamage = 5;
 
@@ -25,11 +28,13 @@ public class Player : MonoBehaviour {
     void Start() {
         currentHitPoints = maxHitpoints;
 
+        playerColl = GetComponent<Collider2D>();
         playerRB = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<AbstractWeapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
         mainCam = Camera.main;
 
+        Assert.IsNotNull(playerColl);
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(currentPickups);
@@ -61,6 +66,16 @@ public class Player : MonoBehaviour {
 
     public void Crouch() {
         PickupItem();
+        if(onPassableGround) {
+            Physics2D.IgnoreCollision(playerColl, passableGround, true);
+            Debug.Log(Physics2D.GetIgnoreCollision(playerColl, passableGround));
+        }
+    }
+
+    //TODO: find a better way to turn back on collision
+    public void ReleaseCrouch() {
+        Physics2D.IgnoreCollision(playerColl, passableGround, false);
+        Debug.Log(Physics2D.GetIgnoreCollision(playerColl, passableGround));
     }
 
     public void Special() {
@@ -182,14 +197,21 @@ public class Player : MonoBehaviour {
         }
     }
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag.Equals("Ground")) {
+        if(other.gameObject.layer.Equals("Ground")) {
             isAirborne = false;
+        }
+        if(other.gameObject.tag.Equals("PassableGround")) {
+            onPassableGround = true;
+            passableGround = other.gameObject.GetComponent<Collider2D>();
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        if(other.gameObject.tag.Equals("Ground")) {
+        if(other.gameObject.layer.Equals("Ground")) {
             isAirborne = true;
+        }
+        if(other.gameObject.tag.Equals("PassableGround")) {
+            onPassableGround = false;
         }
     }
 

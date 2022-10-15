@@ -22,6 +22,9 @@ public class PlayerInputReceiver : MonoBehaviour {
         if (controller.isDownButton()) {
             player.Crouch();
         }
+        if(controller.releaseCrouch()) {
+            player.ReleaseCrouch();
+        }
         if (controller.isForwardButton()) {
             player.WalkHorizontal(1);
         }
