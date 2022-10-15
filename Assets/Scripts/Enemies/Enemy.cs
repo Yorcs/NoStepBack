@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private int maxHealth = 50;
-    public int currentHealth;
+    private int currentHealth;
     [SerializeField] private float moveSpeed = 2f;
 
     Rigidbody2D enemyRB;
@@ -16,8 +16,8 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     private bool isPoisoned, isFrozen;
 
-    public float poisonDuration, freezeDuration;
-    public float timeSinceLastPoison;
+    private float poisonDuration, freezeDuration;
+    private float timeSinceLastPoison;
     private int statusDamage;
 
 

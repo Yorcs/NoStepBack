@@ -13,24 +13,19 @@ public class PlayerInputReceiver : MonoBehaviour {
 
     void Update() {
         if (controller.isUpButton()) {
-            Debug.Log("up");
             player.Jump();
         }
         if (controller.isLeftButton())
         {
-            Debug.Log("left");
             player.WalkHorizontal(-1);
         }
         if (controller.isDownButton()) {
-            Debug.Log("crouch");
             player.Crouch();
         }
         if (controller.isForwardButton()) {
-            Debug.Log("walk");
             player.WalkHorizontal(1);
         }
         if (controller.isSpecialButton()) {
-            Debug.Log("special");
             player.Special();
         }
     }

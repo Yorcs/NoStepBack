@@ -71,11 +71,17 @@ public class Bullet : AbstractProjectile {
                 enemyHit.SetFreeze(statusDuration);
             }
 
-            //Todo: piercing?
             penetration -= 1;
             if(penetration <= 0) {
                Destroy(gameObject);
             }
+
         }
+        if(other.gameObject.tag.Equals("Ground")) {
+            //animation? Particle system?
+            GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject);
+        }
+        
     }
 }
