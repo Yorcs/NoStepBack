@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
 
     public float walkSpeed = 7f;
     public float jumpStrength = 20f;
+    private bool isAirborne = false;
 
     private int pushBackDamage = 5;
 
@@ -49,13 +50,13 @@ public class Player : MonoBehaviour {
         float rightOfScreen = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
 
         position.x = Mathf.Clamp(position.x, leftOfScreen, rightOfScreen);
-        Debug.Log(position);
         transform.position = position;
     }
 
     public void Jump() {
-
-        playerRB.AddForce(Vector2.up * jumpStrength);
+        if(!isAirborne) {
+            playerRB.AddForce(Vector2.up * jumpStrength);
+        }
     }
 
     public void Crouch() {
@@ -84,7 +85,6 @@ public class Player : MonoBehaviour {
     }
 
     public void PushBackEnemy(IEnemy enemy) {
-        Debug.Log(enemy);
         enemy.PushBack(pushBackDamage);
     }
 
@@ -96,7 +96,6 @@ public class Player : MonoBehaviour {
     }
 
     private void PickupItem() {
-        Debug.Log("Crouch Worked!");
         if (currentPickups.Count > 0) {
             Pickup closestPickup = currentPickups[0];
             float shortestDist = Vector2.Distance(transform.position, currentPickups[0].transform.position);
@@ -182,4 +181,16 @@ public class Player : MonoBehaviour {
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag.Equals("Ground")) {
+            isAirborne = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        if(other.gameObject.tag.Equals("Ground")) {
+            isAirborne = true;
+        }
+    }
+
 }
