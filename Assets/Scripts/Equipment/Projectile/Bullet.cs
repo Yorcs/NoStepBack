@@ -11,6 +11,7 @@ public class Bullet : AbstractProjectile {
     private int bulletTime = 1; //for poisoning purposes
     private int stoppingTime = 1;
     private int penetration = 1;
+    private bool isPoisoned, isFrozen;
 
     public void SetBulletTime(int bulletTime)
     {
@@ -38,6 +39,16 @@ public class Bullet : AbstractProjectile {
         this.penetration = penetration;
     }
 
+/*    public void SetIsPoisoned(bool isPoisoned)
+    {
+        this.isPoisoned = isPoisoned;
+    }
+
+    public void SetIsFrozen(bool isFrozen)
+    {
+        this.isFrozen = isFrozen;
+    }*/
+
     // Update is called once per frame
     void Update() {
         transform.Translate(direction * bulletSpeed * Time.deltaTime);
@@ -48,18 +59,6 @@ public class Bullet : AbstractProjectile {
             IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
             Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(enemyHit);
-
-            //poisoning
-            for (int i = 0; i < bulletTime; i++)
-            {
-                enemyHit.TakeDamage(damage);
-            }
-
-            //stopping power
-            for (int i = 0; i < stoppingTime; i++)
-            {
-                rbEnemy.velocity = Vector3.zero;
-            }
 
             //Todo: piercing?
             penetration -= 1;

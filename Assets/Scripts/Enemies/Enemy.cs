@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     EnemyManager manager;
 
     private int damage = 1;
+    //[SerializeField] protected int bulletDamage = 1;
 
 
 
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour, IEnemy {
 
         enemyRB = GetComponent<Rigidbody2D>();
         manager = GetComponentInParent<EnemyManager>();
-
+        //bullet = GetComponent<Bullet>();
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
     }
@@ -30,6 +31,19 @@ public class Enemy : MonoBehaviour, IEnemy {
     void Update() {
         //todo: pick player to follow
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        //poisoning
+/*        for (int i = 0; i < bulletTime; i++)
+        {
+            bullet.SetIsPoisoned(true);
+            isPoisoned();
+        }
+
+        //stopping power
+        for (int i = 0; i < stoppingTime; i++)
+        {
+            bullet.SetIsFrozen(true);
+            isFrozen();
+        }*/
     }
 
     public void TakeDamage(int damage) {
@@ -52,6 +66,19 @@ public class Enemy : MonoBehaviour, IEnemy {
 
         return false;
     }
+
+
+
+/*    private void isPoisoned()
+    {
+        bullet.damage = bulletDamage;
+        TakeDamage(bulletDamage);
+    }
+
+    private void isFrozen()
+    {
+        enemyRB.velocity = Vector3.zero;
+    }*/
 
     public void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag.Equals("Player")) {

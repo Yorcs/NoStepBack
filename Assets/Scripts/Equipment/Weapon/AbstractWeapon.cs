@@ -15,6 +15,7 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
 
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected int damage, bulletTime, stoppingTime, penetration;
+    protected bool isFrozen, isPoisoned;
 
     public void Fire(Vector2 target) {
         fireTimer++;
@@ -44,6 +45,8 @@ public abstract class AbstractWeapon : MonoBehaviour, IEquipment {
 
         Assert.IsNotNull(newBullet);
 
+        newBullet.SetIsPoisoned(isPoisoned);
+        newBullet.SetIsFrozen(isFrozen);
         newBullet.SetStoppingTime(stoppingTime);
         newBullet.SetBulletTime(bulletTime);
         newBullet.SetDirection(Vector2.right);
