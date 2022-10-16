@@ -162,17 +162,15 @@ public class Player : MonoBehaviour {
 
     //Todo: consistent offset for weapons
     private bool pickupWeapon(Weapon newWeapon) {
-        if (newWeapon.GetType() != weapon.GetType()) {
-            //Todo: Drop current as pickup
-            Destroy(weapon.gameObject);
+        //Todo: Drop current as pickup
+        Destroy(weapon.gameObject);
 
-            //TOodo: fix size
-            newWeapon.gameObject.transform.SetParent(transform);
-            newWeapon.gameObject.transform.position = transform.position + new Vector3(1, 0, 0);
-            weapon = newWeapon;
-            return true;
-        }
-        return false;
+        //Todo: fix size
+        //Todo: Fix position offset
+        newWeapon.gameObject.transform.SetParent(transform);
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0);
+        weapon = newWeapon;
+        return true;
     }
 
     private bool pickupSubweapon(AbstractSubweapon newSubweapon) {
@@ -192,7 +190,7 @@ public class Player : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Collided");
+        
         if (collision.gameObject.tag.Equals("Pickup")) {
             Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
             currentPickups.Add(foundPickup);

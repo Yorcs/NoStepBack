@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IEnemy {
     private int currentHealth;
     [SerializeField] private float moveSpeed = 2f;
 
+    private bool active = false;
+
     Rigidbody2D enemyRB;
     EnemyManager manager;
 
@@ -35,21 +37,21 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     // Update is called once per frame
     void FixedUpdate() {
-        //todo: pick player to follow
-        if(!isFrozen) {
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+        if(active) {
+            //todo: pick player to follow
+            if(!isFrozen) {
+                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+            }
+            else {
+                transform.Translate(Vector2.left * moveSpeed/2 * Time.deltaTime);
+                DoFreezeTick();
+            }
+            //poisoning
+            if(isPoisoned)
+            {
+                doPoisonTick();
+            }
         }
-        else {
-            transform.Translate(Vector2.left * moveSpeed/2 * Time.deltaTime);
-            DoFreezeTick();
-        }
-        //poisoning
-        if(isPoisoned)
-        {
-            doPoisonTick();
-        }
-
-        
     }
 
     private void doPoisonTick() {
@@ -106,6 +108,10 @@ public class Enemy : MonoBehaviour, IEnemy {
         freezeDuration = duration;
     }
 
+    public void PushBack(int damage) {
+        enemyRB.velocity = Vector2.right * 10;
+    }
+
     public void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag.Equals("Player")) {
             Player player = collision.gameObject.GetComponent<Player>();
@@ -116,8 +122,13 @@ public class Enemy : MonoBehaviour, IEnemy {
             player.PushBackEnemy(this);
         }
     }
-
-    public void PushBack(int damage) {
-        enemyRB.velocity = Vector2.right * 10;
+    
+    private void OnBecameVisible() {
+        active = true;
     }
+    
+    private void OnBecameInvisible() {
+        active = false;
+    }
+
 }

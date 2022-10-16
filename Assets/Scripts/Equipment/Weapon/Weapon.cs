@@ -33,7 +33,6 @@ public class Weapon : MonoBehaviour, IEquipment {
     }
 
     private Bullet SpawnBullet() {
-        Debug.Log("Fire");
         GameObject GO = Instantiate(bullet);
         GO.transform.position = transform.position;
         GO.transform.rotation = transform.rotation;

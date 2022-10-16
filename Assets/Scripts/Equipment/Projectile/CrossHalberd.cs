@@ -54,7 +54,12 @@ public class CrossHalberd : AbstractProjectile {
     }
 
     void OnBecameInvisible() {
-        penetration = 0;
+        if(returnTimer >= 0 && penetration > 0) {
+            penetration = 0;
+        } 
+        else {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

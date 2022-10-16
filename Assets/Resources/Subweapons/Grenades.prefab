@@ -100,5 +100,5 @@ MonoBehaviour:
   fireRate: 5
   damage: 150
   grenadePrefab: {fileID: 1994810697801410601, guid: 81dded4066513ec40812cfb82dd7f6e5, type: 3}
-  fuseTimer: 120
+  fuse: 2
   radius: 5

@@ -6,8 +6,7 @@ using UnityEngine.Assertions;
 public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject grenadePrefab;
 
-    private int fuse;
-    [SerializeField] private int fuseTimer;
+    [SerializeField] private float fuse;
     [SerializeField] private float radius;
 
 

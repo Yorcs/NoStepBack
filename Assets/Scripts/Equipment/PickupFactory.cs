@@ -18,8 +18,6 @@ public class PickupFactory : MonoBehaviour {
         weapons = Resources.LoadAll<GameObject>("Weapons");
         subWeapons = Resources.LoadAll<GameObject>("SubWeapons");
         // mods = Resources.LoadAll<GameObject>("Mods");
-
-        Debug.Log(weapons.Length);
     }
 
     public void CreatePickup(Vector2 position) {
@@ -29,7 +27,6 @@ public class PickupFactory : MonoBehaviour {
 
 
         randomNumber = Random.Range(1, 10);
-        Debug.Log(randomNumber);
         if (randomNumber < 3) { //30% chance
             Pickup newPickup = CreatePickupObject(position);
 

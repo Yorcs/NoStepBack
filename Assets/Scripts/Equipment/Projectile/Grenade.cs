@@ -9,8 +9,8 @@ public class Grenade : AbstractProjectile {
     [SerializeField] Collider2D explosion;
 
     private int damage;
-    private int fuse;
-    private int fuseTimer;
+    private float fuse;
+    private float fuseTimer;
     private float radius;
 
     List<IEnemy> enemiesInRange = new List<IEnemy>();
@@ -22,7 +22,7 @@ public class Grenade : AbstractProjectile {
     }
 
     private void FixedUpdate() {
-        fuseTimer++;
+        fuseTimer += Time.deltaTime;
         if (fuseTimer > fuse) {
             Explode();
         }
@@ -43,7 +43,7 @@ public class Grenade : AbstractProjectile {
         this.damage = damage;
     }
 
-    public void SetFuse(int fuse) {
+    public void SetFuse(float fuse) {
         this.fuse = fuse;
     }
 
