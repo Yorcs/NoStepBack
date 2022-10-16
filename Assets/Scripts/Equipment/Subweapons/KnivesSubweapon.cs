@@ -6,19 +6,20 @@ using UnityEngine.Assertions;
 public class KnivesSubweapon : AbstractSubweapon
 {
     [SerializeField] GameObject knivesPrefab;
-    private float knifeSpeed;
+    [SerializeField] private float knifeSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         fireRate = 3;
-        damage = 3;
-        knifeSpeed = 3f;
+        damage = 1000;
+        knifeSpeed = 20f;
     }
 
     public override void UseSubweapon()
     {
         SpawnKnives();
+        Destroy(gameObject);
     }
 
     private Knives SpawnKnives()

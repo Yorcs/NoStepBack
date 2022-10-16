@@ -10,6 +10,7 @@ TagManager:
   - Pickup
   - Ground
   - PassableGround
+  - Reviver
   layers:
   - Default
   - TransparentFX

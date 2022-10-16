@@ -9,6 +9,10 @@ public class Knives : AbstractProjectile
     private float knifeSpeed;
     private int damage;
 
+    void Update() {
+        transform.Translate(direction * knifeSpeed * Time.deltaTime);
+    }
+
     public void SetDirection(Vector2 direction)
     {
         this.direction = direction;
@@ -33,6 +37,11 @@ public class Knives : AbstractProjectile
             Assert.IsNotNull(enemyHit);
 
             enemyHit.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+        if(other.gameObject.tag.Equals("Ground")) {
+            //animation? Particle system?
+            Destroy(gameObject);
         }
     }
 }

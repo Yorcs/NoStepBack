@@ -4,20 +4,15 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class GrenadesSubweapon : AbstractSubweapon {
-    [SerializeField] GameObject grenadePrefab;
+    [SerializeField] private GameObject grenadePrefab;
 
     private int fuse;
-    private int fuseTimer;
-    private float radius;
+    [SerializeField] private int fuseTimer;
+    [SerializeField] private float radius;
 
 
     private void Start() {
         Assert.IsNotNull(grenadePrefab);
-
-        fireRate = 5;
-        damage = 150;
-        fuse = 120;
-        radius = 5;
     }
 
     public override void UseSubweapon() {

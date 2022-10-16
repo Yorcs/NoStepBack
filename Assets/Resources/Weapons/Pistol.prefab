@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380263765587492928}
   - component: {fileID: 380263765587492930}
-  - component: {fileID: 380263765587492929}
+  - component: {fileID: 7107272035724220826}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 380263765587492935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5268, y: 0.16538985, z: 1}
+  m_LocalScale: {x: 0.121489525, y: 0.121489525, z: 0.121489525}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ef91ab4d442f3e947a1d1f2d99a6e99d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &380263765587492929
+--- !u!114 &7107272035724220826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,10 +94,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 380263765587492935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0d46c00d368454aad9d70a6cad8ecb, type: 3}
+  m_Script: {fileID: 11500000, guid: cb9d9e6dd7b1a3248b77b88035034f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
-  fireRate: 0
-  bulletSpeed: 0
-  damage: 0
+  spread: 3
+  numBullets: 1
+  fireRate: 0.6
+  bulletSpeed: 12
+  damage: 15
+  penetration: 0
+  doesFreeze: 0
+  doesPoison: 0
+  statusDuration: 0
+  statusDamage: 0

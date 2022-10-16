@@ -79,7 +79,6 @@ public class Bullet : AbstractProjectile {
         }
         if(other.gameObject.tag.Equals("Ground")) {
             //animation? Particle system?
-            GetComponent<SpriteRenderer>().enabled = false;
             Destroy(gameObject);
         }
         

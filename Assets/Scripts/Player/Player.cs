@@ -6,10 +6,11 @@ using UnityEngine.Assertions;
 public class Player : MonoBehaviour {
     private Collider2D playerColl;
     private Rigidbody2D playerRB;
-    private AbstractWeapon weapon;
+    private Weapon weapon;
     private AbstractSubweapon subweapon;
 
     private Camera mainCam;
+    private LayerMask groundMask;
 
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour {
 
         playerColl = GetComponent<Collider2D>();
         playerRB = GetComponent<Rigidbody2D>();
-        weapon = GetComponentInChildren<AbstractWeapon>();
+        weapon = GetComponentInChildren<Weapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
         passableGround = GameObject.FindGameObjectWithTag("PassableGround").GetComponent<Collider2D>();
 
@@ -50,10 +51,12 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
+        if(IsDead()) return;
         weapon.Fire(Vector2.right);
     }
 
     public void WalkHorizontal(int direction) {
+        if(IsDead()) return;
         Vector2 position = transform.position;
         position.x += walkSpeed * Time.deltaTime * direction;
         float leftOfScreen = mainCam.ScreenToWorldPoint(Vector3.zero).x;
@@ -64,36 +67,32 @@ public class Player : MonoBehaviour {
     }
 
     public void Jump() {
+        if(IsDead()) return;
         if(!isAirborne) {
             playerRB.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+            isAirborne = true;
         }
     }
 
     public void Crouch() {
+        if(IsDead()) return;
         PickupItem();
         if(onPassableGround) {
             Physics2D.IgnoreCollision(playerColl, passableGround, true);
-            Debug.Log(Physics2D.GetIgnoreCollision(playerColl, passableGround));
         }
     }
 
     //TODO: find a better way to turn back on collision
     public void ReleaseCrouch() {
+        if(IsDead()) return;
         Physics2D.IgnoreCollision(playerColl, passableGround, false);
-        Debug.Log(Physics2D.GetIgnoreCollision(playerColl, passableGround));
     }
 
     public void Special() {
+        if(IsDead()) return;
         if (subweapon != null) {
             subweapon.UseSubweapon();
         }
-    }
-
-    public void Backwards()
-    {
-        Vector2 position = transform.position;
-        position.x -= walkSpeed * Time.deltaTime;
-        transform.position = position;
     }
 
     public void TakeDamage(int damage) {
@@ -101,7 +100,13 @@ public class Player : MonoBehaviour {
 
         if (IsDead()) {
             Debug.Log("Dead!");
+            //animation
         }
+    }
+
+    public void Revive() {
+        if(!IsDead()) return;
+        currentHitPoints = maxHitpoints;
     }
 
     public void PushBackEnemy(IEnemy enemy) {
@@ -132,7 +137,7 @@ public class Player : MonoBehaviour {
             IEquipment newItem = closestPickup.GetItem();
             switch (newItem.GetEquipmentType()) {
                 case equipmentType.WEAPON:
-                    AbstractWeapon newWeapon = (AbstractWeapon)newItem;
+                    Weapon newWeapon = (Weapon)newItem;
                     itemTaken = pickupWeapon(newWeapon);
                     break;
                 case equipmentType.SUBWEAPON:
@@ -156,7 +161,7 @@ public class Player : MonoBehaviour {
     }
 
     //Todo: consistent offset for weapons
-    private bool pickupWeapon(AbstractWeapon newWeapon) {
+    private bool pickupWeapon(Weapon newWeapon) {
         if (newWeapon.GetType() != weapon.GetType()) {
             //Todo: Drop current as pickup
             Destroy(weapon.gameObject);
@@ -187,9 +192,15 @@ public class Player : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log("Collided");
         if (collision.gameObject.tag.Equals("Pickup")) {
             Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
             currentPickups.Add(foundPickup);
+        }
+        if (collision.gameObject.tag.Equals("Reviver")) {
+            PlayerReviver reviver = collision.gameObject.GetComponent<PlayerReviver>();
+            Assert.IsNotNull(reviver);
+            reviver.RevivePlayer();
         }
     }
 
@@ -213,9 +224,9 @@ public class Player : MonoBehaviour {
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        if(other.gameObject.tag.Equals("Ground")) {
-            isAirborne = true;
-        }
+        // if(other.gameObject.tag.Equals("Ground")) {
+        //     isAirborne = true;
+        // }
         if(other.gameObject.tag.Equals("PassableGround")) {
             onPassableGround = false;
         }

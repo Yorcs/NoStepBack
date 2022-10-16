@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour, IEnemy {
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
         else {
+            transform.Translate(Vector2.left * moveSpeed/2 * Time.deltaTime);
             DoFreezeTick();
         }
         //poisoning
