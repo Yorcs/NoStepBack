@@ -58,6 +58,7 @@ public class CrossHalberd : AbstractProjectile {
             penetration = 0;
         } 
         else {
+            returnTarget.ReturnHalberd();
             Destroy(gameObject);
         }
     }
