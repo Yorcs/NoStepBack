@@ -1,0 +1,127 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Assertions;
+
+public class PlayerActions : MonoBehaviour {
+    private PlayerStatus status;
+
+    private Weapon weapon;
+    private AbstractSubweapon subweapon;
+
+    private List<Pickup> currentPickups = new List<Pickup>();
+
+    // Start is called before the first frame update
+    void Start() {
+        status = GetComponent<PlayerStatus>();
+        weapon = GetComponentInChildren<Weapon>();
+        subweapon = GetComponentInChildren<AbstractSubweapon>();
+
+        Assert.IsNotNull(weapon);
+        Assert.IsNotNull(status);
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if(status.IsDead()) return;
+        weapon.Fire(Vector2.right);
+    }
+
+
+    public void OnSpecial(InputAction.CallbackContext context) {
+        if(status.IsDead()) return;
+        if (subweapon != null) {
+            subweapon.UseSubweapon();
+        }
+    }
+
+    public void OnPickup(InputAction.CallbackContext context) {
+        if(status.IsDead()) return;
+        PickupItem();
+    }
+
+    private void PickupItem() {
+        if (currentPickups.Count > 0) {
+            Pickup closestPickup = currentPickups[0];
+            float shortestDist = Vector2.Distance(transform.position, currentPickups[0].transform.position);
+
+            foreach (Pickup pickup in currentPickups) {
+                float currentDist = Vector2.Distance(transform.position, pickup.transform.position);
+                if (currentDist < shortestDist) {
+                    closestPickup = pickup;
+                    shortestDist = currentDist;
+                }
+            }
+
+            bool itemTaken = false;
+            IEquipment newItem = closestPickup.GetItem();
+            switch (newItem.GetEquipmentType()) {
+                case equipmentType.WEAPON:
+                    Weapon newWeapon = (Weapon)newItem;
+                    itemTaken = pickupWeapon(newWeapon);
+                    break;
+                case equipmentType.SUBWEAPON:
+                    AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
+                    itemTaken = pickupSubweapon(newSubweapon);
+                    break;
+                case equipmentType.MOD:
+                    //take Mod
+                    break;
+                default:
+                    Debug.Log("Invalid Item");
+                    break;
+            }
+
+            if (itemTaken) {
+                currentPickups.Remove(closestPickup);
+                Destroy(closestPickup.gameObject);
+            }
+
+        }
+    }
+
+    //Todo: consistent offset for weapons
+    private bool pickupWeapon(Weapon newWeapon) {
+        //Todo: Drop current as pickup
+        Destroy(weapon.gameObject);
+
+        //Todo: fix size
+        //Todo: Fix position offset
+        newWeapon.gameObject.transform.SetParent(transform);
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0);
+        weapon = newWeapon;
+        return true;
+    }
+
+    private bool pickupSubweapon(AbstractSubweapon newSubweapon) {
+        if (subweapon == null || newSubweapon.GetType() != subweapon.GetType()) {
+            //Todo: Drop current as pickup
+            if (subweapon != null) {
+                Destroy(subweapon.gameObject);
+            }
+            //Todo: fix size
+            newSubweapon.gameObject.transform.SetParent(transform);
+            newSubweapon.gameObject.transform.position = transform.position;
+            subweapon = newSubweapon;
+            return true;
+        }
+        return false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag.Equals("Pickup")) {
+            Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
+            currentPickups.Add(foundPickup);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag.Equals("Pickup")) {
+            Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
+            if (currentPickups.Contains(foundPickup)) {
+                currentPickups.Remove(foundPickup);
+            }
+        }
+    }
+}

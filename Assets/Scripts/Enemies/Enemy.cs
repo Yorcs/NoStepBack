@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     public void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag.Equals("Player")) {
-            Player player = collision.gameObject.GetComponent<Player>();
+            PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
             Assert.IsNotNull(player);
 
             player.TakeDamage(damage);
