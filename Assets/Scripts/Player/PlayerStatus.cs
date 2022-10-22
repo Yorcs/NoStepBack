@@ -4,25 +4,44 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class PlayerStatus : MonoBehaviour {
+    private PlayerController controller;
 
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
 
     private int pushBackDamage = 5;
 
+    private float respawnDuration = 10f;
+    private float respawnTimer;
+
 
     // Start is called before the first frame update
     void Start() {
+        controller = gameObject.GetComponent<PlayerController>();
+        Assert.IsNotNull(controller);
         currentHitPoints = maxHitpoints;
+    }
+
+    private void Update() {
+        if(IsDead()) {
+            respawnTimer += Time.deltaTime;
+            if(respawnTimer >= respawnDuration) {
+                currentHitPoints = maxHitpoints;
+                controller.Respawn();
+                respawnTimer = 0;
+            }
+        }
     }
 
     public bool IsDead() {
         return currentHitPoints <= 0;
     }
 
+    //Todo: Steal Money
     public void Revive() {
         if(!IsDead()) return;
         currentHitPoints = maxHitpoints;
+        respawnTimer = 0;
     }
 
     public void PushBackEnemy(IEnemy enemy) {

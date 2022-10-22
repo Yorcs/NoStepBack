@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
-    public List<Transform> targets;
+    public List<PlayerStatus> targets;
 
     [SerializeField] Vector3 offset;
     private Vector3 velocity;
@@ -37,21 +37,22 @@ public class CameraMovement : MonoBehaviour
     {
         if (targets.Count == 1)
         {
-            return targets[0].position;
+            return targets[0].gameObject.transform.position;
         }
 
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
+        var bounds = new Bounds(targets[0].gameObject.transform.position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            if(!targets[i].IsDead()) {
+                bounds.Encapsulate(targets[i].gameObject.transform.position);
+            }
         }
 
         return bounds.center;
     }
 
     public void OnPlayerJoined(PlayerInput input) {
-        Debug.Log("Player Joined!");
-        targets.Add(input.gameObject.transform);
+        targets.Add(input.gameObject.GetComponent<PlayerStatus>());
     }
 }
 

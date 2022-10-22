@@ -13,19 +13,29 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Collider2D groundCollider;
     public float movementSpeed;
 
+    Camera mainCam;
+
     [SerializeField] private Vector2 movementInput;
     private bool grounded;
     [SerializeField] private float jumpForce;
 
     // Start is called before the first frame update
     void Start() {
+        mainCam = Camera.main;
         status = GetComponent<PlayerStatus>();
         playerRB = GetComponent<Rigidbody2D>();
         
+    // Update is called once per frame
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(groundCollider);
 
         Assert.IsNotNull(status);
+    }
+
+    void Update() {
+        if(!status.IsDead()) {
+            Move();
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context) {
@@ -49,32 +59,30 @@ public class PlayerController : MonoBehaviour {
         //Physics2D.IgnoreCollision(playerColl, passableGround, false);
     }
 
-    // Update is called once per frame
-    void FixedUpdate() {
-        Move();
-    }
 
     private void Move() {
-        Vector2 currentVelocity = playerRB.velocity;
-        Vector2 targetVelocity = new Vector2(movementInput.x, 0);
-        targetVelocity *= movementSpeed;
+        Vector2 position = transform.position;
+        position.x += movementSpeed * Time.deltaTime * movementInput.x;
+        float leftOfScreen = mainCam.ScreenToWorldPoint(Vector3.zero).x;
+        float rightOfScreen = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0)).x;
 
-        targetVelocity = transform.TransformDirection(targetVelocity);
-
-        Vector2 velocityChange = (targetVelocity - currentVelocity);
-
-        playerRB.AddForce(velocityChange, ForceMode2D.Force);
+        position.x = Mathf.Clamp(position.x, leftOfScreen, rightOfScreen);
+        transform.position = position;
     }
 
     private void Jump() {
         Vector2 jump = Vector2.zero;
 
-        if(grounded) {
+        if(!status.IsDead() || grounded) {
             jump = Vector2.up * jumpForce;
             SetGrounded(false);
         }
 
         playerRB.AddForce(jump, ForceMode2D.Impulse);
+    }
+
+    public void Respawn() {
+        transform.position = mainCam.ScreenToWorldPoint(new Vector2(Screen.width/5, (Screen.height * 4)/5));
     }
 
     private void SetGrounded(bool grounded) {
@@ -83,7 +91,7 @@ public class PlayerController : MonoBehaviour {
 
     //Change to use Ground Collider?
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag.Equals("Ground")) {
+        if(other.gameObject.tag.Equals("Ground") || other.gameObject.tag.Equals("PassableGround")) {
             SetGrounded(true);
         }
     }

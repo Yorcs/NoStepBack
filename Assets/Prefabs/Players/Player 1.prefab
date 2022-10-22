@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCollider: {fileID: 369792979849079290}
-  movementSpeed: 20
+  movementSpeed: 15
   movementInput: {x: 0, y: 0}
-  jumpForce: 15
+  jumpForce: 16
 --- !u!114 &369792980854230290
 MonoBehaviour:
   m_ObjectHideFlags: 0
