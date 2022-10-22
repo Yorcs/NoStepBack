@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -46,6 +47,11 @@ public class CameraMovement : MonoBehaviour
         }
 
         return bounds.center;
+    }
+
+    public void OnPlayerJoined(PlayerInput input) {
+        Debug.Log("Player Joined!");
+        targets.Add(input.gameObject.transform);
     }
 }
 
