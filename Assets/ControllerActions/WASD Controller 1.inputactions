@@ -222,6 +222,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "17cb77a0-829b-4436-8d84-9245de75c885",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "",
                     "id": "3ab9f21f-bb63-4a53-944e-b78bee3b8be8",
                     "path": "<Keyboard>/space",

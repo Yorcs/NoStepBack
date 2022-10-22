@@ -326,8 +326,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a4ff50ee-f354-44bc-bdeb-50f0f86f9e28
     m_ActionName: Player/Pickup[/Keyboard/e,/Keyboard/enter]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Controller
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
