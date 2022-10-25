@@ -61,6 +61,10 @@ public class PlayerStatus : MonoBehaviour {
         }
     }
 
+    public void SetUI(PlayerHealthUI healthUI) {
+        this.healthUI = healthUI;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag.Equals("Reviver")) {
             PlayerReviver reviver = collision.gameObject.GetComponent<PlayerReviver>();

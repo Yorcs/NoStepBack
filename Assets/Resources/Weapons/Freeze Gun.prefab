@@ -101,7 +101,7 @@ MonoBehaviour:
   spread: 3
   numBullets: 1
   fireRate: 0.75
-  bulletSpeed: 16
+  bulletSpeed: 30
   damage: 10
   penetration: 0
   doesFreeze: 1

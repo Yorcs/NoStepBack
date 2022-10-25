@@ -100,8 +100,8 @@ MonoBehaviour:
   bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
   spread: 3
   numBullets: 1
-  fireRate: 0.6
-  bulletSpeed: 12
+  fireRate: 0.5
+  bulletSpeed: 26
   damage: 15
   penetration: 0
   doesFreeze: 0
