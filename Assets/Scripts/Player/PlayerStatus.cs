@@ -9,6 +9,8 @@ public class PlayerStatus : MonoBehaviour {
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
 
+    [SerializeField] private PlayerHealthUI healthUI; 
+
     private int pushBackDamage = 5;
 
     private float respawnDuration = 10f;
@@ -41,6 +43,7 @@ public class PlayerStatus : MonoBehaviour {
     public void Revive() {
         if(!IsDead()) return;
         currentHitPoints = maxHitpoints;
+        healthUI.SetHealth(currentHitPoints);
         respawnTimer = 0;
     }
 
@@ -50,6 +53,7 @@ public class PlayerStatus : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         currentHitPoints -= damage;
+        healthUI.SetHealth(currentHitPoints);
 
         if (IsDead()) {
             Debug.Log("Dead!");

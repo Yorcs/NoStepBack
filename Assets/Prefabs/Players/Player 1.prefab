@@ -227,7 +227,7 @@ MonoBehaviour:
   groundCollider: {fileID: 369792979849079290}
   movementSpeed: 15
   movementInput: {x: 0, y: 0}
-  jumpForce: 16
+  jumpForce: 8
 --- !u!114 &369792980854230290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitpoints: 3
+  healthUI: {fileID: 0}
 --- !u!114 &369792980854230292
 MonoBehaviour:
   m_ObjectHideFlags: 0
