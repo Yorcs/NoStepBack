@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
     private void Jump() {
         Vector2 jump = Vector2.zero;
 
-        if(!status.IsDead() || grounded) {
+        if(!status.IsDead() && grounded) {
             jump = Vector2.up * jumpForce;
             SetGrounded(false);
         }
