@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Enemy : MonoBehaviour, IEnemy {
-    [SerializeField] private int maxHealth = 50;
-    private int currentHealth;
+    [SerializeField] private float maxHealth = 50;
+    private float currentHealth;
     [SerializeField] private float moveSpeed = 2f;
 
     private bool active = false;
+    private EnemyHeart heart;
 
     Rigidbody2D enemyRB;
     EnemyManager manager;
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour, IEnemy {
         //bullet = GetComponent<Bullet>();
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
+        
+        
     }
 
     // Update is called once per frame
@@ -41,20 +44,22 @@ public class Enemy : MonoBehaviour, IEnemy {
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+                heart.SetPosition(transform.position);
             }
             else {
                 transform.Translate(Vector2.left * moveSpeed/2 * Time.deltaTime);
+                heart.SetPosition(transform.position);
                 DoFreezeTick();
             }
             //poisoning
             if(isPoisoned)
             {
-                doPoisonTick();
+                DoPoisonTick();
             }
         }
     }
 
-    private void doPoisonTick() {
+    private void DoPoisonTick() {
         poisonDuration -= Time.deltaTime;
         if(poisonDuration <= 0) {
             isPoisoned = false;
@@ -76,11 +81,11 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
-
+        UpdateHealthUI();
         if (IsDead()) {
             //todo: Drops/Pickups
             manager.LootDrop(transform.position);
-
+            Destroy(heart.gameObject);
             Destroy(gameObject);
         }
     }
@@ -122,9 +127,17 @@ public class Enemy : MonoBehaviour, IEnemy {
             player.PushBackEnemy(this);
         }
     }
+
+    private void UpdateHealthUI() {
+        float healthPercent = currentHealth/maxHealth;
+        heart.SetHealthPercent(healthPercent);
+    }
     
     private void OnBecameVisible() {
         active = true;
+        heart = manager.GetUI(this);
+        heart.SetPosition(transform.TransformPoint(transform.position));
+        UpdateHealthUI();
     }
     
     private void OnBecameInvisible() {
