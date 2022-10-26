@@ -101,50 +101,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "464f666c-a842-49cb-833a-7242e4eaa793",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "53b62d8b-f5dc-4083-8b17-6c3f24323c74",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "9d8b9e76-987d-416c-97f7-c6571d53c692",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "40b8ea4a-89bd-4051-be2e-c14f234e6cd1",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "2D Vector",
                     "id": "0aa830d2-4988-473c-a818-3ee969b1a4a6",
                     "path": "2DVector",
@@ -245,17 +201,6 @@
                 },
                 {
                     "name": "",
-                    "id": "72ba63e3-3882-4232-9f52-3c940f170a72",
-                    "path": "<Keyboard>/slash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Special",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a26aa987-5bbe-4933-b866-647aa0889e6a",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -278,17 +223,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a8c3a596-b8bc-47d6-a84f-5b9dcff46590",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
-                    "action": "Pickup",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a6aa4f9b-fd83-4be8-aaca-eb530e05a9c9",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -305,17 +239,6 @@
         {
             "name": "WASD",
             "bindingGroup": "WASD",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Arrows",
-            "bindingGroup": "Arrows",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
