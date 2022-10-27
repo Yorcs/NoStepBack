@@ -9,13 +9,25 @@ public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private float fuse;
     [SerializeField] private float radius;
 
+    [SerializeField] private float fireRate;
+    private float fireTimer = 0;
+
 
     private void Start() {
         Assert.IsNotNull(grenadePrefab);
     }
 
     public override void UseSubweapon() {
-        SpawnGrenade();
+        if(fireTimer <= 0) {
+            SpawnGrenade();
+            fireTimer = fireRate;
+        }
+    }
+
+    private void Update() {
+        if(fireTimer > 0) {
+            fireTimer -= Time.deltaTime;
+        }
     }
 
     private Grenade SpawnGrenade() {

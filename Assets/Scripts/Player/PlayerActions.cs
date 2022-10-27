@@ -30,14 +30,14 @@ public class PlayerActions : MonoBehaviour {
 
 
     public void OnSpecial(InputAction.CallbackContext context) {
-        if(status.IsDead()) return;
+        if(status.IsDead() || context.started || context.canceled) return;
         if (subweapon != null) {
             subweapon.UseSubweapon();
         }
     }
 
     public void OnPickup(InputAction.CallbackContext context) {
-        if(status.IsDead()) return;
+        if(status.IsDead() || context.started || context.canceled) return;
         PickupItem();
     }
 

@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 
     public void OnMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
+        if(context.started || context.canceled) return;
         if (movementInput.y > 0) Jump();
         if (movementInput.y < 0) {
             Crouch();

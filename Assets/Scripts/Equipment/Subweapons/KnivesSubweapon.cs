@@ -11,7 +11,6 @@ public class KnivesSubweapon : AbstractSubweapon
     // Start is called before the first frame update
     void Start()
     {
-        fireRate = 3;
         damage = 1000;
         knifeSpeed = 20f;
     }
