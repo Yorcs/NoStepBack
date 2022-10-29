@@ -13,6 +13,7 @@ public class PlayerWeaponUI : MonoBehaviour {
     }
 
     public void SetSubweapon(Sprite subweaponSprite) {
+        subWeaponImage.gameObject.SetActive(true);
         subWeaponImage.sprite = subweaponSprite;
     }
 }
