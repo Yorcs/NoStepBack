@@ -11,6 +11,8 @@ TagManager:
   - Ground
   - PassableGround
   - Reviver
+  - Walls
+  - Money
   layers:
   - Default
   - TransparentFX

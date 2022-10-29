@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private float maxHealth = 50;
     private float currentHealth;
     [SerializeField] private float moveSpeed = 2f;
+    private Vector2 direction;
 
     private bool active = false;
     private EnemyHeart heart;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
+        direction = Vector2.left;
 
         enemyRB = GetComponent<Rigidbody2D>();
         manager = GetComponentInParent<EnemyManager>();
@@ -43,11 +45,11 @@ public class Enemy : MonoBehaviour, IEnemy {
         if(active) {
             //todo: pick player to follow
             if(!isFrozen) {
-                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
                 heart.SetPosition(transform.position);
             }
             else {
-                transform.Translate(Vector2.left * moveSpeed/2 * Time.deltaTime);
+                transform.Translate(direction * moveSpeed/2 * Time.deltaTime);
                 heart.SetPosition(transform.position);
                 DoFreezeTick();
             }
@@ -85,6 +87,7 @@ public class Enemy : MonoBehaviour, IEnemy {
         if (IsDead()) {
             //todo: Drops/Pickups
             manager.LootDrop(transform.position);
+            manager.MoneyDrop(transform.position);
             Destroy(heart.gameObject);
             Destroy(gameObject);
         }
@@ -126,6 +129,10 @@ public class Enemy : MonoBehaviour, IEnemy {
 
             player.PushBackEnemy(this);
         }
+        if(collision.gameObject.tag.Equals("Walls"))
+        {
+            direction *= -1;
+        }
     }
 
     private void UpdateHealthUI() {
@@ -142,6 +149,10 @@ public class Enemy : MonoBehaviour, IEnemy {
     
     private void OnBecameInvisible() {
         active = false;
+        if (!IsDead())
+        {
+            Destroy(heart.gameObject);
+        }
     }
 
 }

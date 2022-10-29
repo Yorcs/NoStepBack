@@ -9,7 +9,8 @@ public class PlayerStatus : MonoBehaviour {
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
 
-    [SerializeField] private PlayerHealthUI healthUI; 
+    [SerializeField] private PlayerHealthUI healthUI;
+    private int money;
 
     private int pushBackDamage = 5;
 
@@ -22,6 +23,7 @@ public class PlayerStatus : MonoBehaviour {
         controller = gameObject.GetComponent<PlayerController>();
         Assert.IsNotNull(controller);
         currentHitPoints = maxHitpoints;
+        money = 0;
     }
 
     private void Update() {
@@ -45,6 +47,12 @@ public class PlayerStatus : MonoBehaviour {
         currentHitPoints = maxHitpoints;
         healthUI.SetHealth(currentHitPoints);
         respawnTimer = 0;
+    }
+
+    public void GainMoney(int money)
+    {
+        this.money += money;
+        Debug.Log(money);
     }
 
     public void PushBackEnemy(IEnemy enemy) {

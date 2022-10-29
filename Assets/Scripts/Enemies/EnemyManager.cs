@@ -20,6 +20,10 @@ public class EnemyManager : MonoBehaviour {
 
         
     }
+    public void MoneyDrop(Vector2 position)
+    {
+        pickupFactory.CreateMoney(position);
+    }
 
     public void LootDrop(Vector2 position) {
         pickupFactory.CreatePickup(position);

@@ -11,6 +11,7 @@ public class PickupFactory : MonoBehaviour {
 
 
     [SerializeField] GameObject pickup;
+    [SerializeField] GameObject money;
     private float randomNumber;
 
     private void Start() {
@@ -57,11 +58,29 @@ public class PickupFactory : MonoBehaviour {
 
     }
 
-    private Pickup CreatePickupObject(Vector2 position) {
+    private Pickup CreatePickupObject(Vector2 position)
+    {
         GameObject GO = Instantiate(pickup, position, Quaternion.identity);
         Pickup newPickup = GO.GetComponent<Pickup>();
 
         Assert.IsNotNull(newPickup);
         return newPickup;
     }
+
+    public void CreateMoney(Vector2 position)
+    {
+        int randomNumber = Random.Range(1, 10);
+        Money money = CreateMoneyObject(position);
+        money.setMoney(randomNumber);
+    }
+
+    private Money CreateMoneyObject(Vector2 position)
+    {
+        GameObject GO = Instantiate(money, position, Quaternion.identity);
+        Money newMoney = GO.GetComponent<Money>();
+
+        Assert.IsNotNull(newMoney);
+        return newMoney;
+    }
+
 }
