@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour {
     [SerializeField] private int maxHitpoints = 3;
     private int currentHitPoints;
 
-    [SerializeField] private PlayerHealthUI healthUI;
+    private PlayerHealthUI healthUI;
     private int money;
 
     private int pushBackDamage = 5;

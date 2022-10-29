@@ -14,6 +14,8 @@ public class GrenadesSubweapon : AbstractSubweapon {
 
 
     private void Start() {
+        subweaponRenderer = GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(subweaponRenderer);
         Assert.IsNotNull(grenadePrefab);
     }
 

@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
     private equipmentType equipType = equipmentType.WEAPON;
+    private SpriteRenderer weaponRenderer;
 
     [SerializeField] protected float spread;
     [SerializeField] protected int numBullets = 1;
@@ -19,6 +20,11 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected bool doesFreeze, doesPoison = false;
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
+
+    private void Start() {
+        weaponRenderer = GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(weaponRenderer);
+    }
 
     public void Fire(Vector2 target) {
         fireTimer += Time.deltaTime;
@@ -65,5 +71,9 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public equipmentType GetEquipmentType() {
         return equipType;
+    }
+
+    public Sprite GetWeaponImage() {
+        return weaponRenderer.sprite;
     }
 }

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
+  weaponRenderer: {fileID: 6562146867658032947}
   spread: 7
   numBullets: 1
   fireRate: 0.1

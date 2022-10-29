@@ -15,6 +15,8 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
 
     // Start is called before the first frame update
     void Start() {
+        subweaponRenderer = GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(subweaponRenderer);
         Assert.IsNotNull(crossHalberdPrefab);
     }
     

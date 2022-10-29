@@ -11,6 +11,8 @@ public class KnivesSubweapon : AbstractSubweapon
     // Start is called before the first frame update
     void Start()
     {
+        subweaponRenderer = GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(subweaponRenderer);
         damage = 1000;
         knifeSpeed = 20f;
     }

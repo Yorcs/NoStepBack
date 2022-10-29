@@ -5,12 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerUISetup : MonoBehaviour {
     [SerializeField] private List<PlayerHealthUI> healthUIs = new();
+
+    [SerializeField] private List<PlayerWeaponUI> weaponUIs = new();
     private int nextUI = 0;
 
     public void OnPlayerJoined(PlayerInput input) {
         PlayerStatus status = input.gameObject.GetComponent<PlayerStatus>();
+        PlayerActions actions = input.gameObject.GetComponent<PlayerActions>();
         healthUIs[nextUI].gameObject.SetActive(true);
+        weaponUIs[nextUI].gameObject.SetActive(true);
         status.SetUI(healthUIs[nextUI]);
+        actions.SetUI(weaponUIs[nextUI]);
         nextUI++;
     }
 }

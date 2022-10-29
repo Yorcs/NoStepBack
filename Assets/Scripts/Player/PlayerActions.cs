@@ -10,6 +10,8 @@ public class PlayerActions : MonoBehaviour {
     private Weapon weapon;
     private AbstractSubweapon subweapon;
 
+    private PlayerWeaponUI weaponUI;
+
     private List<Pickup> currentPickups = new List<Pickup>();
 
     // Start is called before the first frame update
@@ -91,6 +93,7 @@ public class PlayerActions : MonoBehaviour {
         newWeapon.gameObject.transform.SetParent(transform);
         newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0);
         weapon = newWeapon;
+        weaponUI.SetWeapon(weapon.GetWeaponImage());
         return true;
     }
 
@@ -104,9 +107,14 @@ public class PlayerActions : MonoBehaviour {
             newSubweapon.gameObject.transform.SetParent(transform);
             newSubweapon.gameObject.transform.position = transform.position;
             subweapon = newSubweapon;
+            weaponUI.SetSubweapon(subweapon.GetSubweaponImage());
             return true;
         }
         return false;
+    }
+
+    public void SetUI(PlayerWeaponUI weaponUI) {
+        this.weaponUI = weaponUI;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
