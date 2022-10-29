@@ -6,12 +6,12 @@ public class Money : MonoBehaviour
 {
     [SerializeField] private int money;
 
-    public void setMoney(int money)
+    public void SetMoney(int money)
     {
         this.money = money;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
