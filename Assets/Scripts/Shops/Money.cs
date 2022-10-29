@@ -5,10 +5,16 @@ using UnityEngine;
 public class Money : MonoBehaviour
 {
     [SerializeField] private int money;
+    [SerializeField] private Rigidbody2D moneyRB;
 
     public void SetMoney(int money)
     {
         this.money = money;
+    }
+
+    public void SetForce(Vector2 force)
+    {
+       moneyRB.AddForce(force, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -71,6 +71,8 @@ public class PickupFactory : MonoBehaviour {
     {
         int randomNumber = Random.Range(1, 10);
         Money money = CreateMoneyObject(position);
+        Vector2 force = new Vector2(Random.Range(-8, 8), Random.Range(0, 8));
+        money.SetForce(force);
         money.SetMoney(randomNumber);
     }
 
