@@ -70,10 +70,13 @@ public class PickupFactory : MonoBehaviour {
     public void CreateMoney(Vector2 position)
     {
         int randomNumber = Random.Range(1, 10);
-        Money money = CreateMoneyObject(position);
-        Vector2 force = new Vector2(Random.Range(-8, 8), Random.Range(0, 8));
-        money.SetForce(force);
-        money.SetMoney(randomNumber);
+        for(int i = 0; i < randomNumber; i++)
+        {
+            Money money = CreateMoneyObject(position);
+            Vector2 force = new Vector2(Random.Range(-10, 10), Random.Range(0, 8));
+            money.SetForce(force);
+            money.SetMoney(1);
+        }
     }
 
     private Money CreateMoneyObject(Vector2 position)
