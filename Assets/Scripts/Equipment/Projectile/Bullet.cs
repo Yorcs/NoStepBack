@@ -3,20 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Random=UnityEngine.Random;
 
 public class Bullet : AbstractProjectile {
     private Vector2 direction = new Vector2(1, 0);
     private float bulletSpeed = 1f;
     private int damage = 1;
+    private int criticalChance = 0;
     private int penetration = 1;
     //status stuff to refactor later
     private bool doesPoison, doesFreeze;
     private float statusDuration = 0; //for poisoning purposes
     private int statusDamage = 0;
+    private int randomVal;
 
 
     public void SetDirection(Vector2 direction) {
         this.direction = direction;
+    }
+    
+    public void SetCritical(int criticalChance)
+    {
+        this.criticalChance = criticalChance;
     }
 
     public void SetSpeed(float bulletSpeed) {
@@ -24,7 +32,15 @@ public class Bullet : AbstractProjectile {
     }
 
     public void SetDamage(int damage) {
-        this.damage = damage;
+        randomVal = (int) Random.Range(1,10);
+        if(randomVal < criticalChance)
+        {
+           this.damage = damage * 2; 
+        }
+        else
+        {
+            this.damage = damage;
+        }
     }
 
     public void SetPenetration(int penetration) {

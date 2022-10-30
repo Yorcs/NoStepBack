@@ -12,6 +12,8 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected int numBullets = 1;
 
     [SerializeField] protected float fireRate;
+
+    [SerializeField] protected int criticalChance;
     private float fireTimer = 0;
 
     [SerializeField] protected float bulletSpeed;
@@ -58,6 +60,7 @@ public class Weapon : MonoBehaviour, IEquipment {
         newBullet.SetDirection(Vector2.right);
         newBullet.SetSpeed(bulletSpeed);
         newBullet.SetDamage(damage);
+        newBullet.SetCritical(criticalChance);
         newBullet.SetPenetration(penetration);
         
         //Status Stuff to refactor later
