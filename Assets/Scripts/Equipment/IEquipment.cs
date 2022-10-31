@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum equipmentType {
+public enum EquipmentType {
     WEAPON,
     SUBWEAPON,
     MOD,
@@ -10,6 +10,8 @@ public enum equipmentType {
 
 public interface IEquipment {
     
-    public equipmentType GetEquipmentType();
+    public EquipmentType GetEquipmentType();
+    public int GetDamage();
+    public float GetFireRate();
 
 }

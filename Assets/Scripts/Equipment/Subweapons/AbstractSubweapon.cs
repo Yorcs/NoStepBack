@@ -4,27 +4,29 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
-    private equipmentType equipType = equipmentType.SUBWEAPON;
+    private EquipmentType equipType = EquipmentType.SUBWEAPON;
     protected SpriteRenderer subweaponRenderer;
     
 
     [SerializeField] protected int damage;
 
-
-    //void fixedUpdate() {
-    //    if(fireTimer < fireRate) {
-    //        fireTimer++;
-    //    }
-    //}
-
     public abstract void UseSubweapon();
 
 
-    public equipmentType GetEquipmentType() {
+    public EquipmentType GetEquipmentType() {
         return equipType;
     }
 
     public Sprite GetSubweaponImage() {
         return subweaponRenderer.sprite;
+    }
+
+    public int GetDamage() {
+        return damage;
+    }
+
+    //Todo: this feels bad
+    public float GetFireRate() {
+        return 0;
     }
 }

@@ -12,4 +12,16 @@ public class Pickup : MonoBehaviour {
     public void SetItem(IEquipment equipment) {
         this.equipment = equipment;
     }
+
+    public EquipmentType GetEquipmentType() {
+        return equipment.GetEquipmentType();
+    }
+
+    public int GetDamage() {
+        return equipment.GetDamage();
+    }
+
+    public float GetFireRate() {
+        return equipment.GetFireRate();
+    }
 }

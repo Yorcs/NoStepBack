@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
-    private equipmentType equipType = equipmentType.WEAPON;
+    private EquipmentType equipType = EquipmentType.WEAPON;
     private SpriteRenderer weaponRenderer;
     [SerializeField] private Transform bulletSpawnPoint;
 
@@ -74,11 +74,19 @@ public class Weapon : MonoBehaviour, IEquipment {
         return newBullet;
     }
 
-    public equipmentType GetEquipmentType() {
+    public EquipmentType GetEquipmentType() {
         return equipType;
     }
 
     public Sprite GetWeaponImage() {
         return weaponRenderer.sprite;
+    }
+
+    public int GetDamage() {
+        return damage;
+    }
+
+    public float GetFireRate() {
+        return fireRate;
     }
 }

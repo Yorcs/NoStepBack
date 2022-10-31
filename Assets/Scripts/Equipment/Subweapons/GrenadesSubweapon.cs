@@ -19,6 +19,12 @@ public class GrenadesSubweapon : AbstractSubweapon {
         Assert.IsNotNull(grenadePrefab);
     }
 
+    private void Update() {
+        if(fireTimer > 0) {
+            fireTimer -= Time.deltaTime;
+        }
+    }
+    
     public override void UseSubweapon() {
         if(fireTimer <= 0) {
             SpawnGrenade();
@@ -26,11 +32,6 @@ public class GrenadesSubweapon : AbstractSubweapon {
         }
     }
 
-    private void Update() {
-        if(fireTimer > 0) {
-            fireTimer -= Time.deltaTime;
-        }
-    }
 
     private Grenade SpawnGrenade() {
         GameObject GO = Instantiate(grenadePrefab);

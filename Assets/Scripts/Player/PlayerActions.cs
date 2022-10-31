@@ -26,6 +26,12 @@ public class PlayerActions : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if(currentPickups.Count > 0) {
+            Pickup closestPickup = GetClosestPickup();
+            weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetDamage(), closestPickup.GetFireRate());
+        } else {
+            weaponUI.HidePopup();
+        }
         if(status.IsDead()) return;
         weapon.Fire(Vector2.right);
     }
@@ -45,29 +51,20 @@ public class PlayerActions : MonoBehaviour {
 
     private void PickupItem() {
         if (currentPickups.Count > 0) {
-            Pickup closestPickup = currentPickups[0];
-            float shortestDist = Vector2.Distance(transform.position, currentPickups[0].transform.position);
-
-            foreach (Pickup pickup in currentPickups) {
-                float currentDist = Vector2.Distance(transform.position, pickup.transform.position);
-                if (currentDist < shortestDist) {
-                    closestPickup = pickup;
-                    shortestDist = currentDist;
-                }
-            }
+            Pickup closestPickup = GetClosestPickup();
 
             bool itemTaken = false;
             IEquipment newItem = closestPickup.GetItem();
             switch (newItem.GetEquipmentType()) {
-                case equipmentType.WEAPON:
+                case EquipmentType.WEAPON:
                     Weapon newWeapon = (Weapon)newItem;
                     itemTaken = pickupWeapon(newWeapon);
                     break;
-                case equipmentType.SUBWEAPON:
+                case EquipmentType.SUBWEAPON:
                     AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
                     itemTaken = pickupSubweapon(newSubweapon);
                     break;
-                case equipmentType.MOD:
+                case EquipmentType.MOD:
                     //take Mod
                     break;
                 default:
@@ -81,6 +78,20 @@ public class PlayerActions : MonoBehaviour {
             }
 
         }
+    }
+
+    private Pickup GetClosestPickup() {
+        Pickup closestPickup = currentPickups[0];
+        float shortestDist = Vector2.Distance(transform.position, currentPickups[0].transform.position);
+
+        foreach (Pickup pickup in currentPickups) {
+            float currentDist = Vector2.Distance(transform.position, pickup.transform.position);
+            if (currentDist < shortestDist) {
+                closestPickup = pickup;
+                shortestDist = currentDist;
+            }
+        }
+        return closestPickup;
     }
 
     //Todo: consistent offset for weapons

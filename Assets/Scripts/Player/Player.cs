@@ -136,15 +136,15 @@ public class Player : MonoBehaviour {
             bool itemTaken = false;
             IEquipment newItem = closestPickup.GetItem();
             switch (newItem.GetEquipmentType()) {
-                case equipmentType.WEAPON:
+                case EquipmentType.WEAPON:
                     Weapon newWeapon = (Weapon)newItem;
                     itemTaken = pickupWeapon(newWeapon);
                     break;
-                case equipmentType.SUBWEAPON:
+                case EquipmentType.SUBWEAPON:
                     AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
                     itemTaken = pickupSubweapon(newSubweapon);
                     break;
-                case equipmentType.MOD:
+                case EquipmentType.MOD:
                     //take Mod
                     break;
                 default:
