@@ -13,6 +13,16 @@ public class EnemyHeart : MonoBehaviour {
 
     public void SetHealthPercent(float healthPercent) {
         heartImage.fillAmount = healthPercent;
+        switch(healthPercent) {
+            case < 0.25f:
+                heartImage.color = Color.red;
+                break;
+            case < 0.5f:
+                heartImage.color = Color.yellow;
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetPosition (Vector2 position) {
