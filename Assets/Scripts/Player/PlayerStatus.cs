@@ -11,6 +11,7 @@ public class PlayerStatus : MonoBehaviour {
 
     private PlayerHealthUI healthUI;
     private int money;
+    private PlayerMoneyUI moneyUI;
 
     private int pushBackDamage = 5;
 
@@ -52,7 +53,7 @@ public class PlayerStatus : MonoBehaviour {
     public void GainMoney(int money)
     {
         this.money += money;
-        Debug.Log(money);
+        moneyUI.SetMoney(this.money);
     }
 
     public void PushBackEnemy(IEnemy enemy) {
@@ -69,8 +70,9 @@ public class PlayerStatus : MonoBehaviour {
         }
     }
 
-    public void SetUI(PlayerHealthUI healthUI) {
+    public void SetUI(PlayerHealthUI healthUI, PlayerMoneyUI moneyUI) {
         this.healthUI = healthUI;
+        this.moneyUI = moneyUI;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
