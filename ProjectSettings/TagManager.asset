@@ -24,8 +24,8 @@ TagManager:
   - FriendlyProjectiles
   - EnemyProjectiles
   - Enemies
-  - Pickups
-  - 
+  - PickupTriggers
+  - PickupBodies
   - 
   - 
   - 

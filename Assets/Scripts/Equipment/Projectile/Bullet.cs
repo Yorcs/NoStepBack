@@ -10,12 +10,12 @@ public class Bullet : AbstractProjectile {
     private float bulletSpeed = 1f;
     private int damage = 1;
     private int criticalChance = 0;
+    private int criticalMultiplier = 2;
     private int penetration = 1;
     //status stuff to refactor later
     private bool doesPoison, doesFreeze;
     private float statusDuration = 0; //for poisoning purposes
     private int statusDamage = 0;
-    private int randomVal;
 
 
     public void SetDirection(Vector2 direction) {
@@ -27,20 +27,16 @@ public class Bullet : AbstractProjectile {
         this.criticalChance = criticalChance;
     }
 
+    public void SetCriticalMultiplier(int criticalMultiplier) {
+        this.criticalMultiplier = criticalMultiplier;
+    }
+
     public void SetSpeed(float bulletSpeed) {
         this.bulletSpeed = bulletSpeed;
     }
 
     public void SetDamage(int damage) {
-        randomVal = (int) Random.Range(1,10);
-        if(randomVal < criticalChance)
-        {
-           this.damage = damage * 2; 
-        }
-        else
-        {
-            this.damage = damage;
-        }
+        this.damage = damage;
     }
 
     public void SetPenetration(int penetration) {
@@ -78,7 +74,11 @@ public class Bullet : AbstractProjectile {
             Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(enemyHit);
 
-            enemyHit.TakeDamage(damage);
+            int randomVal = Random.Range(1,100);
+            int totalDamage = randomVal < criticalChance? 
+                    (damage * criticalMultiplier) : damage;
+            enemyHit.TakeDamage(totalDamage); 
+            
 
             if(doesPoison) {
                 enemyHit.SetPoison(statusDuration, statusDamage);

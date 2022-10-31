@@ -141,18 +141,20 @@ public class Enemy : MonoBehaviour, IEnemy {
     }
     
     private void OnBecameVisible() {
-        active = true;
-        heart = manager.GetUI(this);
-        heart.SetPosition(transform.TransformPoint(transform.position));
-        UpdateHealthUI();
-    }
-    
-    private void OnBecameInvisible() {
-        active = false;
-        if (!IsDead())
-        {
-            Destroy(heart.gameObject);
+        if(!active) {
+            active = true;
+            heart = manager.GetUI(this);
+            heart.SetPosition(transform.TransformPoint(transform.position));
+            UpdateHealthUI();
         }
     }
+    
+    // private void OnBecameInvisible() {
+    //     active = false;
+    //     if (!IsDead())
+    //     {
+    //         Destroy(heart.gameObject);
+    //     }
+    // }
 
 }
