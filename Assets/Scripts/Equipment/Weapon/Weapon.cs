@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
     private equipmentType equipType = equipmentType.WEAPON;
     private SpriteRenderer weaponRenderer;
+    [SerializeField] private Transform bulletSpawnPoint;
 
     [SerializeField] protected float spread;
     [SerializeField] protected int numBullets = 1;
@@ -26,6 +27,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     private void Start() {
         weaponRenderer = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(weaponRenderer);
+        Assert.IsNotNull(bulletSpawnPoint);
     }
 
     public void Fire(Vector2 target) {
@@ -42,8 +44,8 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     private Bullet SpawnBullet() {
         GameObject GO = Instantiate(bullet);
-        GO.transform.position = transform.position;
-        GO.transform.rotation = transform.rotation;
+        GO.transform.position = bulletSpawnPoint.position;
+        GO.transform.rotation = bulletSpawnPoint.rotation;
 
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
