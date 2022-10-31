@@ -23,7 +23,6 @@ public class Money : MonoBehaviour
         {
             PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
             player.GainMoney(money);
-            Debug.Log("called");
             Destroy(gameObject);
         }
     }
