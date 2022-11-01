@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class PlayerStatus : MonoBehaviour {
     private PlayerController controller;
 
-    [SerializeField] private int maxHitpoints = 3;
+    [SerializeField] private int maxHitpoints = 300;
     private int currentHitPoints;
 
     private PlayerHealthUI healthUI;
@@ -66,7 +66,6 @@ public class PlayerStatus : MonoBehaviour {
 
         if (IsDead()) {
             Debug.Log("Dead!");
-            //animation
         }
     }
 

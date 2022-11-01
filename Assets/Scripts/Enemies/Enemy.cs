@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     Rigidbody2D enemyRB;
     EnemyManager manager;
 
-    private int damage = 1;
+    private int damage = 55;
 
     private bool isPoisoned, isFrozen;
 
