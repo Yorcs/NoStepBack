@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Enemy : MonoBehaviour, IEnemy {
-    [SerializeField] private float maxHealth = 50;
-    private float currentHealth;
+    [SerializeField] private int maxHealth = 50;
+    private int currentHealth;
     [SerializeField] private float moveSpeed = 2f;
     private Vector2 direction;
 
@@ -136,7 +136,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     }
 
     private void UpdateHealthUI() {
-        float healthPercent = currentHealth/maxHealth;
+        float healthPercent = (float) currentHealth / (float) maxHealth;
         heart.SetHealthPercent(healthPercent);
     }
     
