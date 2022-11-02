@@ -93,6 +93,16 @@ public class Bullet : AbstractProjectile {
             }
 
         }
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            PlayerStatus player = other.gameObject.GetComponent<PlayerStatus>();
+            Rigidbody2D rbPlayer = other.gameObject.GetComponent<Rigidbody2D>();
+            Assert.IsNotNull(player);
+
+            player.TakeDamage(damage);
+
+            Destroy(gameObject);
+        }
         if(other.gameObject.tag.Equals("Ground")) {
             //animation? Particle system?
             Destroy(gameObject);

@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     Rigidbody2D enemyRB;
     EnemyManager manager;
 
+    private Weapon weapon;
     private int damage = 55;
 
     private bool isPoisoned, isFrozen;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour, IEnemy {
 
         enemyRB = GetComponent<Rigidbody2D>();
         manager = GetComponentInParent<EnemyManager>();
+        weapon = GetComponentInChildren<Weapon>();
         //bullet = GetComponent<Bullet>();
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     // Update is called once per frame
     void FixedUpdate() {
         if(active) {
+            weapon.Fire(Vector2.right);
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
