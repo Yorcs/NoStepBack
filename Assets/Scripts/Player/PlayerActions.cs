@@ -6,22 +6,27 @@ using UnityEngine.Assertions;
 
 public class PlayerActions : MonoBehaviour {
     private PlayerStatus status;
+    private PlayerController controller;
 
     private Weapon weapon;
     private AbstractSubweapon subweapon;
 
     private PlayerWeaponUI weaponUI;
 
+    
+
     private List<Pickup> currentPickups = new List<Pickup>();
 
     // Start is called before the first frame update
     void Start() {
         status = GetComponent<PlayerStatus>();
+        controller = GetComponent<PlayerController>();
         weapon = GetComponentInChildren<Weapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
 
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(status);
+        Assert.IsNotNull(controller);
     }
 
     // Update is called once per frame
@@ -33,7 +38,7 @@ public class PlayerActions : MonoBehaviour {
             weaponUI.HidePopup();
         }
         if(status.IsDead()) return;
-        weapon.Fire(Vector2.right);
+        weapon.Fire(controller.GetDirection());
     }
 
 

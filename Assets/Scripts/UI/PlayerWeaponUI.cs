@@ -51,7 +51,6 @@ public class PlayerWeaponUI : MonoBehaviour {
     }
 
     public void HidePopup() {
-        Debug.Log("Hide");
         popupImage.gameObject.SetActive(false);
     }
 }

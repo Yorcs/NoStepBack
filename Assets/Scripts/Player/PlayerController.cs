@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private Collider2D playerCollider;
     private Rigidbody2D playerRB;
     public float movementSpeed;
+    private Vector2 direction = Vector2.right;
 
     Camera mainCam;
 
@@ -44,10 +45,23 @@ public class PlayerController : MonoBehaviour {
     public void OnMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
         if(context.started || context.canceled) return;
+        if(direction.x > 0 && movementInput.x < 0) TurnAround();
+        if(direction.x < 0 && movementInput.x > 0) TurnAround();
+
+        
         if (movementInput.y > 0) Jump();
         if (movementInput.y < 0) {
             Crouch();
         }
+    }
+
+    private void TurnAround () {
+        direction *= -1;
+        transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y);
+    }
+
+    public Vector2 GetDirection() {
+        return direction;
     }
 
     public void Crouch() {
