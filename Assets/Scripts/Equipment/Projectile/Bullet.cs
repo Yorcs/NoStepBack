@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 using Random=UnityEngine.Random;
 
 public class Bullet : AbstractProjectile {
-    private Vector2 direction = new Vector2(1, 0);
+    private Vector2 direction = Vector2.right;
     private float bulletSpeed = 1f;
     private int damage = 1;
     private int criticalChance = 0;
@@ -20,6 +20,8 @@ public class Bullet : AbstractProjectile {
 
     public void SetDirection(Vector2 direction) {
         this.direction = direction;
+        //Todo: improve this to use actual rotation
+        transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x),  transform.localScale.y);
     }
     
     public void SetCritical(int criticalChance)

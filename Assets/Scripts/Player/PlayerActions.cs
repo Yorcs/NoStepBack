@@ -39,6 +39,7 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
         weapon.Fire(controller.GetDirection());
+        
     }
 
 
@@ -106,8 +107,11 @@ public class PlayerActions : MonoBehaviour {
 
         //Todo: fix size
         //Todo: Fix position offset
+        Vector2 direction = controller.GetDirection();
+        Debug.Log(direction);
+        newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
-        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0);
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0) * direction.x;
         weapon = newWeapon;
         weaponUI.SetWeapon(weapon.GetWeaponImage());
         return true;
@@ -120,8 +124,9 @@ public class PlayerActions : MonoBehaviour {
                 Destroy(subweapon.gameObject);
             }
             //Todo: fix size
+            Vector2 direction = controller.GetDirection();
             newSubweapon.gameObject.transform.SetParent(transform);
-            newSubweapon.gameObject.transform.position = transform.position;
+            newSubweapon.gameObject.transform.position = transform.position * direction.x;
             subweapon = newSubweapon;
             weaponUI.SetSubweapon(subweapon.GetSubweaponImage());
             return true;

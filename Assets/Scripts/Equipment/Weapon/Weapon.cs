@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour, IEquipment {
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = bulletSpawnPoint.rotation;
+        
 
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
