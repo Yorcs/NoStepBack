@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour, IEnemy {
     // Update is called once per frame
     void FixedUpdate() {
         if(active) {
-            weapon.Fire(Vector2.right);
+            //todo: clean this up maybe?
+            if(weapon) weapon.Fire(direction);
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
@@ -135,6 +136,7 @@ public class Enemy : MonoBehaviour, IEnemy {
         if(collision.gameObject.tag.Equals("Walls"))
         {
             direction *= -1;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
 

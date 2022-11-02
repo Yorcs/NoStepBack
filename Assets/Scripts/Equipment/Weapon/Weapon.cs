@@ -36,13 +36,13 @@ public class Weapon : MonoBehaviour, IEquipment {
             
             fireTimer -= fireRate;
             for(int i = 0; i < numBullets; i++){
-                Bullet newBullet = SpawnBullet();
+                Bullet newBullet = SpawnBullet(target);
             }
         }
 
     }
 
-    private Bullet SpawnBullet() {
+    private Bullet SpawnBullet(Vector2 target) {
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = bulletSpawnPoint.rotation;
@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour, IEquipment {
 
         Assert.IsNotNull(newBullet);
 
-        newBullet.SetDirection(Vector2.right);
+        newBullet.SetDirection(target);
         newBullet.SetSpeed(bulletSpeed);
         newBullet.SetDamage(damage);
         newBullet.SetCritical(criticalChance);
