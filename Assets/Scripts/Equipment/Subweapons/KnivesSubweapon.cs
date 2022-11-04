@@ -7,6 +7,7 @@ public class KnivesSubweapon : AbstractSubweapon
 {
     [SerializeField] GameObject knivesPrefab;
     [SerializeField] private float knifeSpeed;
+    private int uses = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,14 @@ public class KnivesSubweapon : AbstractSubweapon
         knifeSpeed = 20f;
     }
 
+    //todo: Destroying this object causes problems with the player and seems to mess with subweapon pickups after that point
     public override void UseSubweapon(Vector2 direction)
     {
         SpawnKnives(direction);
-        Destroy(gameObject);
+        uses --;
+        if(uses == 0) {
+            Destroy(gameObject);
+        }
     }
 
     private Knives SpawnKnives(Vector2 direction)

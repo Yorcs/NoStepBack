@@ -118,20 +118,16 @@ public class PlayerActions : MonoBehaviour {
     }
 
     private bool pickupSubweapon(AbstractSubweapon newSubweapon) {
-        if (subweapon == null || newSubweapon.GetType() != subweapon.GetType()) {
-            //Todo: Drop current as pickup
-            if (subweapon != null) {
-                Destroy(subweapon.gameObject);
-            }
-            //Todo: fix size
-            Vector2 direction = controller.GetDirection();
-            newSubweapon.gameObject.transform.SetParent(transform);
-            newSubweapon.gameObject.transform.position = transform.position * direction.x;
-            subweapon = newSubweapon;
-            weaponUI.SetSubweapon(subweapon.GetSubweaponImage());
-            return true;
+        //Todo: Drop current as pickup
+        if (subweapon != null) {
+            Destroy(subweapon.gameObject);
         }
-        return false;
+        //Todo: fix size
+        newSubweapon.gameObject.transform.SetParent(transform);
+        newSubweapon.gameObject.transform.position = transform.position;
+        subweapon = newSubweapon;
+        weaponUI.SetSubweapon(subweapon.GetSubweaponImage());
+        return true;
     }
 
     public void SetUI(PlayerWeaponUI weaponUI) {

@@ -21,6 +21,7 @@ public class CrossHalberd : AbstractProjectile {
         } 
         else {
             //Todo: better return - returns to owner but if it hits ground, stops and drops as pickup.
+            //Todo: Dropping this weapon while it's out causes errors
             transform.Translate(-direction * speed * Time.deltaTime);
             if(Vector2.Distance(transform.position, returnTarget.gameObject.transform.position) < 1) {
                 returnTarget.ReturnHalberd();

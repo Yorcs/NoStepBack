@@ -50,11 +50,11 @@ public class Enemy : MonoBehaviour, IEnemy {
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
-                heart.SetPosition(transform.position);
+                MoveHeart();
             }
             else {
                 transform.Translate(direction * moveSpeed/2 * Time.deltaTime);
-                heart.SetPosition(transform.position);
+                MoveHeart();
                 DoFreezeTick();
             }
             //poisoning
@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     }
 
     public void TakeDamage(int damage) {
+        CreateHeart();
         currentHealth -= damage;
         UpdateHealthUI();
         if (IsDead()) {
@@ -105,7 +106,19 @@ public class Enemy : MonoBehaviour, IEnemy {
         return false;
     }
 
+    private void CreateHeart() {
+        if(heart == null) {
+            heart = manager.GetUI(this);
+            heart.SetPosition(transform.TransformPoint(transform.position));
+            UpdateHealthUI();
+        }
+    }
 
+    private void MoveHeart() {
+        if(heart != null) {
+            heart.SetPosition(transform.position);
+        }
+    }
 
     public void SetPoison(float duration, int damage)
     {
@@ -148,9 +161,9 @@ public class Enemy : MonoBehaviour, IEnemy {
     private void OnBecameVisible() {
         if(!active) {
             active = true;
-            heart = manager.GetUI(this);
-            heart.SetPosition(transform.TransformPoint(transform.position));
-            UpdateHealthUI();
+            //Todo: Enemy hit while offscreen causes error - 
+            //either instantiate all hearts at boot or instantiate on damage taken 
+            
         }
     }
     
