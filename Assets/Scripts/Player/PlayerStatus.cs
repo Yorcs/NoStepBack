@@ -31,9 +31,8 @@ public class PlayerStatus : MonoBehaviour {
         if(IsDead()) {
             respawnTimer += Time.deltaTime;
             if(respawnTimer >= respawnDuration) {
-                currentHitPoints = maxHitpoints;
                 controller.Respawn();
-                respawnTimer = 0;
+                Revive();
             }
         }
     }
