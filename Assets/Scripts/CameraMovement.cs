@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Start() {
         //this shouldn't be magic numbers later
-        offset = new Vector3(-20, 0, -10);
+        offset = new Vector3(20, 0, -10);
     }
 
 

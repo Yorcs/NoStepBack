@@ -20,13 +20,13 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         Assert.IsNotNull(crossHalberdPrefab);
     }
     
-    public override void UseSubweapon() {
+    public override void UseSubweapon(Vector2 direction) {
         if(weaponReturned) {
-            SpawnHalberd();
+            SpawnHalberd(direction);
         }
     }
 
-    private CrossHalberd SpawnHalberd() {
+    private CrossHalberd SpawnHalberd(Vector2 direction) {
         GameObject GO = Instantiate(crossHalberdPrefab);
         GO.transform.position = transform.position;
 
@@ -35,7 +35,7 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
 
         newHalberd.SetDamage(damage);
         newHalberd.SetSpeed(speed);
-        newHalberd.SetDirection(Vector2.right);
+        newHalberd.SetDirection(direction);
         newHalberd.SetPenetration(penetration);
         newHalberd.SetReturnTimer(returnTimer);
         newHalberd.SetReturnTarget(this);

@@ -10,7 +10,7 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
 
     [SerializeField] protected int damage;
 
-    public abstract void UseSubweapon();
+    public abstract void UseSubweapon(Vector2 direction);
 
 
     public EquipmentType GetEquipmentType() {

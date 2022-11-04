@@ -25,15 +25,15 @@ public class GrenadesSubweapon : AbstractSubweapon {
         }
     }
     
-    public override void UseSubweapon() {
+    public override void UseSubweapon(Vector2 direction) {
         if(fireTimer <= 0) {
-            SpawnGrenade();
+            SpawnGrenade(direction);
             fireTimer = fireRate;
         }
     }
 
 
-    private Grenade SpawnGrenade() {
+    private Grenade SpawnGrenade(Vector2 direction) {
         GameObject GO = Instantiate(grenadePrefab);
         GO.transform.position = transform.position;
 
@@ -44,7 +44,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
         newGrenade.SetDamage(damage);
         newGrenade.SetRadius(radius);
         //Todo: No magic numbers
-        newGrenade.SetVelocity(new Vector2(10, 5));
+        newGrenade.SetVelocity(new Vector2(10, 5) * direction.x);
 
         return newGrenade;
     }

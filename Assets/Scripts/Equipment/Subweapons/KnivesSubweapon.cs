@@ -17,13 +17,13 @@ public class KnivesSubweapon : AbstractSubweapon
         knifeSpeed = 20f;
     }
 
-    public override void UseSubweapon()
+    public override void UseSubweapon(Vector2 direction)
     {
-        SpawnKnives();
+        SpawnKnives(direction);
         Destroy(gameObject);
     }
 
-    private Knives SpawnKnives()
+    private Knives SpawnKnives(Vector2 direction)
     {
         GameObject GO = Instantiate(knivesPrefab);
         GO.transform.position = transform.position;
@@ -31,7 +31,7 @@ public class KnivesSubweapon : AbstractSubweapon
         Knives newKnives = GO.GetComponent<Knives>();
         Assert.IsNotNull(newKnives);
 
-        newKnives.SetDirection(Vector2.right);
+        newKnives.SetDirection(direction);
         newKnives.SetSpeed(knifeSpeed);
         newKnives.SetDamage(damage);
 
