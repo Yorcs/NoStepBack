@@ -31,9 +31,8 @@ public class PlayerStatus : MonoBehaviour {
         if(IsDead()) {
             respawnTimer += Time.deltaTime;
             if(respawnTimer >= respawnDuration) {
-                currentHitPoints = maxHitpoints;
                 controller.Respawn();
-                respawnTimer = 0;
+                Revive();
             }
         }
     }
@@ -54,6 +53,12 @@ public class PlayerStatus : MonoBehaviour {
     {
         this.money += money;
         moneyUI.SetMoney(this.money);
+    }
+
+    public void GainHealth(int health) {
+        currentHitPoints += health;
+        currentHitPoints = Mathf.Clamp(currentHitPoints, 0, maxHitpoints);
+        healthUI.SetHealth(currentHitPoints);
     }
 
     public void PushBackEnemy(IEnemy enemy) {
