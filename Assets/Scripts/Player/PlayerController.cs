@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpForce;
     private bool onPassableGround;
     private Collider2D passableGround;
+    // private Animator animator;
 
     // Start is called before the first frame update
     void Start() {
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour {
         status = GetComponent<PlayerStatus>();
         playerRB = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        // animator = GetComponent<Animator>();
 
         // Update is called once per frame
         Assert.IsNotNull(playerRB);
         Assert.IsNotNull(playerCollider);
+        // Assert.IsNotNull(animator);
 
         Assert.IsNotNull(status);
     }
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour {
 
         position.x = Mathf.Clamp(position.x, leftOfScreen, rightOfScreen);
         transform.position = position;
+        // animator.SetBool("IsMoving", Mathf.Abs(movementInput.x) > 0);
     }
 
     private void Jump() {
