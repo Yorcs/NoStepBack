@@ -55,6 +55,12 @@ public class PlayerStatus : MonoBehaviour {
         moneyUI.SetMoney(this.money);
     }
 
+    public void GainHealth(int health) {
+        currentHitPoints += health;
+        currentHitPoints = Mathf.Clamp(currentHitPoints, 0, maxHitpoints);
+        healthUI.SetHealth(currentHitPoints);
+    }
+
     public void PushBackEnemy(IEnemy enemy) {
         enemy.PushBack(pushBackDamage);
     }
