@@ -17,15 +17,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780890, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Name
-      value: Boss Enemy
+      value: Boss Enemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Size.x
-      value: 7.2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Size.y
       value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
