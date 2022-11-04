@@ -12,6 +12,12 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float smoothTime = .5f;
     [SerializeField] Vector3 minValues, maxValue;
 
+    private void Start() {
+        //this shouldn't be magic numbers later
+        offset = new Vector3(-20, 0, -10);
+    }
+
+
     void LateUpdate()
     {
         if (targets.Count == 0)
