@@ -6,17 +6,17 @@ using UnityEngine.Assertions;
 using Random=UnityEngine.Random;
 
 public class Bullet : AbstractProjectile {
+    private WeaponStatus status;
     private Vector2 direction = Vector2.right;
     private float bulletSpeed = 1f;
     private int damage = 1;
     private int criticalChance = 0;
     private int criticalMultiplier = 2;
     private int penetration = 1;
-    //status stuff to refactor later
-    private bool doesPoison, doesFreeze;
-    private float statusDuration = 0; //for poisoning purposes
-    private int statusDamage = 0;
 
+    private void Start(){
+        status = GetComponent<WeaponStatus>();
+    }
 
     public void SetDirection(Vector2 direction) {
         this.direction = direction;
@@ -45,32 +45,13 @@ public class Bullet : AbstractProjectile {
         this.penetration = penetration;
     }
 
-    //status stuff
-    public void SetIsPoisoned(bool doesPoison)
-    {
-        this.doesPoison = doesPoison;
-    }
-
-    public void SetIsFrozen(bool doesFreeze)
-    {
-        this.doesFreeze = doesFreeze;
-    }
-    public void SetStatusDuration(float statusDuration)
-    {
-        this.statusDuration = statusDuration;
-    }
-
-    public void SetStatusDamage(int statusDamage)
-    {
-        this.statusDamage = statusDamage;
-    }
 
     // Update is called once per frame
     void Update() {
         transform.Translate(direction * bulletSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    protected void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag.Equals("Enemy")) {
             IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
             Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
@@ -82,11 +63,11 @@ public class Bullet : AbstractProjectile {
             enemyHit.TakeDamage(totalDamage); 
             
 
-            if(doesPoison) {
-                enemyHit.SetPoison(statusDuration, statusDamage);
+            if(status.GetPoisoned()) {
+                enemyHit.SetPoison(status.GetStatusDuration(), status.GetStatusDamage());
             }
-            if(doesFreeze) {
-                enemyHit.SetFreeze(statusDuration);
+            if(status.GetFrozen()) {
+                enemyHit.SetFreeze(status.GetStatusDuration());
             }
 
             penetration -= 1;

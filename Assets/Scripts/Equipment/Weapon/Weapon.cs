@@ -19,10 +19,6 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected int damage, penetration;
-    //Status things to factor out later
-    [SerializeField] protected bool doesFreeze, doesPoison = false;
-    [SerializeField] protected float statusDuration = 0;
-    [SerializeField] protected int statusDamage = 0;
 
     private void Start() {
         weaponRenderer = GetComponent<SpriteRenderer>();
@@ -65,12 +61,6 @@ public class Weapon : MonoBehaviour, IEquipment {
         newBullet.SetDamage(damage);
         newBullet.SetCritical(criticalChance);
         newBullet.SetPenetration(penetration);
-        
-        //Status Stuff to refactor later
-        newBullet.SetIsPoisoned(doesPoison);
-        newBullet.SetIsFrozen(doesFreeze);
-        newBullet.SetStatusDuration(statusDuration);
-        newBullet.SetStatusDamage(statusDamage);
 
         return newBullet;
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 380263765587492928}
   - component: {fileID: 380263765587492930}
   - component: {fileID: 7107272035724220826}
+  - component: {fileID: 5687875352919697043}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -107,10 +108,25 @@ MonoBehaviour:
   bulletSpeed: 26
   damage: 15
   penetration: 0
+--- !u!114 &5687875352919697043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380263765587492935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178c7efdb4b816d4abcba871a3403b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doesPoison: 1
   doesFreeze: 0
-  doesPoison: 0
-  statusDuration: 0
-  statusDamage: 0
+  doesBleed: 0
+  doesStun: 0
+  doesBurn: 0
+  statusDuration: 20
+  statusDamage: 100
 --- !u!1 &8049030774123795814
 GameObject:
   m_ObjectHideFlags: 0
