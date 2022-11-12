@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 8426035188592748665}
   - component: {fileID: 72568484016216619}
   m_Layer: 12
-  m_Name: GameObject
+  m_Name: Trigger
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,11 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492935, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8049030774123795814, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}

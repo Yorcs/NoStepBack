@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8807367471030229076}
   - component: {fileID: 8807367471030229075}
   - component: {fileID: 8807367471030229074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrossHalberds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e47f2f170994714f8b8b82bf1a1b2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
   damage: 30
   crossHalberdPrefab: {fileID: 1986499631005053459, guid: 22340ea6b4a545a46bc4403071885297, type: 3}
   speed: 12
