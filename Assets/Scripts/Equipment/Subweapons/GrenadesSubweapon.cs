@@ -25,17 +25,18 @@ public class GrenadesSubweapon : AbstractSubweapon {
         }
     }
     
-    public override void UseSubweapon(Vector2 direction) {
+    public override void UseSubweapon(Vector2 direction, int layer) {
         if(fireTimer <= 0) {
-            SpawnGrenade(direction);
+            SpawnGrenade(direction, layer);
             fireTimer = fireRate;
         }
     }
 
 
-    private Grenade SpawnGrenade(Vector2 direction) {
+    private Grenade SpawnGrenade(Vector2 direction, int layer) {
         GameObject GO = Instantiate(grenadePrefab);
         GO.transform.position = transform.position;
+        GO.layer = layer;
 
         Grenade newGrenade = GO.GetComponent<Grenade>();
         Assert.IsNotNull(newGrenade);

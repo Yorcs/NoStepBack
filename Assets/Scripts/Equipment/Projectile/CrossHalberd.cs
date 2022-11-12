@@ -73,5 +73,14 @@ public class CrossHalberd : AbstractProjectile {
             enemyHit.TakeDamage(damage);
             penetration--;
         }
+
+        if(other.gameObject.tag.Equals("Player")) {
+            PlayerStatus playerHit = other.gameObject.GetComponent<PlayerStatus>();
+            Rigidbody2D rbPlayer = other.gameObject.GetComponent<Rigidbody2D>();
+            Assert.IsNotNull(playerHit);
+
+            playerHit.TakeDamage(damage);
+            penetration--;
+        }
     }
 }

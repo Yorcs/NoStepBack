@@ -19,19 +19,20 @@ public class KnivesSubweapon : AbstractSubweapon
     }
 
     //todo: Destroying this object causes problems with the player and seems to mess with subweapon pickups after that point
-    public override void UseSubweapon(Vector2 direction)
+    public override void UseSubweapon(Vector2 direction, int layer)
     {
-        SpawnKnives(direction);
+        SpawnKnives(direction, layer);
         uses --;
         if(uses == 0) {
             Destroy(gameObject);
         }
     }
 
-    private Knives SpawnKnives(Vector2 direction)
+    private Knives SpawnKnives(Vector2 direction, int layer)
     {
         GameObject GO = Instantiate(knivesPrefab);
         GO.transform.position = transform.position;
+        GO.layer = layer;
 
         Knives newKnives = GO.GetComponent<Knives>();
         Assert.IsNotNull(newKnives);

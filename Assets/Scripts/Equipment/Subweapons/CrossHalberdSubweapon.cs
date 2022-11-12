@@ -20,15 +20,16 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         Assert.IsNotNull(crossHalberdPrefab);
     }
     
-    public override void UseSubweapon(Vector2 direction) {
+    public override void UseSubweapon(Vector2 direction, int layer) {
         if(weaponReturned) {
-            SpawnHalberd(direction);
+            SpawnHalberd(direction, layer);
         }
     }
 
-    private CrossHalberd SpawnHalberd(Vector2 direction) {
+    private CrossHalberd SpawnHalberd(Vector2 direction, int layer) {
         GameObject GO = Instantiate(crossHalberdPrefab);
         GO.transform.position = transform.position;
+        GO.layer = layer;
 
         CrossHalberd newHalberd = GO.GetComponent<CrossHalberd>();
         Assert.IsNotNull(newHalberd);

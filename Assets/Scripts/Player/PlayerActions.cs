@@ -46,7 +46,7 @@ public class PlayerActions : MonoBehaviour {
     public void OnSpecial(InputAction.CallbackContext context) {
         if(status.IsDead() || context.started || context.canceled) return;
         if (subweapon != null) {
-            subweapon.UseSubweapon(controller.GetDirection());
+            subweapon.UseSubweapon(controller.GetDirection(), gameObject.layer);
         }
     }
 

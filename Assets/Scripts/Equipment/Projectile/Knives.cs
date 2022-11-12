@@ -39,6 +39,14 @@ public class Knives : AbstractProjectile
             enemyHit.TakeDamage(damage);
             Destroy(gameObject);
         }
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            PlayerStatus playerHit = other.gameObject.GetComponent<PlayerStatus>();
+            Assert.IsNotNull(playerHit);
+
+            playerHit.TakeDamage(damage);
+            Destroy(gameObject);
+        }
         if(other.gameObject.tag.Equals("Ground")) {
             //animation? Particle system?
             Destroy(gameObject);

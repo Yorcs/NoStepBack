@@ -73,7 +73,6 @@ public class Bullet : AbstractProjectile {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag.Equals("Enemy")) {
             IEnemy enemyHit = other.gameObject.GetComponent<IEnemy>();
-            Rigidbody2D rbEnemy = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(enemyHit);
 
             int randomVal = Random.Range(1,100);
@@ -97,14 +96,14 @@ public class Bullet : AbstractProjectile {
         }
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log(other.gameObject.name);
             PlayerStatus player = other.gameObject.GetComponent<PlayerStatus>();
-            Rigidbody2D rbPlayer = other.gameObject.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(player);
 
-            player.TakeDamage(damage);
+            if(!player.IsDead()) {
+                player.TakeDamage(damage);
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
         if(other.gameObject.tag.Equals("Ground")) {
             //animation? Particle system?
