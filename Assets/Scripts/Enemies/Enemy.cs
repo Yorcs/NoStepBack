@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     void FixedUpdate() {
         if(active) {
             //todo: clean this up maybe?
-            if(weapon) weapon.Fire(direction);
+            if(weapon) weapon.Fire(direction, gameObject.layer);
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);

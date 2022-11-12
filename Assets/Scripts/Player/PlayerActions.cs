@@ -38,7 +38,7 @@ public class PlayerActions : MonoBehaviour {
             weaponUI.HidePopup();
         }
         if(status.IsDead()) return;
-        weapon.Fire(controller.GetDirection());
+        weapon.Fire(controller.GetDirection(), gameObject.layer);
         
     }
 

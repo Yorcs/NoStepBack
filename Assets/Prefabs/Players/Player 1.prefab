@@ -440,6 +440,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 380263765587492935, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049030774123795814, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
 --- !u!4 &29048138478052990 stripped

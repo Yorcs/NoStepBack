@@ -30,24 +30,24 @@ public class Weapon : MonoBehaviour, IEquipment {
         Assert.IsNotNull(bulletSpawnPoint);
     }
 
-    public void Fire(Vector2 target) {
+    public void Fire(Vector2 target, int layer) {
         fireTimer += Time.deltaTime;
         if (fireTimer >= fireRate) {
             
             fireTimer -= fireRate;
             for(int i = 0; i < numBullets; i++){
-                Bullet newBullet = SpawnBullet(target);
+                Bullet newBullet = SpawnBullet(target, layer);
             }
         }
 
     }
 
-    private Bullet SpawnBullet(Vector2 target) {
+    private Bullet SpawnBullet(Vector2 target, int layer) {
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = bulletSpawnPoint.rotation;
         
-
+        GO.layer = layer;
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
         var spreadvec = new Vector3(0, 0, zSpread);

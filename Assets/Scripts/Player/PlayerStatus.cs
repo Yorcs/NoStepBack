@@ -18,6 +18,8 @@ public class PlayerStatus : MonoBehaviour {
     private float respawnDuration = 10f;
     private float respawnTimer;
 
+    private bool inPVP;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -28,7 +30,7 @@ public class PlayerStatus : MonoBehaviour {
     }
 
     private void Update() {
-        if(IsDead()) {
+        if(IsDead() && !inPVP) {
             respawnTimer += Time.deltaTime;
             if(respawnTimer >= respawnDuration) {
                 controller.Respawn();
@@ -43,7 +45,7 @@ public class PlayerStatus : MonoBehaviour {
 
     //Todo: Steal Money
     public void Revive() {
-        if(!IsDead()) return;
+        if(!IsDead() || inPVP) return;
         currentHitPoints = maxHitpoints;
         healthUI.SetHealth(currentHitPoints);
         respawnTimer = 0;
@@ -58,6 +60,11 @@ public class PlayerStatus : MonoBehaviour {
     public void GainHealth(int health) {
         currentHitPoints += health;
         currentHitPoints = Mathf.Clamp(currentHitPoints, 0, maxHitpoints);
+        healthUI.SetHealth(currentHitPoints);
+    }
+
+    public void FillHealth() {
+        currentHitPoints = maxHitpoints;
         healthUI.SetHealth(currentHitPoints);
     }
 
@@ -77,6 +84,10 @@ public class PlayerStatus : MonoBehaviour {
     public void SetUI(PlayerHealthUI healthUI, PlayerMoneyUI moneyUI) {
         this.healthUI = healthUI;
         this.moneyUI = moneyUI;
+    }
+
+    public void SetPVP(bool inPVP) {
+        this.inPVP = inPVP;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
