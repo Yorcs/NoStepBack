@@ -23,10 +23,15 @@ public class PlayerUISetup : MonoBehaviour {
         charSelUIs[nextUI].gameObject.SetActive(true);
         uiController.SetUI(charSelUIs[nextUI]);
         uiController.SetActive(true);
+
         
-        // healthUIs[nextUI].gameObject.SetActive(true);
-        // moneyUIs[nextUI].gameObject.SetActive(true);
-        // weaponUIs[nextUI].gameObject.SetActive(true);
         nextUI++;
+    }
+
+    public void ActivateGameUI(int playerIndex) {
+        charSelUIs[playerIndex].gameObject.SetActive(false);
+        healthUIs[playerIndex].gameObject.SetActive(true);
+        moneyUIs[playerIndex].gameObject.SetActive(true);
+        weaponUIs[playerIndex].gameObject.SetActive(true);
     }
 }

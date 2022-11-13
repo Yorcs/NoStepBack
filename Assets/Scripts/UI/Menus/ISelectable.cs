@@ -7,4 +7,5 @@ public interface ISelectable {
     void MoveLeft();
     void MoveRight();
     void Select();
+    void Confirm();
 }

@@ -1,15 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class ReadyButton : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
-        
+public class ReadyButton : MonoBehaviour, ISelectable {
+    private CharacterSelectUI characterSelect;
+
+    public void Setup(PlayerUIController player) {
+        characterSelect = GetComponentInParent<CharacterSelectUI>();
+        Assert.IsNotNull(characterSelect);
     }
 
-    // Update is called once per frame
-    void Update() {
-        
+    public void MoveLeft() {
+        Debug.Log("Cannot move left or right");
     }
+
+    public void MoveRight() {
+        Debug.Log("Cannot move left or right");
+    }
+
+    public void Select() {
+        characterSelect.CloseUI();
+    }
+
+    public void Confirm() {}
 }

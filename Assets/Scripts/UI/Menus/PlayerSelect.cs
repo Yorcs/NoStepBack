@@ -28,7 +28,6 @@ public class PlayerSelect : MonoBehaviour, ISelectable {
     public void MoveLeft() {
         if(spriteIndex == 0) spriteIndex = spriteManager.GetSpritesSize();
         spriteIndex = (spriteIndex - 1) % spriteManager.GetSpritesSize();
-        Debug.Log(spriteIndex);
         selectionImage.sprite = spriteManager.GetSprite(spriteIndex);
     }
 
@@ -41,6 +40,10 @@ public class PlayerSelect : MonoBehaviour, ISelectable {
         Debug.Log("Can't Select");
     }
 
-
+    //TODO: Set HealthUI color
+    //ensure no duplicate players
+    public void Confirm() {
+        playerAnimator.runtimeAnimatorController = spriteManager.GetAnimator(spriteIndex);
+    }
     
 }

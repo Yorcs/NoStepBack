@@ -277,7 +277,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: -7498730007862180785}
         m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
-        m_MethodName: OnConfirm
+        m_MethodName: OnSelect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -21,11 +21,11 @@ public class PlayerUIController : MonoBehaviour {
         if(input.y < 0) characterSelect.MoveDown();
     }
 
-    public void OnConfirm(InputAction.CallbackContext context) {
+    public void OnSelect(InputAction.CallbackContext context) {
         if(!active) return;
         if(context.started || context.canceled) return;
 
-        characterSelect.Confirm();
+        characterSelect.Select();
     }
 
     public void SetUI(CharacterSelectUI characterSelect) {
