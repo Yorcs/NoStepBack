@@ -179,7 +179,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3909630260467302110, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_Name
-      value: Sniper Rifle
+      value: Enemy Sniper Rifle
       objectReference: {fileID: 0}
     - target: {fileID: 4287832194311161055, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: bullet
@@ -190,12 +190,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.61
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -227,6 +235,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
