@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 369792980854230293}
   - component: {fileID: 369792980854230290}
   - component: {fileID: 369792980854230291}
+  - component: {fileID: -7498730007862180785}
   - component: {fileID: 369792980854230292}
   - component: {fileID: 369792980854230298}
   - component: {fileID: 369792980854230295}
@@ -195,6 +196,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitpoints: 300
+--- !u!114 &-7498730007862180785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369792980854230301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ebc54a2cae2e24b95d54eb36205761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &369792980854230292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +247,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -7498730007862180785}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: OnDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: dc27f8b8-afcd-4e85-89b1-683d8f0562b7
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
@@ -241,6 +266,18 @@ MonoBehaviour:
       - m_Target: {fileID: 369792980854230290}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -7498730007862180785}
+        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
+        m_MethodName: OnSelect
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

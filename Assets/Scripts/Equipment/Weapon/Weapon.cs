@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
 
-    private void Start() {
+    private void Awake() {
         weaponRenderer = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(weaponRenderer);
         Assert.IsNotNull(bulletSpawnPoint);
