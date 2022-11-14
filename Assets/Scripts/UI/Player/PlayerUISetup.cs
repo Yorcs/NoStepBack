@@ -21,6 +21,7 @@ public class PlayerUISetup : MonoBehaviour {
         actions.SetUI(weaponUIs[nextUI]);
 
         charSelUIs[nextUI].gameObject.SetActive(true);
+        charSelUIs[nextUI].SetPlayerNumber(nextUI);
         uiController.SetUI(charSelUIs[nextUI]);
         uiController.SetActive(true);
 
@@ -29,6 +30,7 @@ public class PlayerUISetup : MonoBehaviour {
     }
 
     public void ActivateGameUI(int playerIndex) {
+        Debug.Log(playerIndex);
         charSelUIs[playerIndex].gameObject.SetActive(false);
         healthUIs[playerIndex].gameObject.SetActive(true);
         moneyUIs[playerIndex].gameObject.SetActive(true);
