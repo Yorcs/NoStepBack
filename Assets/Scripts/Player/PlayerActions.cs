@@ -38,6 +38,7 @@ public class PlayerActions : MonoBehaviour {
             weaponUI.HidePopup();
         }
         if(status.IsDead()) return;
+
         weapon.Fire(controller.GetDirection(), gameObject.layer);
         
     }
@@ -102,6 +103,7 @@ public class PlayerActions : MonoBehaviour {
 
     //Todo: consistent offset for weapons
     private bool pickupWeapon(Weapon newWeapon) {
+        //Todo: Drop as pickup
         Destroy(weapon.gameObject);
 
         Vector2 direction = controller.GetDirection();
@@ -135,6 +137,8 @@ public class PlayerActions : MonoBehaviour {
         GameObject GO = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
         Weapon newWeapon = GO.GetComponent<Weapon>();
         Assert.IsNotNull(newWeapon);
+
+        Destroy(weapon.gameObject);
 
         Vector2 direction = controller.GetDirection();
         Debug.Log(direction);

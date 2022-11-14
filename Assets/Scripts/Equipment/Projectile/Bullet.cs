@@ -105,7 +105,7 @@ public class Bullet : AbstractProjectile {
                 Destroy(gameObject);
             }
         }
-        if(other.gameObject.tag.Equals("Ground")) {
+        if(other.gameObject.tag.Equals("Ground") || other.gameObject.tag.Equals("Wall")) {
             //animation? Particle system?
             Destroy(gameObject);
         }

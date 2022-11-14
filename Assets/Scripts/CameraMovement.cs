@@ -12,7 +12,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float smoothTime = .5f;
     [SerializeField] Vector3 minValues, maxValue;
 
+    private bool Locked { get; set; }
+
     private void Start() {
+        Locked = true;
         //this shouldn't be magic numbers later
         //offset = new Vector3(20, 0, -10);
     }
@@ -20,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targets.Count == 0)
+        if (targets.Count == 0 || Locked)
         {
             return;
         }

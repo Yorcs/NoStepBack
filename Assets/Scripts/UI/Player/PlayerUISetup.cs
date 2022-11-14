@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 public class PlayerUISetup : MonoBehaviour {
+    [SerializeField] private GameFlowManager gameFlowManager;
+    private bool ready = false;
     [SerializeField] private List<PlayerHealthUI> healthUIs = new();
 
     [SerializeField] private List<PlayerWeaponUI> weaponUIs = new();
@@ -13,7 +16,15 @@ public class PlayerUISetup : MonoBehaviour {
     [SerializeField] private List<CharacterSelectUI> charSelUIs = new();
     private int nextUI = 0;
 
+    private int numberOfPlayers = 0;
+    private int readyPlayers = 0;
+
+    private void Start() {
+        Assert.IsNotNull(gameFlowManager);
+    }
+
     public void OnPlayerJoined(PlayerInput input) {
+        if(ready) return;
         PlayerStatus status = input.gameObject.GetComponent<PlayerStatus>();
         PlayerActions actions = input.gameObject.GetComponent<PlayerActions>();
         PlayerUIController uiController = input.gameObject.GetComponent<PlayerUIController>();
@@ -27,6 +38,7 @@ public class PlayerUISetup : MonoBehaviour {
 
         
         nextUI++;
+        numberOfPlayers++;
     }
 
     public void ActivateGameUI(int playerIndex) {
@@ -35,5 +47,15 @@ public class PlayerUISetup : MonoBehaviour {
         healthUIs[playerIndex].gameObject.SetActive(true);
         moneyUIs[playerIndex].gameObject.SetActive(true);
         weaponUIs[playerIndex].gameObject.SetActive(true);
+
+        readyPlayers++;
+        if(numberOfPlayers > 0 && readyPlayers >= numberOfPlayers) {
+            Ready();
+        }
+    }
+
+    public void Ready() {
+        ready = true;
+        gameFlowManager.StartLevel();
     }
 }
