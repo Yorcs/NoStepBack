@@ -19,18 +19,21 @@ public class PlayerStatus : MonoBehaviour {
     private float respawnTimer;
 
     private bool inPVP;
-
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start() {
         controller = gameObject.GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
         Assert.IsNotNull(controller);
+        Assert.IsNotNull(animator);
         currentHitPoints = maxHitpoints;
         money = 0;
     }
 
     private void Update() {
         if(IsDead() && !inPVP) {
+            
             respawnTimer += Time.deltaTime;
             if(respawnTimer >= respawnDuration) {
                 controller.Respawn();
@@ -49,6 +52,7 @@ public class PlayerStatus : MonoBehaviour {
         currentHitPoints = maxHitpoints;
         healthUI.SetHealth(currentHitPoints);
         respawnTimer = 0;
+        animator.SetBool("IsDead", IsDead());
     }
 
     public void GainMoney(int money)
@@ -78,6 +82,7 @@ public class PlayerStatus : MonoBehaviour {
 
         if (IsDead()) {
             Debug.Log("Dead!");
+            animator.SetBool("IsDead", IsDead());
         }
     }
 

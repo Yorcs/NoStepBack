@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour {
+    private GameFlowManager gameFlowManager;
 
     private List<IEnemy> enemies = new List<IEnemy>();
 
@@ -13,10 +14,13 @@ public class EnemyManager : MonoBehaviour {
     [SerializeField] private PickupFactory pickupFactory;
     // Start is called before the first frame update
     void Start() {
+        gameFlowManager = FindObjectOfType<GameFlowManager>();
         Assert.IsNotNull(enemies);
         Assert.IsNotNull(pickupFactory);
+        Assert.IsNotNull(gameFlowManager);
 
         enemies.AddRange(GetComponentsInChildren<IEnemy>());
+        
 
         
     }
@@ -32,5 +36,9 @@ public class EnemyManager : MonoBehaviour {
     public EnemyHeart GetUI(IEnemy enemy) {
         EnemyHeart heart = healthUI.MakeHeart(enemy);
         return heart;
+    }
+
+    public void BossDefeated() {
+        gameFlowManager.StartPVP();
     }
 }

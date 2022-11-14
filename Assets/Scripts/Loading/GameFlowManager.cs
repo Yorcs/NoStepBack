@@ -43,7 +43,7 @@ public class GameFlowManager : MonoBehaviour {
         default:
             break;
         }
-        
+        nextLevel++;
     }
 
     public void UnlockCamera() {

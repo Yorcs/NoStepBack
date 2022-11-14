@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour, IEnemy {
     private bool active = false;
     private EnemyHeart heart;
 
+    //TODO: remove this
+    [SerializeField] private bool IsBoss = false;
+
     Rigidbody2D enemyRB;
     EnemyManager manager;
 
@@ -93,6 +96,10 @@ public class Enemy : MonoBehaviour, IEnemy {
             //todo: Drops/Pickups
             manager.LootDrop(transform.position);
             manager.MoneyDrop(transform.position);
+            //TODO: remove this
+            if(IsBoss) {
+                manager.BossDefeated();
+            }
             Destroy(heart.gameObject);
             Destroy(gameObject);
         }
