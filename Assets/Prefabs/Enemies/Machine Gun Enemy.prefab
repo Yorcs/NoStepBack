@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 2279261080959988993, guid: bde46934b6a38e7469a916014f733505, type: 3}
     - target: {fileID: 6562146867658032944, guid: 4f595a1a9e84e754cb9cc826142a1397, type: 3}
       propertyPath: m_Name
-      value: Machine Gun
+      value: Enemy Machine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 6562146867658032945, guid: 4f595a1a9e84e754cb9cc826142a1397, type: 3}
       propertyPath: m_RootOrder
