@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Elevator.unity
     guid: 1535b277ad108904595c52dba0478782
   - enabled: 1
-    path: Assets/Scenes/Level 1 v1.unity
+    path: Assets/Scenes/Level 1.unity
     guid: fc4ebec9c6739704f857cc37abebc454
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity

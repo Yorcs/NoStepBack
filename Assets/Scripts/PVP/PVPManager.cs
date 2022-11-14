@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 public class PVPManager : MonoBehaviour {
+    [SerializeField] private GameFlowManager gameFlowManager;
     [SerializeField] private List<PlayerStatus> players = new();
     private int[] teamLayers = new int[4];
     private List<List<PlayerStatus>> teams = new();
+
+    private float pvpCountdown;
     
     // private int teamOneLayer;
     // private int teamTwoLayer;
@@ -15,12 +19,23 @@ public class PVPManager : MonoBehaviour {
     // private int teamFourLayer;
     private int defaultPlayerLayer;
 
-    private bool pvpActive;
+    private bool pvpTriggered = false;
+
+    private bool pvpActive = false;
 
     public int goldReward = 200;
+    [SerializeField] Canvas pvpUI;
+
+    [SerializeField] TextMeshProUGUI pvpText;
+    [SerializeField] TextMeshProUGUI pvpCounter;
+
     
 
     private void Start() {
+        Assert.IsNotNull(gameFlowManager);
+        Assert.IsNotNull(pvpUI);
+        Assert.IsNotNull(pvpText);
+        Assert.IsNotNull(pvpCounter);
         teamLayers[0] = LayerMask.NameToLayer("Team 1");
         teamLayers[1] = LayerMask.NameToLayer("Team 2");
         teamLayers[2] = LayerMask.NameToLayer("Team 3");
@@ -31,7 +46,18 @@ public class PVPManager : MonoBehaviour {
         }
     }
 
+    public void TriggerPVPCountdown() {
+        pvpCountdown = 5f;
+        pvpTriggered = true;
+        pvpUI.gameObject.SetActive(true);
+        pvpText.text = "PVP STARTS IN";
+        pvpCounter.text = "5";
+    }
+
     public void StartPVP () {
+        pvpTriggered = false;
+        pvpText.text = "MONEY IS ON THE LINE";
+        pvpCounter.text = "";
         //Tell Players to go to PVP state
         foreach(PlayerStatus player in players) {
             player.SetPVP(true);
@@ -55,11 +81,21 @@ public class PVPManager : MonoBehaviour {
         if(Input.GetKeyDown("return")) {
             if(!pvpActive) {
                 Debug.Log("Force Start PVP");
-                StartPVP();            
+                TriggerPVPCountdown();            
             } else {
                 Debug.Log("Force End PVP");
                 EndPVP();
             }
+        }
+
+        if(pvpCountdown > 0) {
+            pvpCountdown -= Time.deltaTime;
+            pvpCounter.text = pvpCountdown.ToString();
+            Debug.Log(pvpCountdown);
+        }
+
+        if(pvpCountdown <= 0 && pvpTriggered) {
+            StartPVP();
         }
 
         if(!pvpActive) return;
@@ -79,6 +115,7 @@ public class PVPManager : MonoBehaviour {
         }
 
         if(teamsRemaining == 1) {
+            Debug.Log(winningTeam.Count);
             foreach(PlayerStatus player in winningTeam) {
                 player.GainMoney(goldReward);
             }
@@ -102,7 +139,10 @@ public class PVPManager : MonoBehaviour {
             player.Revive();
             player.FillHealth();
         }
+        pvpTriggered = false;
         pvpActive = false;
+        pvpUI.gameObject.SetActive(false);
+        gameFlowManager.EndPVP();
     }
 
     public void OnPlayerJoined(PlayerInput input) {

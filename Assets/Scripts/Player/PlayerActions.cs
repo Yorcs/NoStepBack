@@ -65,11 +65,11 @@ public class PlayerActions : MonoBehaviour {
             switch (newItem.GetEquipmentType()) {
                 case EquipmentType.WEAPON:
                     Weapon newWeapon = (Weapon)newItem;
-                    itemTaken = pickupWeapon(newWeapon);
+                    itemTaken = PickupWeapon(newWeapon);
                     break;
                 case EquipmentType.SUBWEAPON:
                     AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
-                    itemTaken = pickupSubweapon(newSubweapon);
+                    itemTaken = PickupSubweapon(newSubweapon);
                     break;
                 case EquipmentType.MOD:
                     //take Mod
@@ -102,7 +102,7 @@ public class PlayerActions : MonoBehaviour {
     }
 
     //Todo: consistent offset for weapons
-    private bool pickupWeapon(Weapon newWeapon) {
+    private bool PickupWeapon(Weapon newWeapon) {
         //Todo: Drop as pickup
         Destroy(weapon.gameObject);
 
@@ -116,7 +116,7 @@ public class PlayerActions : MonoBehaviour {
         return true;
     }
 
-    private bool pickupSubweapon(AbstractSubweapon newSubweapon) {
+    private bool PickupSubweapon(AbstractSubweapon newSubweapon) {
         //Todo: Drop current as pickup
         if (subweapon != null) {
             Destroy(subweapon.gameObject);

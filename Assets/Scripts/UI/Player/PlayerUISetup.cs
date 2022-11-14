@@ -56,6 +56,6 @@ public class PlayerUISetup : MonoBehaviour {
 
     public void Ready() {
         ready = true;
-        gameFlowManager.StartLevel();
+        gameFlowManager.StartPVP();
     }
 }

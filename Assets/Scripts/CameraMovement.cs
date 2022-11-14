@@ -12,10 +12,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float smoothTime = .5f;
     [SerializeField] Vector3 minValues, maxValue;
 
-    private bool Locked { get; set; }
+    private bool locked;
 
     private void Start() {
-        Locked = true;
+        locked = true;
         //this shouldn't be magic numbers later
         //offset = new Vector3(20, 0, -10);
     }
@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targets.Count == 0 || Locked)
+        if (targets.Count == 0 || locked)
         {
             return;
         }
@@ -62,6 +62,10 @@ public class CameraMovement : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput input) {
         targets.Add(input.gameObject.GetComponent<PlayerStatus>());
+    }
+
+    public void SetLocked(bool locked) {
+        this.locked = locked;
     }
 }
 
