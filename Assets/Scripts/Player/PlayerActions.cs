@@ -102,11 +102,8 @@ public class PlayerActions : MonoBehaviour {
 
     //Todo: consistent offset for weapons
     private bool pickupWeapon(Weapon newWeapon) {
-        //Todo: Drop current as pickup
         Destroy(weapon.gameObject);
 
-        //Todo: fix size
-        //Todo: Fix position offset
         Vector2 direction = controller.GetDirection();
         Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
@@ -132,6 +129,20 @@ public class PlayerActions : MonoBehaviour {
 
     public void SetUI(PlayerWeaponUI weaponUI) {
         this.weaponUI = weaponUI;
+    }
+
+    public void SetWeapon(GameObject weaponPrefab) {
+        GameObject GO = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+        Weapon newWeapon = GO.GetComponent<Weapon>();
+        Assert.IsNotNull(newWeapon);
+
+        Vector2 direction = controller.GetDirection();
+        Debug.Log(direction);
+        newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
+        newWeapon.gameObject.transform.SetParent(transform);
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0) * direction.x;
+        weapon = newWeapon;
+        weaponUI.SetWeapon(weapon.GetWeaponImage());
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

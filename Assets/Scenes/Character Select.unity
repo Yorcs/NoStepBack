@@ -808,7 +808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8abd68d6b34b354b8aaa76cb6dcfbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSelection: 0
 --- !u!1 &421674218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,6 +1472,7 @@ GameObject:
   - component: {fileID: 817608736}
   - component: {fileID: 817608735}
   - component: {fileID: 817608738}
+  - component: {fileID: 817608739}
   m_Layer: 0
   m_Name: Character Select Canvas
   m_TagString: Untagged
@@ -1585,6 +1585,24 @@ MonoBehaviour:
   - {fileID: 9100000, guid: f18f76cf02a5414469054097aa2d99e7, type: 2}
   - {fileID: 9100000, guid: efda57080c5c9d54b94367bd4518e41b, type: 2}
   - {fileID: 9100000, guid: 8003239b30f0de84e987823852dd2f4e, type: 2}
+--- !u!114 &817608739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817608733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e067ae5cacfc6c4ab84f42054775b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: ef91ab4d442f3e947a1d1f2d99a6e99d, type: 3}
+  - {fileID: 21300000, guid: 33fa4c62310091742a9894d2ee77609f, type: 3}
+  weapons:
+  - {fileID: 380263765587492935, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
+  - {fileID: 6562146867658032944, guid: 4f595a1a9e84e754cb9cc826142a1397, type: 3}
 --- !u!1001 &970488788
 PrefabInstance:
   m_ObjectHideFlags: 0
