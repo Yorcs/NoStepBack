@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerUISetup : MonoBehaviour {
     [SerializeField] private GameFlowManager gameFlowManager;
+
+    [SerializeField] private Image frame;
     private bool ready = false;
     [SerializeField] private List<PlayerHealthUI> healthUIs = new();
 
@@ -21,6 +24,7 @@ public class PlayerUISetup : MonoBehaviour {
 
     private void Start() {
         Assert.IsNotNull(gameFlowManager);
+        Assert.IsNotNull(frame);
     }
 
     public void OnPlayerJoined(PlayerInput input) {
@@ -56,6 +60,7 @@ public class PlayerUISetup : MonoBehaviour {
 
     public void Ready() {
         ready = true;
+        frame.gameObject.SetActive(false);
         gameFlowManager.StartPVP();
     }
 }
