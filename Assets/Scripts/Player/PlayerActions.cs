@@ -110,7 +110,7 @@ public class PlayerActions : MonoBehaviour {
         Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
-        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0) * direction.x;
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(1.5f, 0, 0) * direction.x;
         weapon = newWeapon;
         weaponUI.SetWeapon(weapon.GetWeaponImage());
         return true;
@@ -144,7 +144,7 @@ public class PlayerActions : MonoBehaviour {
         Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
-        newWeapon.gameObject.transform.position = transform.position + new Vector3(2, 0, 0) * direction.x;
+        newWeapon.gameObject.transform.position = transform.position + new Vector3(1.5f, 0, 0) * direction.x;
         weapon = newWeapon;
         weaponUI.SetWeapon(weapon.GetWeaponImage());
     }

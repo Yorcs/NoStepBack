@@ -27,16 +27,24 @@ public class CharacterSelectUI : MonoBehaviour {
         foreach (ISelectable option in options) {
             option.Setup(playerUIController);
         }
+        options[currentSelection].OnHover(); 
+        Debug.Log(currentSelection);
     }
 
     public void MoveUp() {
+        options[currentSelection].OnHoverLeave();
+        Debug.Log(currentSelection);
         if(currentSelection == 0) currentSelection = options.Count;
         currentSelection = (currentSelection - 1) % options.Count;
+        options[currentSelection].OnHover();
         Debug.Log(currentSelection);
     }
 
     public void MoveDown() {
-        currentSelection = (currentSelection + 1) % options.Count; 
+        options[currentSelection].OnHoverLeave();
+        Debug.Log(currentSelection);
+        currentSelection = (currentSelection + 1) % options.Count;
+        options[currentSelection].OnHover(); 
         Debug.Log(currentSelection);
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class PlayerSelect : MonoBehaviour, ISelectable {
+    [SerializeField] private List<Image> arrows = new();
     private PlayerSpriteManager spriteManager;
 
     private Animator playerAnimator;
@@ -23,6 +24,18 @@ public class PlayerSelect : MonoBehaviour, ISelectable {
 
     public void Setup(PlayerUIController player) {
         playerAnimator = player.gameObject.GetComponent<Animator>();
+    }
+
+    public void OnHover() {
+        foreach(Image arrow in arrows) {
+            arrow.color = Color.red;
+        }
+    }
+
+    public void OnHoverLeave() {
+        foreach(Image arrow in arrows) {
+            arrow.color = Color.white;
+        }
     }
     
     public void MoveLeft() {

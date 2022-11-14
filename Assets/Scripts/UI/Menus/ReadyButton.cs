@@ -2,13 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class ReadyButton : MonoBehaviour, ISelectable {
+    private Image readyImage;
     private CharacterSelectUI characterSelect;
+
+    private void Start() {
+        readyImage = GetComponent<Image>();
+        Assert.IsNotNull(readyImage);
+    }
 
     public void Setup(PlayerUIController player) {
         characterSelect = GetComponentInParent<CharacterSelectUI>();
         Assert.IsNotNull(characterSelect);
+    }
+
+    public void OnHover() {
+        readyImage.color = Color.red;
+    }
+
+    public void OnHoverLeave() {
+        readyImage.color = Color.white;
     }
 
     public void MoveLeft() {

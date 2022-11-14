@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class WeaponSelect : MonoBehaviour, ISelectable {
+    [SerializeField] private List<Image> arrows = new();
     private StartingWeaponManager weaponManager;
 
     private PlayerActions playerActions;
@@ -23,6 +24,18 @@ public class WeaponSelect : MonoBehaviour, ISelectable {
 
     public void Setup(PlayerUIController player) {
         playerActions = player.gameObject.GetComponent<PlayerActions>();
+    }
+
+    public void OnHover() {
+        foreach(Image arrow in arrows) {
+            arrow.color = Color.red;
+        }
+    }
+
+    public void OnHoverLeave() {
+        foreach(Image arrow in arrows) {
+            arrow.color = Color.white;
+        }
     }
     
     public void MoveLeft() {
