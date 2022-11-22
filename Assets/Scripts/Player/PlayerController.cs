@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.Assertions;
 
 public class PlayerController : MonoBehaviour {
+    private bool singleTap, doubleTap = false;
+    private bool tapping = false;
+    private float tapTime = 0;
+    private float tapDuration = .4f;
+    private float dashSpeed = 5f;
     private PlayerStatus status;
     private Collider2D playerCollider;
     private Rigidbody2D playerRB;
@@ -48,7 +53,24 @@ public class PlayerController : MonoBehaviour {
         if(direction.x > 0 && movementInput.x < 0) TurnAround();
         if(direction.x < 0 && movementInput.x > 0) TurnAround();
 
-        
+        if(movementInput.x > 0 || movementInput.x < 0){
+            if(tapping) {
+                doubleTap = true;
+                tapping = false;
+                Dash();
+            }
+            else {
+                tapping = true;
+                tapTime = tapDuration;
+            }
+        }
+        if(tapping) {
+            tapTime -= Time.deltaTime;
+            if(tapTime <= 0) {
+                tapping = false;
+                singleTap = true;
+            }
+        }
         if (movementInput.y > 0) Jump();
         if (movementInput.y < 0) {
             Crouch();
@@ -80,6 +102,12 @@ public class PlayerController : MonoBehaviour {
         position.x = Mathf.Clamp(position.x, leftOfScreen, rightOfScreen);
         transform.position = position;
         animator.SetBool("IsMoving", Mathf.Abs(movementInput.x) > 0);
+    }
+
+    private void Dash()
+    {
+        playerRB.velocity = Vector2.direction * dashSpeed;
+        doubleTap = false;
     }
 
     private void Jump() {
