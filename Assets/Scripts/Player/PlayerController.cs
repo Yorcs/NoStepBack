@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Dash()
     {
-        playerRB.velocity = Vector2.direction * dashSpeed;
+        playerRB.velocity = direction * dashSpeed;
         doubleTap = false;
     }
 
