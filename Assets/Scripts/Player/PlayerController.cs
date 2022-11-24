@@ -5,11 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.Assertions;
 
 public class PlayerController : MonoBehaviour {
-    private bool singleTap, doubleTap = false;
-    private bool tapping = false;
+    private bool holding, tapping = false;
     private float tapTime = 0;
-    private float tapDuration = .4f;
-    private float dashSpeed = 5f;
+    private float tapDuration = .2f;
+    private float dashSpeed = 20f;
     private PlayerStatus status;
     private Collider2D playerCollider;
     private Rigidbody2D playerRB;
@@ -45,32 +44,39 @@ public class PlayerController : MonoBehaviour {
         if (!status.IsDead()) {
             Move();
         }
-    }
-
-    public void OnMove(InputAction.CallbackContext context) {
-        movementInput = context.ReadValue<Vector2>();
-        if(context.started || context.canceled) return;
-        if(direction.x > 0 && movementInput.x < 0) TurnAround();
-        if(direction.x < 0 && movementInput.x > 0) TurnAround();
-
-        if(movementInput.x > 0 || movementInput.x < 0){
-            if(tapping) {
-                doubleTap = true;
-                tapping = false;
-                Dash();
-            }
-            else {
-                tapping = true;
-                tapTime = tapDuration;
-            }
-        }
         if(tapping) {
             tapTime -= Time.deltaTime;
             if(tapTime <= 0) {
                 tapping = false;
-                singleTap = true;
+                holding = false;
             }
         }
+    }
+
+    public void OnMove(InputAction.CallbackContext context) {
+        movementInput = context.ReadValue<Vector2>();
+        if(context.canceled && holding) {
+            if(movementInput.x == 0) {
+                holding = false;
+                tapping = true;
+            }
+        }
+
+        if(context.started || context.canceled) return;
+        if(direction.x > 0 && movementInput.x < 0) TurnAround();
+        if(direction.x < 0 && movementInput.x > 0) TurnAround();
+
+        if(movementInput.x > 0 || movementInput.x < 0) {
+            if(tapping) {
+                tapping = false;
+                Dash();
+            }
+            else {
+                holding = true;
+                tapTime = tapDuration;
+            }
+        }
+        
         if (movementInput.y > 0) Jump();
         if (movementInput.y < 0) {
             Crouch();
@@ -80,6 +86,9 @@ public class PlayerController : MonoBehaviour {
     private void TurnAround () {
         direction *= -1;
         transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y);
+        playerRB.velocity = new Vector2(0, playerRB.velocity.y);
+        holding = false;
+        tapping = false;
     }
 
     public Vector2 GetDirection() {
@@ -106,8 +115,9 @@ public class PlayerController : MonoBehaviour {
 
     private void Dash()
     {
-        playerRB.velocity = direction * dashSpeed;
-        doubleTap = false;
+        Debug.Log("Dash");
+        playerRB.velocity = Vector2.zero;
+        playerRB.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
     }
 
     private void Jump() {
