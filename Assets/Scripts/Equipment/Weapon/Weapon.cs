@@ -36,43 +36,40 @@ public class Weapon : MonoBehaviour, IEquipment {
             
             fireTimer -= fireRate;
             for(int i = 0; i < numBullets; i++){
-                Bullet newBullet = SpawnBullet(target, layer);
+                SpawnBullet(target, layer);
             }
         }
 
     }
 
-    private Bullet SpawnBullet(Vector2 target, int layer) {
+    private void SpawnBullet(Vector2 target, int layer) {
+        
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = bulletSpawnPoint.rotation;
-        
         GO.layer = layer;
+
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
         var spreadvec = new Vector3(0, 0, zSpread);
 
         //adding the spread
-
         GO.transform.Rotate(spreadvec);
 
-        Bullet newBullet = GO.GetComponent<Bullet>();
+        AbstractProjectile newProjectile = GO.GetComponent<AbstractProjectile>();
+        Assert.IsNotNull(newProjectile);
 
-        Assert.IsNotNull(newBullet);
-
-        newBullet.SetDirection(target);
-        newBullet.SetSpeed(bulletSpeed);
-        newBullet.SetDamage(damage);
-        newBullet.SetCritical(criticalChance);
-        newBullet.SetPenetration(penetration);
+        newProjectile.SetDirection(target);
+        newProjectile.SetSpeed(bulletSpeed);
+        newProjectile.SetDamage(damage);
+        newProjectile.SetCritical(criticalChance);
+        newProjectile.SetPenetration(penetration);
         
         //Status Stuff to refactor later
-        newBullet.SetIsPoisoned(doesPoison);
-        newBullet.SetIsFrozen(doesFreeze);
-        newBullet.SetStatusDuration(statusDuration);
-        newBullet.SetStatusDamage(statusDamage);
-
-        return newBullet;
+        newProjectile.SetIsPoisoned(doesPoison);
+        newProjectile.SetIsFrozen(doesFreeze);
+        newProjectile.SetStatusDuration(statusDuration);
+        newProjectile.SetStatusDamage(statusDamage);
     }
 
     public EquipmentType GetEquipmentType() {

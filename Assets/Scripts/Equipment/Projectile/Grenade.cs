@@ -7,8 +7,6 @@ using UnityEngine.Assertions;
 public class Grenade : AbstractProjectile {
     private Rigidbody2D grenadeRB;
     [SerializeField] Collider2D explosion;
-
-    private int damage;
     private float fuse;
     private float fuseTimer;
     private float radius;
@@ -37,10 +35,6 @@ public class Grenade : AbstractProjectile {
         }
 
         Destroy(gameObject);
-    }
-
-    public void SetDamage(int damage) {
-        this.damage = damage;
     }
 
     public void SetFuse(float fuse) {

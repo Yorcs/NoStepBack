@@ -1,14 +1,22 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Random=UnityEngine.Random;
 
-public class Bullet : AbstractProjectile {
+public class Flame : AbstractProjectile {
+    private float lifetime;
+
+    private void Start() {
+        lifetime = Random.Range(0.3f, 0.7f);
+    }
+
     // Update is called once per frame
     void Update() {
         transform.Translate(direction * speed * Time.deltaTime);
+        lifetime -= Time.deltaTime;
+        if(lifetime <= 0) {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -21,19 +29,6 @@ public class Bullet : AbstractProjectile {
                     (damage * criticalMultiplier) : damage;
             enemyHit.TakeDamage(totalDamage); 
             
-
-            if(doesPoison) {
-                enemyHit.SetPoison(statusDuration, statusDamage);
-            }
-            if(doesFreeze) {
-                enemyHit.SetFreeze(statusDuration);
-            }
-
-            penetration -= 1;
-            if(penetration <= 0) {
-               Destroy(gameObject);
-            }
-
         }
         if (other.gameObject.tag.Equals("Player"))
         {
@@ -42,8 +37,6 @@ public class Bullet : AbstractProjectile {
 
             if(!player.IsDead()) {
                 player.TakeDamage(damage);
-
-                Destroy(gameObject);
             }
         }
         if(other.gameObject.tag.Equals("Ground") || other.gameObject.tag.Equals("Wall")) {
