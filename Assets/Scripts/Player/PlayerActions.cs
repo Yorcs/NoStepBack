@@ -7,13 +7,12 @@ using UnityEngine.Assertions;
 public class PlayerActions : MonoBehaviour {
     private PlayerStatus status;
     private PlayerController controller;
+    [SerializeField] private Transform weaponAttachPoint;
 
     private Weapon weapon;
     private AbstractSubweapon subweapon;
 
     private PlayerWeaponUI weaponUI;
-
-    private EnemyManager enemyManager;
 
     private List<Pickup> currentPickups = new List<Pickup>();
 
@@ -23,12 +22,10 @@ public class PlayerActions : MonoBehaviour {
         controller = GetComponent<PlayerController>();
         weapon = GetComponentInChildren<Weapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
-        enemyManager = EnemyManager.instance;
 
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(status);
         Assert.IsNotNull(controller);
-        Assert.IsNotNull(enemyManager);
     }
 
     // Update is called once per frame
@@ -41,9 +38,9 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
 
-        Vector3 target = enemyManager.FindClosestVisibleEnemy(transform.position, controller.GetDirection());
         
-        weapon.Fire(target, gameObject.layer);
+        
+        weapon.Fire(controller.GetDirection(), gameObject.layer);
         
     }
 
@@ -114,7 +111,7 @@ public class PlayerActions : MonoBehaviour {
         Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
-        newWeapon.gameObject.transform.position = transform.position + new Vector3(1.5f, 0, 0) * direction.x;
+        newWeapon.gameObject.transform.position = weaponAttachPoint.position;
         weapon = newWeapon;
         weaponUI.SetWeapon(weapon.GetWeaponImage());
         return true;
@@ -148,7 +145,7 @@ public class PlayerActions : MonoBehaviour {
         Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
-        newWeapon.gameObject.transform.position = transform.position + new Vector3(1.5f, 0, 0) * direction.x;
+        newWeapon.gameObject.transform.position = weaponAttachPoint.position;
         weapon = newWeapon;
         weaponUI.SetWeapon(weapon.GetWeaponImage());
     }

@@ -24,18 +24,26 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
 
+    private EnemyManager enemyManager;
+
     private void Awake() {
         weaponRenderer = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(weaponRenderer);
         Assert.IsNotNull(bulletSpawnPoint);
     }
 
-    public void Fire(Vector2 target, int layer) {
+    public void Start() {
+        enemyManager = EnemyManager.instance;
+        Assert.IsNotNull(enemyManager);
+    }
+
+    public void Fire(Vector2 direction, int layer) {
         fireTimer += Time.deltaTime;
         if (fireTimer >= fireRate) {
             
             fireTimer -= fireRate;
             for(int i = 0; i < numBullets; i++){
+                Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
                 SpawnBullet(target, layer);
             }
         }
@@ -43,10 +51,9 @@ public class Weapon : MonoBehaviour, IEquipment {
     }
 
     private void SpawnBullet(Vector3 target, int layer) {
-        
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
-        GO.transform.rotation = LookAt2D(target - GO.transform.position);
+        GO.transform.rotation = LookAt2D(target - bulletSpawnPoint.position);
         GO.layer = layer;
         
 
@@ -92,5 +99,9 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public float GetFireRate() {
         return fireRate;
+    }
+
+    public Vector2 GetBulletSpawn() {
+        return bulletSpawnPoint.position;
     }
 }
