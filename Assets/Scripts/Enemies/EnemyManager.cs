@@ -59,9 +59,11 @@ public class EnemyManager : MonoBehaviour {
         Debug.Log(enemies.Count);
 
         foreach(IEnemy enemy in enemies) {
-            if(Mathf.Abs((enemy.GetPosition() - position).magnitude) < 
-               Mathf.Abs((result - position).magnitude)) {
-                result = enemy.GetPosition();
+            if(enemy.GetPosition().x * direction.x > position.x * direction.x) {
+                if(Mathf.Abs((enemy.GetPosition() - position).magnitude) < 
+                Mathf.Abs((result - position).magnitude)) {
+                    result = enemy.GetPosition();
+                }
             }
         }
 

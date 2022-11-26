@@ -46,10 +46,9 @@ public class Weapon : MonoBehaviour, IEquipment {
         
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
-        GO.transform.rotation = bulletSpawnPoint.rotation;
+        GO.transform.rotation = LookAt2D(target - GO.transform.position);
         GO.layer = layer;
         
-
 
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
@@ -62,7 +61,7 @@ public class Weapon : MonoBehaviour, IEquipment {
         AbstractProjectile newProjectile = GO.GetComponent<AbstractProjectile>();
         Assert.IsNotNull(newProjectile);
 
-        newProjectile.SetDirection(target-GO.transform.position);
+        newProjectile.SetDirection(Vector2.right);
         newProjectile.SetSpeed(bulletSpeed);
         newProjectile.SetDamage(damage);
         newProjectile.SetCritical(criticalChance);
@@ -74,6 +73,10 @@ public class Weapon : MonoBehaviour, IEquipment {
         newProjectile.SetStatusDuration(statusDuration);
         newProjectile.SetStatusDamage(statusDamage);
     }
+
+    static Quaternion LookAt2D(Vector2 forward) {
+		return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
+	}
 
     public EquipmentType GetEquipmentType() {
         return equipType;
