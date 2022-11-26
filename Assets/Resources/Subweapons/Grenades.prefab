@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5651244256975972363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.17, y: -0.074, z: 0}
-  m_LocalScale: {x: 0.4981975, y: 0.2556238, z: 1}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.8490566, g: 0.083303645, b: 0.083303645, a: 1}
+  m_Sprite: {fileID: 21300000, guid: df238bcf4ee387040999c92d9b6c0c0b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99a9709533481d49813149ff326294d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 5
   damage: 150
   grenadePrefab: {fileID: 1994810697801410601, guid: 81dded4066513ec40812cfb82dd7f6e5, type: 3}
   fuse: 2
   radius: 5
+  fireRate: 5

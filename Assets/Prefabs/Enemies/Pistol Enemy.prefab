@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveSpeed: 4
+  IsBoss: 0
 --- !u!95 &-4560710454403046735
 Animator:
   serializedVersion: 4
@@ -183,19 +184,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3395
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3395
+      objectReference: {fileID: 0}
+    - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.30934232
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.01
+      value: 3.23
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.27
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.z

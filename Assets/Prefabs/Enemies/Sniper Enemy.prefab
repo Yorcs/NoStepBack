@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveSpeed: 4
+  IsBoss: 0
 --- !u!95 &-4560710454403046735
 Animator:
   serializedVersion: 4
@@ -191,19 +192,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8.4
+      value: 1.040006
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.51
+      value: 1.040006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0400996
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.61
+      value: 4.09
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.83
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -235,10 +240,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5771601798904850711, guid: cfaba1e183e338049b5347c994ff0fb2, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
