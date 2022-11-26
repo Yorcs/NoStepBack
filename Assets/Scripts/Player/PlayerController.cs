@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Dash()
     {
-        Debug.Log("Dash");
+        if(status.IsDead()) return;
         playerRB.velocity = Vector2.zero;
         playerRB.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
     }
