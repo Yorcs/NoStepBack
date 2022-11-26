@@ -11,4 +11,6 @@ public interface IEnemy {
     public void SetPoison(float duration, int damage);
     public void SetFreeze(float duration);
 
+    public Vector3 GetPosition();
+
 }

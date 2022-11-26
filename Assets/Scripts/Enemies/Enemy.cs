@@ -36,9 +36,8 @@ public class Enemy : MonoBehaviour, IEnemy {
         direction = Vector2.left;
 
         enemyRB = GetComponent<Rigidbody2D>();
-        manager = GetComponentInParent<EnemyManager>();
         weapon = GetComponentInChildren<Weapon>();
-        //bullet = GetComponent<Bullet>();
+        manager = EnemyManager.instance;
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
         
@@ -101,6 +100,7 @@ public class Enemy : MonoBehaviour, IEnemy {
                 manager.BossDefeated();
             }
             Destroy(heart.gameObject);
+            manager.RemoveEnemy(this);
             Destroy(gameObject);
         }
     }
@@ -165,6 +165,10 @@ public class Enemy : MonoBehaviour, IEnemy {
         heart.SetHealthPercent(healthPercent);
     }
     
+    public Vector3 GetPosition() {
+        return transform.position;
+    }
+
     private void OnBecameVisible() {
         if(!active) {
             active = true;

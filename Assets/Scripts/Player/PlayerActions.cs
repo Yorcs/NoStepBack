@@ -13,7 +13,7 @@ public class PlayerActions : MonoBehaviour {
 
     private PlayerWeaponUI weaponUI;
 
-    
+    private EnemyManager enemyManager;
 
     private List<Pickup> currentPickups = new List<Pickup>();
 
@@ -23,10 +23,12 @@ public class PlayerActions : MonoBehaviour {
         controller = GetComponent<PlayerController>();
         weapon = GetComponentInChildren<Weapon>();
         subweapon = GetComponentInChildren<AbstractSubweapon>();
+        enemyManager = EnemyManager.instance;
 
         Assert.IsNotNull(weapon);
         Assert.IsNotNull(status);
         Assert.IsNotNull(controller);
+        Assert.IsNotNull(enemyManager);
     }
 
     // Update is called once per frame
@@ -39,7 +41,9 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
 
-        weapon.Fire(controller.GetDirection(), gameObject.layer);
+        Vector3 target = enemyManager.FindClosestVisibleEnemy(transform.position, controller.GetDirection());
+        
+        weapon.Fire(target, gameObject.layer);
         
     }
 

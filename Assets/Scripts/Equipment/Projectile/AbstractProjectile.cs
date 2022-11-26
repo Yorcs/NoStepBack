@@ -14,9 +14,9 @@ public abstract class AbstractProjectile : MonoBehaviour {
     protected int statusDamage = 0;
 
     public void SetDirection(Vector2 direction) {
-        this.direction = direction;
+        this.direction = direction.normalized;
         //Todo: improve this to use actual rotation
-        transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x),  transform.localScale.y);
+        //transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x),  transform.localScale.y);
     }
     
     public void SetCritical(int criticalChance)

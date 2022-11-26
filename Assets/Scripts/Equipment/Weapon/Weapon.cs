@@ -42,24 +42,27 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     }
 
-    private void SpawnBullet(Vector2 target, int layer) {
+    private void SpawnBullet(Vector3 target, int layer) {
         
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = bulletSpawnPoint.rotation;
         GO.layer = layer;
+        
+
 
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);
         var spreadvec = new Vector3(0, 0, zSpread);
 
         //adding the spread
+        // GO.transform.rotation = targetRotation;
         GO.transform.Rotate(spreadvec);
 
         AbstractProjectile newProjectile = GO.GetComponent<AbstractProjectile>();
         Assert.IsNotNull(newProjectile);
 
-        newProjectile.SetDirection(target);
+        newProjectile.SetDirection(target-GO.transform.position);
         newProjectile.SetSpeed(bulletSpeed);
         newProjectile.SetDamage(damage);
         newProjectile.SetCritical(criticalChance);
