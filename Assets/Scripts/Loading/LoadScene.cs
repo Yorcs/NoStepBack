@@ -17,7 +17,7 @@ public class LoadScene : MonoBehaviour {
 
     private void Load() {
         if(!loaded) {
-            SceneManager.LoadSceneAsync(gameObject.name, LoadSceneMode.Additive);
+            SceneManager.LoadScene(gameObject.name, LoadSceneMode.Additive);
 
             loaded = true;
         }
