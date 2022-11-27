@@ -78,7 +78,7 @@ public class EnemyManager : MonoBehaviour {
                 if(IsCloser(position, enemyPos, result)) {
                     RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Enemies", "Walls"));
                     if(hit.collider.gameObject.CompareTag("Enemy")) {
-                        result = enemy.GetPosition();
+                        result = enemyPos;
                     }
                 }
             }

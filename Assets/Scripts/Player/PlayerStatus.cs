@@ -46,6 +46,10 @@ public class PlayerStatus : MonoBehaviour {
         return currentHitPoints <= 0;
     }
 
+    public bool IsInPVP() {
+        return inPVP;
+    }
+
     //Todo: Steal Money
     public void Revive() {
         if(!IsDead() || inPVP) return;
@@ -93,6 +97,10 @@ public class PlayerStatus : MonoBehaviour {
 
     public void SetPVP(bool inPVP) {
         this.inPVP = inPVP;
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

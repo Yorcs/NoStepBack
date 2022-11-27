@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum TargetType{
+    ENEMY,
+    PVP,
+    PLAYER
+}
+
 public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
     private EquipmentType equipType = EquipmentType.WEAPON;
@@ -33,9 +39,9 @@ public class Weapon : MonoBehaviour, IEquipment {
         Assert.IsNotNull(enemyManager);
     }
 
-    public void Fire(Vector2 direction, int layer) {
+    public void Fire(Vector2 direction, TargetType targetType, int layer) {
         fireTimer += Time.deltaTime;
-        Vector3 target = GetTarget(direction);
+        Vector3 target = GetTarget(direction, targetType, layer);
         TrackTarget(target, direction);
 
         if((target - transform.position).magnitude > Screen.width) return;
@@ -48,8 +54,22 @@ public class Weapon : MonoBehaviour, IEquipment {
         }
     }
 
-    private Vector3 GetTarget(Vector2 direction) {
-        return enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
+    private Vector3 GetTarget(Vector2 direction, TargetType targetType, int layer) {
+        Vector3 target = Vector3.positiveInfinity;
+        switch(targetType) {
+            case TargetType.ENEMY :
+                target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
+                break;
+            case TargetType.PVP :
+                target = PVPManager.instance.FindClosestVisibleOpponent(bulletSpawnPoint.position, direction, layer);
+                break;
+            case TargetType.PLAYER :
+                //TODO: enemy aiming at players
+                target = Vector3.zero;
+                break;
+        }
+
+        return target;
     }
 
     private void TrackTarget(Vector3 target, Vector2 direction) {

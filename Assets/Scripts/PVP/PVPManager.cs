@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 public class PVPManager : MonoBehaviour {
+    public static PVPManager instance;
     [SerializeField] private GameFlowManager gameFlowManager;
     [SerializeField] private List<PlayerStatus> players = new();
     private int[] teamLayers = new int[4];
@@ -29,7 +30,11 @@ public class PVPManager : MonoBehaviour {
     [SerializeField] TextMeshProUGUI pvpText;
     [SerializeField] TextMeshProUGUI pvpCounter;
 
-    
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     private void Start() {
         Assert.IsNotNull(gameFlowManager);
@@ -141,6 +146,38 @@ public class PVPManager : MonoBehaviour {
         pvpActive = false;
         pvpUI.gameObject.SetActive(false);
         gameFlowManager.EndPVP();
+    }
+
+    public Vector3 FindClosestVisibleOpponent(Vector3 position, Vector2 direction, int layer) {
+        Vector3 result = Vector3.positiveInfinity;
+
+        for(int i = 0; i < teamLayers.Length; i++) {
+            if(!teamLayers[i].Equals(LayerMask.LayerToName(layer))) {
+                foreach(PlayerStatus opponent in teams[i]) {
+                    Vector3 opponentPos = opponent.GetPosition();
+                    if(!opponent.IsDead() && IsInDirection(position, opponentPos, direction)) {
+                        if(IsCloser(position, opponentPos, result)) {
+                            //RaycastHit2D hit = Physics2D.Raycast(position, opponentPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Enemies", "Walls"));
+                            //if(hit.collider.gameObject.CompareTag("Enemy")) {
+                                result = opponentPos;
+                            //}
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private bool IsInDirection(Vector3 startPosition, Vector3 targetPosition, Vector2 direction) {
+        return targetPosition.x * direction.x > startPosition.x * direction.x;
+    }
+
+    private bool IsCloser(Vector3 startPosition, Vector3 newTarget, Vector3 existingTarget) {
+        return Mathf.Abs((newTarget - startPosition).magnitude) < 
+               Mathf.Abs((existingTarget - startPosition).magnitude);
     }
 
     public void OnPlayerJoined(PlayerInput input) {

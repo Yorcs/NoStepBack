@@ -40,7 +40,11 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
 
-        weapon.Fire(controller.GetDirection(), gameObject.layer);
+        TargetType target = TargetType.ENEMY;
+
+        if(status.IsInPVP()) target = TargetType.PVP;
+        
+        weapon.Fire(controller.GetDirection(), target, gameObject.layer);
     }
 
     // public void OnFire(InputAction.CallbackContext context) {
