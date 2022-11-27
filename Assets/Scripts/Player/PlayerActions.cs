@@ -16,6 +16,8 @@ public class PlayerActions : MonoBehaviour {
 
     private List<Pickup> currentPickups = new List<Pickup>();
 
+    private bool autoFireActive = true;
+
     // Start is called before the first frame update
     void Start() {
         status = GetComponent<PlayerStatus>();
@@ -38,13 +40,13 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
 
-        weapon.TargetEnemies(controller.GetDirection());
-    }
-
-    public void OnFire(InputAction.CallbackContext context) {
-        if (status.IsDead() || context.started || context.canceled) return;
         weapon.Fire(controller.GetDirection(), gameObject.layer);
     }
+
+    // public void OnFire(InputAction.CallbackContext context) {
+    //     if (status.IsDead() || autoFireActive || context.started || context.canceled) return;
+    //     weapon.Fire(gameObject.layer);
+    // }
 
     public void OnSpecial(InputAction.CallbackContext context) {
         if(status.IsDead() || context.started || context.canceled) return;

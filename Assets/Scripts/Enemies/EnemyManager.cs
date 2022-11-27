@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour {
     private GameFlowManager gameFlowManager;
 
     private List<IEnemy> enemies = new List<IEnemy>();
+    private List<IEnemy> activeEnemies = new List<IEnemy>();
 
     [SerializeField] private EnemyHealthBarUI healthUI;
 
@@ -37,8 +38,17 @@ public class EnemyManager : MonoBehaviour {
         enemies.AddRange(newEnemies);
     }
 
+    public void AddEnemyToActive(IEnemy newEnemy) {
+        activeEnemies.Add(newEnemy);
+    }
+
     public void RemoveEnemy(IEnemy enemy) {
         enemies.Remove(enemy);
+        activeEnemies.Remove(enemy);
+    }
+
+    public void RemoveEnemyFromActive(IEnemy enemy) {
+        activeEnemies.Remove(enemy);
     }
 
     public void MoneyDrop(Vector2 position)
@@ -61,9 +71,8 @@ public class EnemyManager : MonoBehaviour {
 
     public Vector3 FindClosestVisibleEnemy(Vector3 position, Vector2 direction) {
         Vector3 result = Vector3.positiveInfinity;
-        Debug.Log(enemies.Count);
 
-        foreach(IEnemy enemy in enemies) {
+        foreach(IEnemy enemy in activeEnemies) {
             Vector3 enemyPos = enemy.GetPosition();
             if(enemy.IsActive() && IsInDirection(position, enemyPos, direction) && IsOnscreen(enemyPos)) {
                 if(IsCloser(position, enemyPos, result)) {

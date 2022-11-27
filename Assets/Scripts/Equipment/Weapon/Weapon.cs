@@ -8,7 +8,6 @@ public class Weapon : MonoBehaviour, IEquipment {
     private EquipmentType equipType = EquipmentType.WEAPON;
     private SpriteRenderer weaponRenderer;
     [SerializeField] private Transform bulletSpawnPoint;
-
     [SerializeField] protected float spread;
     [SerializeField] protected int numBullets = 1;
 
@@ -30,38 +29,39 @@ public class Weapon : MonoBehaviour, IEquipment {
         weaponRenderer = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(weaponRenderer);
         Assert.IsNotNull(bulletSpawnPoint);
-    }
-
-    public void Start() {
         enemyManager = EnemyManager.instance;
         Assert.IsNotNull(enemyManager);
     }
 
-    public bool IsEnemiesNear(Vector2 direction) {
-        Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
-        return ((target - transform.position).magnitude > Screen.width);   
-    }
-
     public void Fire(Vector2 direction, int layer) {
         fireTimer += Time.deltaTime;
+        Vector3 target = GetTarget(direction);
+        TrackTarget(target, direction);
 
-        //keep for autofire
-        //if((target - transform.position).magnitude > Screen.width) return;
-
-        Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
-        transform.rotation = Quaternion.identity;
-
-        if (IsEnemiesNear(direction)) transform.rotation = LookAt2D(target - transform.position);
-        if (direction.x < 0) transform.Rotate(0, 0, 180);
+        if((target - transform.position).magnitude > Screen.width) return;
 
         if (fireTimer >= fireRate) {
-            
             fireTimer = 0;
             for(int i = 0; i < numBullets; i++){
-                SpawnBullet(IsEnemiesNear(direction), layer);
+                SpawnBullet(target, layer);
             }
         }
+    }
 
+    private Vector3 GetTarget(Vector2 direction) {
+        return enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
+    }
+
+    private void TrackTarget(Vector3 target, Vector2 direction) {
+        transform.rotation = Quaternion.identity;
+        if (IsEnemiesNear(target)) {
+            transform.rotation = LookAt2D(target - transform.position);
+            if (direction.x < 0) transform.Rotate(0, 0, 180);
+        }
+    }
+
+    public bool IsEnemiesNear(Vector3 target) {
+        return (target - transform.position).magnitude < Screen.width;   
     }
 
     private void SpawnBullet(Vector3 target, int layer) {
@@ -69,7 +69,6 @@ public class Weapon : MonoBehaviour, IEquipment {
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = LookAt2D(target - bulletSpawnPoint.position);
         GO.layer = layer;
-        
 
         //randomizing spread
         var zSpread = Random.Range(-spread, spread);

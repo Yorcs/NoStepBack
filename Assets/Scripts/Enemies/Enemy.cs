@@ -174,20 +174,14 @@ public class Enemy : MonoBehaviour, IEnemy {
     }
 
     private void OnBecameVisible() {
+        manager.AddEnemyToActive(this);
         if(!active) {
             active = true;
-            //Todo: Enemy hit while offscreen causes error - 
-            //either instantiate all hearts at boot or instantiate on damage taken 
-            
         }
     }
     
-    // private void OnBecameInvisible() {
-    //     active = false;
-    //     if (!IsDead())
-    //     {
-    //         Destroy(heart.gameObject);
-    //     }
-    // }
+    private void OnBecameInvisible() {
+        manager.RemoveEnemyFromActive(this);
+    }
 
 }
