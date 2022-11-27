@@ -16,7 +16,7 @@ public class PlayerActions : MonoBehaviour {
 
     private List<Pickup> currentPickups = new List<Pickup>();
 
-    private bool autoFireActive = true;
+    //private bool autoFireActive = true;
 
     // Start is called before the first frame update
     void Start() {
