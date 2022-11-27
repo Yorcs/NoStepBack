@@ -68,7 +68,6 @@ public class EnemyManager : MonoBehaviour {
             if(enemy.IsActive() && IsInDirection(position, enemyPos, direction) && IsOnscreen(enemyPos)) {
                 if(IsCloser(position, enemyPos, result)) {
                     RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Enemies", "Walls"));
-                    Debug.Log(hit.collider.gameObject.tag);
                     if(hit.collider.gameObject.CompareTag("Enemy")) {
                         result = enemy.GetPosition();
                     }
