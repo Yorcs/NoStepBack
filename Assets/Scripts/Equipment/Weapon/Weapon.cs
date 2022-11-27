@@ -64,8 +64,7 @@ public class Weapon : MonoBehaviour, IEquipment {
                 target = PVPManager.instance.FindClosestVisibleOpponent(bulletSpawnPoint.position, direction, layer);
                 break;
             case TargetType.PLAYER :
-                //TODO: enemy aiming at players
-                target = Vector3.zero;
+                target = enemyManager.FindClosestVisiblePlayer(bulletSpawnPoint.position, direction);
                 break;
         }
 

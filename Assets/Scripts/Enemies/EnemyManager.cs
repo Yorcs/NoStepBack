@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour {
@@ -10,6 +11,8 @@ public class EnemyManager : MonoBehaviour {
 
     private List<IEnemy> enemies = new List<IEnemy>();
     private List<IEnemy> activeEnemies = new List<IEnemy>();
+
+    private List<PlayerStatus> players = new ();
 
     [SerializeField] private EnemyHealthBarUI healthUI;
 
@@ -83,7 +86,23 @@ public class EnemyManager : MonoBehaviour {
                 }
             }
         }
+        return result;
+    }
 
+    public Vector3 FindClosestVisiblePlayer(Vector3 position, Vector2 direction) {
+        Vector3 result = Vector3.positiveInfinity;
+
+        foreach(PlayerStatus player in players) {
+            Vector3 enemyPos = player.GetPosition();
+            if(!player.IsDead() && IsInDirection(position, enemyPos, direction)) {
+                if(IsCloser(position, enemyPos, result)) {
+                    RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Players", "Walls"));
+                    if(hit.collider.gameObject.CompareTag("Player")) {
+                        result = enemyPos;
+                    }
+                }
+            }
+        }
         return result;
     }
 
@@ -101,5 +120,11 @@ public class EnemyManager : MonoBehaviour {
     private bool IsCloser(Vector3 startPosition, Vector3 newTarget, Vector3 existingTarget) {
         return Mathf.Abs((newTarget - startPosition).magnitude) < 
                Mathf.Abs((existingTarget - startPosition).magnitude);
+    }
+
+    public void OnPlayerJoined(PlayerInput input) {
+        PlayerStatus player = input.gameObject.GetComponent<PlayerStatus>();
+        Assert.IsNotNull(player);
+        players.Add(player);
     }
 }
