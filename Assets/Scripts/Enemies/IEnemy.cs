@@ -13,4 +13,6 @@ public interface IEnemy {
 
     public Vector3 GetPosition();
 
+    public bool IsActive();
+
 }

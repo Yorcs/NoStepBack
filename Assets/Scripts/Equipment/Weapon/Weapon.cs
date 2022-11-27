@@ -39,11 +39,19 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public void Fire(Vector2 direction, int layer) {
         fireTimer += Time.deltaTime;
+
+        Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
+        transform.rotation = Quaternion.identity;
+
+        if((target - transform.position).magnitude > Screen.width) return;
+        
+        transform.rotation = LookAt2D(target - transform.position);
+        if(direction.x < 0) transform.Rotate(0, 0, 180);
+
         if (fireTimer >= fireRate) {
             
-            fireTimer -= fireRate;
+            fireTimer = 0;
             for(int i = 0; i < numBullets; i++){
-                Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
                 SpawnBullet(target, layer);
             }
         }

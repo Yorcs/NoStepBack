@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour {
 
     [SerializeField] private PickupFactory pickupFactory;
 
+    private Camera mainCam;
+
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -23,9 +25,12 @@ public class EnemyManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         gameFlowManager = FindObjectOfType<GameFlowManager>();
+        mainCam = Camera.main;
+
         Assert.IsNotNull(enemies);
         Assert.IsNotNull(pickupFactory);
         Assert.IsNotNull(gameFlowManager);
+        Assert.IsNotNull(mainCam);
     }
 
     public void AddEnemies(List<IEnemy> newEnemies) {
@@ -59,7 +64,8 @@ public class EnemyManager : MonoBehaviour {
         Debug.Log(enemies.Count);
 
         foreach(IEnemy enemy in enemies) {
-            if(enemy.GetPosition().x * direction.x > position.x * direction.x) {
+            Vector3 enemyPos = enemy.GetPosition();
+            if(enemy.IsActive() && IsInDirection(position, enemyPos, direction) && IsOnscreen(enemyPos)) {
                 if(Mathf.Abs((enemy.GetPosition() - position).magnitude) < 
                 Mathf.Abs((result - position).magnitude)) {
                     result = enemy.GetPosition();
@@ -67,8 +73,17 @@ public class EnemyManager : MonoBehaviour {
             }
         }
 
-
-        Debug.Log(result);
         return result;
+    }
+
+    private bool IsInDirection(Vector3 startPosition, Vector3 targetPosition, Vector2 direction) {
+        return targetPosition.x * direction.x > startPosition.x * direction.x;
+    }
+    
+
+    private bool IsOnscreen(Vector3 position) {
+        Vector3 screenPosition = mainCam.WorldToViewportPoint(position);
+        return  screenPosition.x >= 0 && screenPosition.x <= 1 &&
+                screenPosition.y >= 0 && screenPosition.y <= 1;
     }
 }

@@ -169,6 +169,10 @@ public class Enemy : MonoBehaviour, IEnemy {
         return transform.position;
     }
 
+    public bool IsActive() {
+        return active;
+    }
+
     private void OnBecameVisible() {
         if(!active) {
             active = true;
