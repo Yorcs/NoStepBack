@@ -38,12 +38,13 @@ public class PlayerActions : MonoBehaviour {
         }
         if(status.IsDead()) return;
 
-        
-        
-        weapon.Fire(controller.GetDirection(), gameObject.layer);
-        
+        weapon.TargetEnemies(controller.GetDirection());
     }
 
+    public void OnFire(InputAction.CallbackContext context) {
+        if (status.IsDead() || context.started || context.canceled) return;
+        weapon.Fire(controller.GetDirection(), gameObject.layer);
+    }
 
     public void OnSpecial(InputAction.CallbackContext context) {
         if(status.IsDead() || context.started || context.canceled) return;

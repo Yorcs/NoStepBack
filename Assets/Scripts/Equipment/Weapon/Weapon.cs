@@ -37,22 +37,28 @@ public class Weapon : MonoBehaviour, IEquipment {
         Assert.IsNotNull(enemyManager);
     }
 
+    public bool IsEnemiesNear(Vector2 direction) {
+        Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
+        return ((target - transform.position).magnitude > Screen.width);   
+    }
+
     public void Fire(Vector2 direction, int layer) {
         fireTimer += Time.deltaTime;
+
+        //keep for autofire
+        //if((target - transform.position).magnitude > Screen.width) return;
 
         Vector3 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
         transform.rotation = Quaternion.identity;
 
-        if((target - transform.position).magnitude > Screen.width) return;
-        
-        transform.rotation = LookAt2D(target - transform.position);
-        if(direction.x < 0) transform.Rotate(0, 0, 180);
+        if (IsEnemiesNear(direction)) transform.rotation = LookAt2D(target - transform.position);
+        if (direction.x < 0) transform.Rotate(0, 0, 180);
 
         if (fireTimer >= fireRate) {
             
             fireTimer = 0;
             for(int i = 0; i < numBullets; i++){
-                SpawnBullet(target, layer);
+                SpawnBullet(IsEnemiesNear(direction), layer);
             }
         }
 
