@@ -66,9 +66,12 @@ public class EnemyManager : MonoBehaviour {
         foreach(IEnemy enemy in enemies) {
             Vector3 enemyPos = enemy.GetPosition();
             if(enemy.IsActive() && IsInDirection(position, enemyPos, direction) && IsOnscreen(enemyPos)) {
-                if(Mathf.Abs((enemy.GetPosition() - position).magnitude) < 
-                Mathf.Abs((result - position).magnitude)) {
-                    result = enemy.GetPosition();
+                if(IsCloser(position, enemyPos, result)) {
+                    RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Enemies", "Walls"));
+                    Debug.Log(hit.collider.gameObject.tag);
+                    if(hit.collider.gameObject.CompareTag("Enemy")) {
+                        result = enemy.GetPosition();
+                    }
                 }
             }
         }
@@ -85,5 +88,10 @@ public class EnemyManager : MonoBehaviour {
         Vector3 screenPosition = mainCam.WorldToViewportPoint(position);
         return  screenPosition.x >= 0 && screenPosition.x <= 1 &&
                 screenPosition.y >= 0 && screenPosition.y <= 1;
+    }
+
+    private bool IsCloser(Vector3 startPosition, Vector3 newTarget, Vector3 existingTarget) {
+        return Mathf.Abs((newTarget - startPosition).magnitude) < 
+               Mathf.Abs((existingTarget - startPosition).magnitude);
     }
 }

@@ -91,7 +91,6 @@ public class PVPManager : MonoBehaviour {
         if(pvpCountdown > 0) {
             pvpCountdown -= Time.deltaTime;
             pvpCounter.text = pvpCountdown.ToString();
-            Debug.Log(pvpCountdown);
         }
 
         if(pvpCountdown <= 0 && pvpTriggered) {
@@ -115,7 +114,6 @@ public class PVPManager : MonoBehaviour {
         }
 
         if(teamsRemaining == 1) {
-            Debug.Log(winningTeam.Count);
             foreach(PlayerStatus player in winningTeam) {
                 player.GainMoney(goldReward);
             }
