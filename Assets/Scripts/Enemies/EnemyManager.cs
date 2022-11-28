@@ -97,11 +97,22 @@ public class EnemyManager : MonoBehaviour {
             if(!player.IsDead() && IsInDirection(position, enemyPos, direction)) {
                 if(IsCloser(position, enemyPos, result)) {
                     RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Players", "Walls"));
-                    Debug.Log(hit.collider.gameObject.tag);
                     if(!hit.collider.gameObject.CompareTag("Ground") && !hit.collider.gameObject.CompareTag("Walls")) {
                         result = enemyPos;
                     }
                 }
+            }
+        }
+        return result;
+    }
+
+    public Vector3 FindClosestPlayer(Vector3 position) {
+        Vector3 result = Vector3.positiveInfinity;
+
+        foreach(PlayerStatus player in players) {
+            Vector3 enemyPos = player.GetPosition();
+            if(IsCloser(position, enemyPos, result)) {
+                result = enemyPos;
             }
         }
         return result;
