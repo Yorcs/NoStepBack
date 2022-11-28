@@ -10,14 +10,16 @@ public class BackgroundManager : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel1 = new();
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel2 = new();
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel3 = new();
+    [SerializeField] private List <SpriteRenderer> elevatorBg;
 
     // Start is called before the first frame update
     void Start() {
         bgSpritesLevel1.AddRange(GetComponentsInChildren<SpriteRenderer>());
         bgSpritesLevel2.AddRange(GetComponentsInChildren<SpriteRenderer>());
         bgSpritesLevel3.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        elevatorBg.AddRange(GetComponentsInChildren<SpriteRenderer>());
 
-       // int listLength = bgSprites.Count;
+        // int listLength = bgSprites.Count;
         startPos = transform.position.x;
 
         bgBounds = bgSpritesLevel1[0].bounds.size.x;
