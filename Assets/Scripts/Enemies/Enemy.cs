@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private bool IsBoss = false;
 
     Rigidbody2D enemyRB;
-    EnemyManager manager;
+    protected EnemyManager manager;
     private int damage = 55;
 
     private bool isPoisoned, isFrozen;

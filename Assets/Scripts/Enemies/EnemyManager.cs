@@ -107,6 +107,18 @@ public class EnemyManager : MonoBehaviour {
         return result;
     }
 
+    public Vector3 FindClosestPlayer(Vector3 position) {
+        Vector3 result = Vector3.positiveInfinity;
+
+        foreach(PlayerStatus player in players) {
+            Vector3 enemyPos = player.GetPosition();
+            if(IsCloser(position, enemyPos, result)) {
+                result = enemyPos;
+            }
+        }
+        return result;
+    }
+
     private bool IsInDirection(Vector3 startPosition, Vector3 targetPosition, Vector2 direction) {
         return targetPosition.x * direction.x > startPosition.x * direction.x;
     }
