@@ -2589,7 +2589,7 @@ MonoBehaviour:
   targets: []
   offset: {x: 0, y: 0, z: -10}
   smoothTime: 0.5
-  minValues: {x: 0, y: 8.6, z: -10}
+  minValues: {x: -148.5, y: 8.6, z: -10}
   maxValue: {x: 367, y: 8.6, z: -10}
 --- !u!1 &761391785
 GameObject:
@@ -2707,6 +2707,8 @@ MonoBehaviour:
   pvp: {fileID: 1944936378}
   levels:
   - Level 1
+  - Level 2
+  - Level 3
 --- !u!4 &766206447
 Transform:
   m_ObjectHideFlags: 0
@@ -4047,6 +4049,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1368161046}
         m_TargetAssemblyTypeName: EnemyManager, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 766206446}
+        m_TargetAssemblyTypeName: GameFlowManager, Assembly-CSharp
         m_MethodName: OnPlayerJoined
         m_Mode: 0
         m_Arguments:

@@ -67,5 +67,9 @@ public class CameraMovement : MonoBehaviour
     public void SetLocked(bool locked) {
         this.locked = locked;
     }
+
+    public void SetMaxPosition(float xValue) {
+        maxValue.x = xValue;
+    }
 }
 
