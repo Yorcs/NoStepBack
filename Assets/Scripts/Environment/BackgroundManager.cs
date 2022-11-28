@@ -7,20 +7,22 @@ public class BackgroundManager : MonoBehaviour
     private float bgBounds, startPos;
     public GameObject cam;
     [SerializeField] private float parallaxEffect;
-    private List<SpriteRenderer> bgSpritesLevel1, bgSpritesLevel2, bgSpritesLevel3;
-    [SerializeField] private List<GameObject> bgSprites;
+    [SerializeField] private List<SpriteRenderer> bgSpritesLevel1 = new();
+    [SerializeField] private List<SpriteRenderer> bgSpritesLevel2 = new();
+    [SerializeField] private List<SpriteRenderer> bgSpritesLevel3 = new();
+    [SerializeField] private List<SpriteRenderer> bgSprites;
 
     // Start is called before the first frame update
     void Start() {
+        bgSprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
         int listLength = bgSprites.Count;
         startPos = transform.position.x;
-        bgSprites = GetComponentsInChildren<SpriteRenderer>();
 
-        for (int i = 0; i < listLength; i++) {
-            if (i == 0) bgSpritesLevel1.Add(bgSprites[i]);
-            if (i == 1) bgSpritesLevel2.Add(bgSprites[i]);
-            if (i == 2) bgSpritesLevel3.Add(bgSprites[i]);
-        } 
+        // for (int i = 0; i < listLength; i++) {
+        //     if (i == 0) bgSpritesLevel1.Add(bgSprites[i]);
+        //     if (i == 1) bgSpritesLevel2.Add(bgSprites[i]);
+        //     if (i == 2) bgSpritesLevel3.Add(bgSprites[i]);
+        // } 
         bgBounds = bgSpritesLevel1[0].bounds.size.x;
     }
 

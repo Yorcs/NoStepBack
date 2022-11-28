@@ -30,9 +30,9 @@ public class GameFlowManager : MonoBehaviour {
     }
 
     public void StartLevel() {
+        SceneManager.LoadSceneAsync(levels[nextLevel], LoadSceneMode.Additive);
         switch(nextLevel) {
         case 0:
-            SceneManager.LoadSceneAsync(levels[nextLevel], LoadSceneMode.Additive);
             Elevator elevator = FindObjectOfType<Elevator>();
             Assert.IsNotNull(elevator);
 
@@ -40,6 +40,9 @@ public class GameFlowManager : MonoBehaviour {
             UnlockCamera();
             break;
 
+        case 1:
+
+            break;
         default:
             break;
         }

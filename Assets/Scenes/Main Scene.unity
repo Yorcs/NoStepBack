@@ -409,10 +409,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 707941026}
   parallaxEffect: 0.3
-  bgSprites:
-  - {fileID: 589094902}
-  - {fileID: 986836712}
-  - {fileID: 1514591693}
+  bgSpritesLevel1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bgSpritesLevel2: []
+  bgSpritesLevel3: []
+  bgSprites: []
 --- !u!1 &199215785
 GameObject:
   m_ObjectHideFlags: 0
