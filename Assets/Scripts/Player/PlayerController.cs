@@ -146,8 +146,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (other.gameObject.tag.Equals("PassableGround")) {
-            if (AboveCollider(other)) {
-                grounded = true;
+            if (AboveCollider(other.collider)) {
+                SetGrounded(true);
                 onPassableGround = true;
                 passableGround = other.collider;
             }
@@ -161,12 +161,17 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag.Equals("PassableGround")) {
             onPassableGround = false;
+            
             Physics2D.IgnoreCollision(playerCollider, other, false);
+
+            if(!AboveCollider(other)) {
+                SetGrounded(false);
+            }
         }
     }
     
 
-    private bool AboveCollider(Collision2D other) {
+    private bool AboveCollider(Collider2D other) {
         float playerFootPos = (transform.position.y + playerCollider.bounds.size.y) * transform.lossyScale.y;
         float colliderPos = other.gameObject.transform.position.y;
         return playerRB.velocity.y <= 0 &&
