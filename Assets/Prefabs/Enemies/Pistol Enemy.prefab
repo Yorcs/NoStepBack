@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 214939802707780895}
   - component: {fileID: 214939802707780892}
   - component: {fileID: 214939802707780893}
-  - component: {fileID: 214939802707780881}
   - component: {fileID: -4560710454403046735}
+  - component: {fileID: 8399387542175786130}
   m_Layer: 9
   m_Name: Pistol Enemy
   m_TagString: Enemy
@@ -136,21 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &214939802707780881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214939802707780890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 846ec1e17c9de364a87a0d21276fe506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  moveSpeed: 4
-  IsBoss: 0
 --- !u!95 &-4560710454403046735
 Animator:
   serializedVersion: 4
@@ -161,7 +146,7 @@ Animator:
   m_GameObject: {fileID: 214939802707780890}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b361edacc0b2ed94c9d527b390c5740b, type: 2}
+  m_Controller: {fileID: 9100000, guid: d000c1e6b0af9c043ba3dbc14f47d124, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -171,6 +156,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8399387542175786130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214939802707780890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ab39279516fb148adca51b7256a7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  moveSpeed: 4
+  IsBoss: 0
 --- !u!1001 &1252975435368064628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,11 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.23
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.33
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 380263765587492928, guid: b428a3ac4d4f2f643863bee0b3b7c88d, type: 3}
       propertyPath: m_LocalPosition.z

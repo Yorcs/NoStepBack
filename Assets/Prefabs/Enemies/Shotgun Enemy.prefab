@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 214939802707780895}
   - component: {fileID: 214939802707780892}
   - component: {fileID: 214939802707780893}
-  - component: {fileID: 214939802707780881}
   - component: {fileID: -4560710454403046735}
+  - component: {fileID: -2259637281746660190}
   m_Layer: 9
   m_Name: Shotgun Enemy
   m_TagString: Enemy
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 49727a46754f8694eb2f68881659134e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcf423accf4a95f49b540434aa1ae89b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,11 +102,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.39, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.31, y: 10.8}
+    oldSize: {x: 5.95, y: 10.8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -136,21 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &214939802707780881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214939802707780890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 846ec1e17c9de364a87a0d21276fe506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  moveSpeed: 4
-  IsBoss: 0
 --- !u!95 &-4560710454403046735
 Animator:
   serializedVersion: 4
@@ -161,7 +146,7 @@ Animator:
   m_GameObject: {fileID: 214939802707780890}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a8c3a7b4e94dba54fb97456f999db2f9, type: 2}
+  m_Controller: {fileID: 9100000, guid: d000c1e6b0af9c043ba3dbc14f47d124, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -171,6 +156,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2259637281746660190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214939802707780890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ab39279516fb148adca51b7256a7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  moveSpeed: 2
+  IsBoss: 0
 --- !u!1001 &8812924091202299656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,11 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6397490370590692216, guid: 40d86d453cff4b14f9c141455f295780, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.35
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 6397490370590692216, guid: 40d86d453cff4b14f9c141455f295780, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.43
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 6397490370590692216, guid: 40d86d453cff4b14f9c141455f295780, type: 3}
       propertyPath: m_LocalPosition.z

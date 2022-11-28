@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7520561941255312456, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab04bcfcb14418746888d9f3fbbdcc1f, type: 2}
     - target: {fileID: 214939802707780881, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: IsBoss
       value: 1
@@ -33,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Offset.x
-      value: 1.18
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
@@ -41,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 7.28
+      value: 9.58
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780892, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -106,18 +110,18 @@ PrefabInstance:
     - target: {fileID: 214939802707780895, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: babff16d6140d13478bde4fe7d1281a0, type: 3}
+      objectReference: {fileID: 21300000, guid: a34e1d29180357a46be1001e201aa8e6, type: 3}
     - target: {fileID: 214939802707780895, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780895, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Color.g
-      value: 0.8301887
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780895, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
       propertyPath: m_Color.r
-      value: 0.7752768
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a6b5dec57903e4689532aaa085608c, type: 3}
