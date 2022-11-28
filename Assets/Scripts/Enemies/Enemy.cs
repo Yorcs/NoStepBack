@@ -7,8 +7,8 @@ using UnityEngine.Assertions;
 public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private int maxHealth = 50;
     private int currentHealth;
-    [SerializeField] private float moveSpeed = 2f;
-    private Vector2 direction;
+    [SerializeField] protected float moveSpeed = 2f;
+    protected Vector2 direction;
 
     private bool active = false;
     private EnemyHeart heart;
@@ -18,8 +18,6 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     Rigidbody2D enemyRB;
     EnemyManager manager;
-
-    private Weapon weapon;
     private int damage = 55;
 
     private bool isPoisoned, isFrozen;
@@ -31,24 +29,19 @@ public class Enemy : MonoBehaviour, IEnemy {
 
 
     // Start is called before the first frame update
-    void Start() {
+    protected void Start() {
         currentHealth = maxHealth;
         direction = Vector2.left;
 
         enemyRB = GetComponent<Rigidbody2D>();
-        weapon = GetComponentInChildren<Weapon>();
         manager = EnemyManager.instance;
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
-        
-        
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    protected void FixedUpdate() {
         if(active) {
-            //todo: clean this up maybe?
-            if(weapon) weapon.Fire(direction, TargetType.PLAYER, gameObject.layer);
             //todo: pick player to follow
             if(!isFrozen) {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
