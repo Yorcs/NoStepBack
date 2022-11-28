@@ -43,7 +43,6 @@ public class GrenadesSubweapon : AbstractSubweapon {
 
         newGrenade.SetFuse(fuse);
         newGrenade.SetDamage(damage);
-        newGrenade.SetRadius(radius);
         //Todo: No magic numbers
         newGrenade.SetVelocity(new Vector2(10, 5) * direction.x);
 
