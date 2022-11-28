@@ -157,10 +157,10 @@ public class PVPManager : MonoBehaviour {
                     Vector3 opponentPos = opponent.GetPosition();
                     if(!opponent.IsDead() && IsInDirection(position, opponentPos, direction)) {
                         if(IsCloser(position, opponentPos, result)) {
-                            RaycastHit2D hit = Physics2D.Raycast(position, opponentPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Walls"));
-                            if(!hit.collider.gameObject.CompareTag("Walls") && !hit.collider.gameObject.CompareTag("Ground")) {
+                            // RaycastHit2D hit = Physics2D.Raycast(position, opponentPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Walls"));
+                            // if(!hit.collider.gameObject.CompareTag("Walls") && !hit.collider.gameObject.CompareTag("Ground")) {
                                 result = opponentPos;
-                            }
+                            // }
                         }
                     }
 
