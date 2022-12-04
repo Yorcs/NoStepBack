@@ -40,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "deae7aa6-5be2-4fc4-ab17-bec219e8c5c3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -66,7 +57,7 @@
                 {
                     "name": "up",
                     "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": ";WASD",
@@ -132,7 +123,7 @@
                 {
                     "name": "up",
                     "id": "40729918-8706-4cb3-8f3b-f299532dea55",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -264,7 +255,7 @@
                 {
                     "name": "",
                     "id": "3ab9f21f-bb63-4a53-944e-b78bee3b8be8",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "WASD",
@@ -335,17 +326,6 @@
                     "processors": "",
                     "groups": "WASD",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "47e01a51-39d4-4bab-b61e-9199a5cc72df",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -97,7 +97,7 @@ public class EnemyManager : MonoBehaviour {
             if(!player.IsDead() && IsInDirection(position, enemyPos, direction)) {
                 if(IsCloser(position, enemyPos, result)) {
                     RaycastHit2D hit = Physics2D.Raycast(position, enemyPos - position, Mathf.Infinity, LayerMask.GetMask("Ground", "Players", "Walls"));
-                    if(!hit.collider.gameObject.CompareTag("Ground") && !hit.collider.gameObject.CompareTag("Walls")) {
+                    if(!hit.collider.gameObject.CompareTag("Ground") && !hit.collider.gameObject.CompareTag("Walls") && !hit.collider.gameObject.CompareTag("PassableGround")) {
                         result = enemyPos;
                     }
                 }
