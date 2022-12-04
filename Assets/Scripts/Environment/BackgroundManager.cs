@@ -10,14 +10,13 @@ public class BackgroundManager : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel1 = new();
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel2 = new();
     [SerializeField] private List<SpriteRenderer> bgSpritesLevel3 = new();
-    [SerializeField] private List <SpriteRenderer> elevatorBg;
+    private int backgroundState;
 
     // Start is called before the first frame update
     void Start() {
-        bgSpritesLevel1.AddRange(GetComponentsInChildren<SpriteRenderer>());
-        bgSpritesLevel2.AddRange(GetComponentsInChildren<SpriteRenderer>());
-        bgSpritesLevel3.AddRange(GetComponentsInChildren<SpriteRenderer>());
-        elevatorBg.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        bgSpritesLevel1.AddRange(GetComponents<SpriteRenderer>());
+        bgSpritesLevel2.AddRange(GetComponents<SpriteRenderer>());
+        bgSpritesLevel3.AddRange(GetComponents<SpriteRenderer>());
 
         // int listLength = bgSprites.Count;
         startPos = transform.position.x;
@@ -32,10 +31,83 @@ public class BackgroundManager : MonoBehaviour
         float dist = (cam.transform.position.x * parallaxEffect);
         transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
 
-        foreach (SpriteRenderer bgSprite in bgSpritesLevel1)
+        if (backgroundState == 0)
         {
-           if (temp > startPos + bgBounds) startPos += bgBounds;
-            else if (temp < startPos - bgBounds) startPos -= bgBounds;
+            foreach (SpriteRenderer bgSprite in bgSpritesLevel1)
+            {
+                if (temp > startPos + bgBounds) startPos += bgBounds;
+                else if (temp < startPos - bgBounds) startPos -= bgBounds;
+            }
+        }
+        else if (backgroundState == 1)
+        {
+            foreach (SpriteRenderer bgSprite in bgSpritesLevel2)
+            {
+                if (temp > startPos + bgBounds) startPos += bgBounds;
+                else if (temp < startPos - bgBounds) startPos -= bgBounds;
+            }
+        }
+
+        else
+        {
+            foreach (SpriteRenderer bgSprite in bgSpritesLevel3)
+            {
+                if (temp > startPos + bgBounds) startPos += bgBounds;
+                else if (temp < startPos - bgBounds) startPos -= bgBounds;
+            }
+        }
+    }
+
+    public void changeBackground(int backgroundState)
+    {
+        switch (backgroundState)
+        {
+            case 0:
+                foreach (SpriteRenderer renderer in bgSpritesLevel1)
+                {
+                    renderer.gameObject.SetActive(true);
+                }
+                 foreach(SpriteRenderer renderer in bgSpritesLevel2)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                foreach (SpriteRenderer renderer in bgSpritesLevel3)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                break;
+
+            case 1:
+                foreach (SpriteRenderer renderer in bgSpritesLevel1)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                foreach (SpriteRenderer renderer in bgSpritesLevel2)
+                {
+                    renderer.gameObject.SetActive(true);
+                }
+                foreach (SpriteRenderer renderer in bgSpritesLevel3)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                break;
+
+            case 2:
+                foreach (SpriteRenderer renderer in bgSpritesLevel1)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                foreach (SpriteRenderer renderer in bgSpritesLevel2)
+                {
+                    renderer.gameObject.SetActive(false);
+                }
+                foreach (SpriteRenderer renderer in bgSpritesLevel3)
+                {
+                    renderer.gameObject.SetActive(true);
+                }
+                break;
+
+            
         }
     }
 }
