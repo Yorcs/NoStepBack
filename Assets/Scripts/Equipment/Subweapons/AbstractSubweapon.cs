@@ -9,6 +9,8 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
     
 
     [SerializeField] protected int damage;
+    [SerializeField] protected int damageRankStep;
+    protected int damageRanks;
 
     public abstract void UseSubweapon(Vector2 direction, int layer);
 
@@ -31,4 +33,8 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
     }
 
     public abstract void Upgrade(int ranks);
+
+    public void DestroyEquipment() {
+        Destroy(gameObject);
+    }
 }

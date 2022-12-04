@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum GrenadeUpgradeType {
+    DAMAGE,
+    FIRERATE,
+    RADIUS,
+}
+
 public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject grenadePrefab;
 
     [SerializeField] private float fuse;
     [SerializeField] private float radius;
+    [SerializeField] private float radiusRankStep;
+    private int radiusRanks;
 
     [SerializeField] private float fireRate;
+    [SerializeField] private float fireRateRankStep;
+    private int fireRateRanks;
+
     [SerializeField] private Vector2 throwStrength = new Vector2 (10,5);
     private float fireTimer = 0;
 
@@ -20,7 +31,28 @@ public class GrenadesSubweapon : AbstractSubweapon {
         Assert.IsNotNull(grenadePrefab);
     }
 
-    public override void Upgrade(int ranks) {}
+    public override void Upgrade(int ranks) {
+        for(int i = 0; i < ranks; i++) {
+            GrenadeUpgradeType upgrade = (GrenadeUpgradeType)Random.Range(0, System.Enum.GetValues(typeof(GrenadeUpgradeType)).Length);
+
+            switch(upgrade) {
+            case GrenadeUpgradeType.DAMAGE: 
+                damageRanks++;
+                break;
+            case GrenadeUpgradeType.FIRERATE: 
+                fireRateRanks++;
+                break;
+            case GrenadeUpgradeType.RADIUS: 
+                radiusRanks++;
+                break;
+            default: break;
+            }
+        }
+
+        damage += damageRanks * damageRankStep;
+        fireRate += fireRateRanks * fireRateRankStep;
+        radius += radiusRanks * radiusRankStep;
+    }
 
     private void Update() {
         if(fireTimer > 0) {

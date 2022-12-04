@@ -26,4 +26,9 @@ public class Money : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnBecameInvisible() {
+        //TODO: this should maybe sheck which edge of the screen its gone off
+        Destroy(this.gameObject);
+    }
 }
