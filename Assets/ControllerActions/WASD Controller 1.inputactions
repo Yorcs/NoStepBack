@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "70584a02-91d1-46a3-8810-2a9fbcc7a857",
                     "expectedControlType": "Button",
@@ -44,7 +44,7 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "deae7aa6-5be2-4fc4-ab17-bec219e8c5c3",
+                    "id": "76799c57-2527-4788-82aa-704a939d1d69",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -108,17 +108,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Arrows",
-                    "id": "cd4cf99f-1159-4c64-b460-43bc414efdfb",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
                     "id": "0aa830d2-4988-473c-a818-3ee969b1a4a6",
                     "path": "2DVector",
@@ -174,41 +163,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "2556ec7b-c663-4d94-b2a0-0f5d07347955",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04e07d29-e8ee-4755-89f5-8e0ba114eab1",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "17cb77a0-829b-4436-8d84-9245de75c885",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "b679cf74-6e67-4212-8de8-1f4478be013b",
+                    "name": "Stick",
+                    "id": "a26bd1a3-5c8f-49e7-940a-fdc3bff5b290",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -219,44 +175,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "0fd38a52-4bca-4b79-884d-d993f375b1d2",
-                    "path": "<Keyboard>/upArrow",
+                    "id": "36629d0f-3dfa-4340-a38c-dea9c0426df8",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrows",
+                    "groups": "Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "7395cd88-48d9-47b4-bd83-a4c67016b81f",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "49d72bb7-f828-4639-ac50-72f75e1f391f",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrows",
+                    "groups": "Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "40f879ba-cbde-4526-b3a1-1682d96e3b30",
-                    "path": "<Keyboard>/leftArrow",
+                    "id": "e3012f05-17c4-4f1c-ade6-004fc441d1a8",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrows",
+                    "groups": "Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "686bd570-b437-497e-83eb-fe526592cd1b",
-                    "path": "<Keyboard>/rightArrow",
+                    "id": "630f5618-b1a0-439c-88c6-e6078a56134c",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrows",
+                    "groups": "Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -264,7 +220,7 @@
                 {
                     "name": "",
                     "id": "3ab9f21f-bb63-4a53-944e-b78bee3b8be8",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "WASD",
@@ -279,17 +235,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Special",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc3f69f6-fb69-460e-8f6e-1c1d465d0603",
-                    "path": "<Keyboard>/slash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Arrows",
                     "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -323,24 +268,35 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Fire",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "70999d50-e765-4132-82be-1633d8b59647",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "WASD",
-                    "action": "Fire",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "47e01a51-39d4-4bab-b61e-9199a5cc72df",
+                    "id": "f0416eaa-5fb4-42f5-a6f6-082ef9c3526f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "459bbb8d-5314-4129-8c15-c533b9e9b10f",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
@@ -482,17 +438,6 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Arrows",
-            "bindingGroup": "Arrows",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
                     "isOptional": true,
                     "isOR": false
                 }

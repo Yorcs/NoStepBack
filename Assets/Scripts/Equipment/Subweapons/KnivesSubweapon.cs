@@ -18,6 +18,8 @@ public class KnivesSubweapon : AbstractSubweapon
         knifeSpeed = 20f;
     }
 
+    public override void Upgrade(int ranks) {}
+
     //todo: Destroying this object causes problems with the player and seems to mess with subweapon pickups after that point
     public override void UseSubweapon(Vector2 direction, int layer)
     {

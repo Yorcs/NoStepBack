@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.Assertions;
 
 public class PlayerController : MonoBehaviour {
-    private bool holding, tapping = false;
-    private float tapTime = 0;
-    private float tapDuration = .2f;
     private float dashSpeed = 20f;
     private PlayerStatus status;
     private Collider2D playerCollider;
@@ -22,6 +19,12 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpForce;
     private bool onPassableGround;
     private Collider2D passableGround;
+    private bool canWallJump = false;
+    private Vector2 wallJumpDirection = Vector2.right;
+    private float wallJumpDelay = 0.1f;
+    private float wallJumpTime = 0f;
+    private float wallJumpStrength = 0.5f;
+
     private Animator animator;
 
     // Start is called before the first frame update
@@ -44,40 +47,19 @@ public class PlayerController : MonoBehaviour {
         if (!status.IsDead()) {
             Move();
         }
-        if(tapping) {
-            tapTime -= Time.deltaTime;
-            if(tapTime <= 0) {
-                tapping = false;
-                holding = false;
-            }
+
+        if(wallJumpTime > 0) {
+            wallJumpTime -= Time.deltaTime;
         }
     }
 
     public void OnMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
-        if(context.canceled && holding) {
-            if(movementInput.x == 0) {
-                holding = false;
-                tapping = true;
-            }
-        }
 
         if(context.started || context.canceled) return;
         if(direction.x > 0 && movementInput.x < 0) TurnAround();
         if(direction.x < 0 && movementInput.x > 0) TurnAround();
 
-        if(movementInput.x > 0 || movementInput.x < 0) {
-            if(tapping) {
-                tapping = false;
-                Dash();
-            }
-            else {
-                holding = true;
-                tapTime = tapDuration;
-            }
-        }
-        
-        if (movementInput.y > 0) Jump();
         if (movementInput.y < 0) {
             Crouch();
         }
@@ -87,8 +69,6 @@ public class PlayerController : MonoBehaviour {
         direction *= -1;
         transform.localScale = new Vector2(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y);
         playerRB.velocity = new Vector2(0, playerRB.velocity.y);
-        holding = false;
-        tapping = false;
     }
 
     public Vector2 GetDirection() {
@@ -113,20 +93,30 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("IsMoving", Mathf.Abs(movementInput.x) > 0);
     }
 
-    private void Dash()
+    public void Dash()
     {
         if(status.IsDead()) return;
         playerRB.velocity = Vector2.zero;
         playerRB.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
     }
 
-    private void Jump() {
+    public void Jump() {
         Vector2 jump = Vector2.zero;
+
+        if(!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
+            Vector2 jumpDirection = wallJumpDirection + Vector2.up; 
+            jump = jumpDirection * jumpForce;
+            playerRB.velocity = new Vector2(playerRB.velocity.x, 0);
+            canWallJump = false;
+            wallJumpTime = 0;
+        }
 
         if (!status.IsDead() && grounded) {
             jump = Vector2.up * jumpForce;
-            SetGrounded(false);
+            playerRB.velocity = new Vector2(playerRB.velocity.x, 0);
+            grounded = false;
         }
+
 
         playerRB.AddForce(jump, ForceMode2D.Impulse);
     }
@@ -135,20 +125,26 @@ public class PlayerController : MonoBehaviour {
         transform.position = mainCam.ScreenToWorldPoint(new Vector2(Screen.width / 5, (Screen.height * 4) / 5));
     }
 
-    private void SetGrounded(bool grounded) {
-        this.grounded = grounded;
-    }
-
     //Change to use Ground Collider?
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag.Equals("Ground")) {
-            SetGrounded(true);
+            grounded = true;
+            canWallJump = false;
+        }
+
+        if(other.gameObject.tag.Equals("Walls")) {
+            if(!grounded) {
+                canWallJump = true;
+                wallJumpTime = wallJumpDelay;
+                wallJumpDirection.x = other.GetContact(0).point.x < transform.position.x? wallJumpStrength : -wallJumpStrength;
+            }
         }
 
         if (other.gameObject.tag.Equals("PassableGround")) {
             if (AboveCollider(other.collider)) {
-                SetGrounded(true);
+                grounded = true;
                 onPassableGround = true;
+                canWallJump = false;
                 passableGround = other.collider;
             }
             else {
@@ -165,8 +161,11 @@ public class PlayerController : MonoBehaviour {
             Physics2D.IgnoreCollision(playerCollider, other, false);
 
             if(!AboveCollider(other)) {
-                SetGrounded(false);
+                grounded = false;
             }
+        }
+        if(other.gameObject.tag.Equals("Walls")) {
+            canWallJump = false;
         }
     }
     

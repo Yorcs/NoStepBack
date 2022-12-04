@@ -20,6 +20,8 @@ public class GrenadesSubweapon : AbstractSubweapon {
         Assert.IsNotNull(grenadePrefab);
     }
 
+    public override void Upgrade(int ranks) {}
+
     private void Update() {
         if(fireTimer > 0) {
             fireTimer -= Time.deltaTime;

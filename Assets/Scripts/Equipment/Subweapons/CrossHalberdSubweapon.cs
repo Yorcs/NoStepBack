@@ -19,6 +19,8 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         Assert.IsNotNull(subweaponRenderer);
         Assert.IsNotNull(crossHalberdPrefab);
     }
+
+    public override void Upgrade(int ranks) {}
     
     public override void UseSubweapon(Vector2 direction, int layer) {
         if(weaponReturned) {

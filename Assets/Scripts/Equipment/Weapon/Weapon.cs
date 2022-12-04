@@ -9,25 +9,50 @@ public enum TargetType{
     PLAYER
 }
 
+public enum UpgradeType {
+    DAMAGE,
+    FIRERATE,
+    CRITICAL,
+    SPREAD,
+    PENETRATION,
+    STATUS
+}
+
 public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private GameObject bullet;
     private EquipmentType equipType = EquipmentType.WEAPON;
     private SpriteRenderer weaponRenderer;
     [SerializeField] private Transform bulletSpawnPoint;
-    [SerializeField] protected float spread;
     [SerializeField] protected int numBullets = 1;
 
+    private float fireTimer = 0;
     [SerializeField] protected float fireRate;
+    [SerializeField] private float fireRateRankStep;
+    private int fireRateRanks;
 
     [SerializeField] protected int criticalChance;
-    private float fireTimer = 0;
+    [SerializeField] private int criticalRankStep;
+    private int criticalRanks;
 
     [SerializeField] protected float bulletSpeed;
-    [SerializeField] protected int damage, penetration;
+    [SerializeField] protected int damage;
+    [SerializeField] private int damageRankStep;
+    private int damageRanks;
+
+    [SerializeField] protected float spread;
+    [SerializeField] private float spreadRankStep;
+    private int spreadRanks;
+
+    [SerializeField] protected int penetration;
+    [SerializeField] private int penetrationRankStep;
+    private int penetrationRanks;
+
     //Status things to factor out later
     [SerializeField] protected bool doesFreeze, doesPoison = false;
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
+    [SerializeField] private int statusRankStep;
+    private int statusRanks;
 
     private EnemyManager enemyManager;
 
@@ -37,6 +62,41 @@ public class Weapon : MonoBehaviour, IEquipment {
         Assert.IsNotNull(bulletSpawnPoint);
         enemyManager = EnemyManager.instance;
         Assert.IsNotNull(enemyManager);
+    }
+
+    public void Upgrade(int ranks) {
+        for(int i = 0; i < ranks; i++) {
+            UpgradeType upgrade = (UpgradeType)Random.Range(0, System.Enum.GetValues(typeof(UpgradeType)).Length);
+
+            switch(upgrade) {
+            case UpgradeType.DAMAGE: 
+                damageRanks++;
+                break;
+            case UpgradeType.FIRERATE: 
+                fireRateRanks++;
+                break;
+            case UpgradeType.CRITICAL: 
+                criticalRanks++;
+                break;
+            case UpgradeType.PENETRATION: 
+                penetrationRanks++;
+                break;
+            case UpgradeType.SPREAD: 
+                spreadRanks++;
+                break;
+            case UpgradeType.STATUS: 
+                statusRanks++;
+                break;
+            default: break;
+            }
+        }
+
+        damage += damageRanks * damageRankStep;
+        fireRate += fireRateRanks * fireRateRankStep;
+        criticalChance += criticalRanks * criticalRankStep;
+        penetration += penetrationRanks * penetrationRankStep;
+        spread += spreadRanks * spreadRankStep;
+        statusDamage += statusRanks * statusRankStep;
     }
 
     public void Fire(Vector2 direction, TargetType targetType, int layer) {
