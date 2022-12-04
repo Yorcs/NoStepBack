@@ -10,6 +10,7 @@ public class GameFlowManager : MonoBehaviour {
 
     private CameraMovement cam;
     [SerializeField] private PVPManager pvp;
+    [SerializeField] private BackgroundManager bgManager;
 
     Elevator elevator;
 
@@ -33,6 +34,7 @@ public class GameFlowManager : MonoBehaviour {
 
     private void Start() {
         cam = Camera.main.GetComponent<CameraMovement>();
+        Assert.IsNotNull(bgManager);
         Assert.IsNotNull(cam);
         Assert.IsNotNull(pvp);
     }
@@ -51,13 +53,13 @@ public class GameFlowManager : MonoBehaviour {
         switch(gameState) {
         case 0:
             SceneManager.LoadScene(levels[0], LoadSceneMode.Additive);
-
             elevator = FindObjectOfType<Elevator>();
             Assert.IsNotNull(elevator);
 
             elevator.OpenDoor();
-            UnlockCamera();
-            cam.SetMaxPosition(Level1BossPosition);
+                UnlockCamera();
+                bgManager.changeBackground(gameState);
+                cam.SetMaxPosition(Level1BossPosition);
             break;
 
         // case 1:
@@ -69,9 +71,10 @@ public class GameFlowManager : MonoBehaviour {
         case 1:
             //SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[1], LoadSceneMode.Additive);
-            elevator.OpenDoor();
+                elevator.OpenDoor();
             UnlockCamera();
-            cam.SetMaxPosition(Level2BossPosition);
+                bgManager.changeBackground(gameState);
+                cam.SetMaxPosition(Level2BossPosition);
             break;
 
         // case 3:
@@ -83,9 +86,10 @@ public class GameFlowManager : MonoBehaviour {
         case 2:
             SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[2], LoadSceneMode.Additive);
-            elevator.OpenDoor();
+                elevator.OpenDoor();
             UnlockCamera();
-            cam.SetMaxPosition(Level3BossPosition);
+                bgManager.changeBackground(gameState);
+                cam.SetMaxPosition(Level3BossPosition);
             break;
         
         //Case 5 ends the game
