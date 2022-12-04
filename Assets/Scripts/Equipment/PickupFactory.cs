@@ -35,7 +35,10 @@ public class PickupFactory : MonoBehaviour {
             GameObject item = Instantiate(weapons[itemIndex], position, Quaternion.identity);
             IEquipment newEquip = item.GetComponent<IEquipment>();
             Assert.IsNotNull(newEquip);
+            int upgradeRanks = Random.Range(0,10);
             newPickup.SetItem(newEquip);
+            newEquip.Upgrade(upgradeRanks);
+            Debug.Log("Upgrade Ranks: " + upgradeRanks);
         }
         else if (randomNumber < 5) { //20% chance
 

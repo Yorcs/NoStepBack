@@ -29,4 +29,6 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
     public float GetFireRate() {
         return 0;
     }
+
+    public abstract void Upgrade(int ranks);
 }

@@ -14,4 +14,6 @@ public interface IEquipment {
     public int GetDamage();
     public float GetFireRate();
 
+    public void Upgrade(int ranks);
+
 }

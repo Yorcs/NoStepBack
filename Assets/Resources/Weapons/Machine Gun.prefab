@@ -131,14 +131,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
   bulletSpawnPoint: {fileID: 8737897571723624344}
-  spread: 7
   numBullets: 1
   fireRate: 0.1
+  fireRateRankStep: -0.02
   criticalChance: 1
+  criticalRankStep: 2
   bulletSpeed: 30
   damage: 5
-  penetration: 0
+  damageRankStep: 3
+  spread: 7
+  spreadRankStep: -1
+  penetration: 1
+  penetrationRankStep: 1
   doesFreeze: 0
   doesPoison: 0
   statusDuration: 0
   statusDamage: 0
+  statusRankStep: 0
