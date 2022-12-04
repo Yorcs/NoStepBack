@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private int maxHealth = 50;
     private int currentHealth;
     [SerializeField] protected float moveSpeed = 2f;
-    protected Vector2 direction;
+    protected Vector2 direction = Vector2.left;
 
     private bool active = false;
     private EnemyHeart heart;
@@ -31,7 +31,9 @@ public class Enemy : MonoBehaviour, IEnemy {
     // Start is called before the first frame update
     protected void Start() {
         currentHealth = maxHealth;
-        direction = Vector2.left;
+        if(transform.localScale.x > 0) {
+            direction = Vector2.right;
+        }
 
         enemyRB = GetComponent<Rigidbody2D>();
         manager = EnemyManager.instance;
