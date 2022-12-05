@@ -52,6 +52,8 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] private int penetrationRankWeight = 1;
     private int penetrationRanks;
 
+    [SerializeField] protected int weaponValue;
+
     //Status things to factor out later
     [SerializeField] protected bool doesFreeze, doesPoison = false;
     [SerializeField] protected float statusDuration = 0;
