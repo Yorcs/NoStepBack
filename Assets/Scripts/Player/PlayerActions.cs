@@ -161,6 +161,12 @@ public class PlayerActions : MonoBehaviour {
             Pickup foundPickup = collision.gameObject.GetComponent<Pickup>();
             currentPickups.Add(foundPickup);
         }
+        if (collision.gameObject.tag.Equals("Shop"))
+        {
+            Debug.Log("Entered Shop");
+            VendingMachine vendingMachine = collision.gameObject.GetComponent<VendingMachine>();
+            vendingMachine.CreatePopup();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -169,6 +175,11 @@ public class PlayerActions : MonoBehaviour {
             if (currentPickups.Contains(foundPickup)) {
                 currentPickups.Remove(foundPickup);
             }
+        }
+        if (collision.gameObject.tag.Equals("Shop"))
+        {
+            VendingMachine vendingMachine = collision.gameObject.GetComponent<VendingMachine>();
+            vendingMachine.HidePopup();
         }
     }
 }

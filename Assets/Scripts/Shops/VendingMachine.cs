@@ -29,9 +29,9 @@ public class VendingMachine : MonoBehaviour
         if (shop == null)
         {
             shop = GetUI();
-            shop.SetPosition(transform.TransformPoint(transform.position));
-            shop.gameObject.SetActive(true);
+            shop.SetPosition(transform.position);
         }
+        shop.gameObject.SetActive(true);
     }
 
     public void HidePopup()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    private float yOffset = 1.2f;
+    private float yOffset = 6f;
     private VendingMachine vendingMachine;
     [SerializeField] private Image popupImage;
     private RectTransform popupTransform;
@@ -37,7 +37,5 @@ public class Shop : MonoBehaviour
         position.y += yOffset;
 
         popupTransform.position = position;
-        equipmentTransform.position = position;
-        priceTransform.position = position;
     }
 }
