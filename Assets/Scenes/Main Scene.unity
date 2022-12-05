@@ -539,6 +539,7 @@ GameObject:
   - component: {fileID: 209064871}
   - component: {fileID: 209064870}
   - component: {fileID: 209064869}
+  - component: {fileID: 209064872}
   m_Layer: 5
   m_Name: Shop Canvas
   m_TagString: Untagged
@@ -627,6 +628,19 @@ Canvas:
   m_SortingLayerID: -49309211
   m_SortingOrder: 2
   m_TargetDisplay: 0
+--- !u!114 &209064872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209064867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9bc1a2bc69a59449d4351005232882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupUIPrefab: {fileID: 631337684899961614, guid: 96593e74daae6c9438e40a1168bb9f1b, type: 3}
 --- !u!1001 &240773520
 PrefabInstance:
   m_ObjectHideFlags: 0

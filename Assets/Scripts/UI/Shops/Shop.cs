@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class Shop : MonoBehaviour
+{
+    private float yOffset = 1.2f;
+    private VendingMachine vendingMachine;
+    [SerializeField] private Image popupImage;
+    private RectTransform popupTransform;
+    [SerializeField] private Image equipmentImage;
+    private RectTransform equipmentTransform;
+    [SerializeField] private TextMeshProUGUI priceText;
+    private RectTransform priceTransform;
+
+    public void Awake()
+    {
+        popupTransform = popupImage.gameObject.GetComponent<RectTransform>();
+        equipmentTransform = equipmentImage.gameObject.GetComponent<RectTransform>();
+        priceTransform = priceText.gameObject.GetComponent<RectTransform>();
+    }
+
+    public void SetPrice(int price)
+    {
+        priceText.text = price.ToString();
+    }
+
+    public void SetEquipmentSprite(Sprite equipmentSprite)
+    {
+        equipmentImage.sprite = equipmentSprite;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        position.y += yOffset;
+
+        popupTransform.position = position;
+        equipmentTransform.position = position;
+        priceTransform.position = position;
+    }
+}
