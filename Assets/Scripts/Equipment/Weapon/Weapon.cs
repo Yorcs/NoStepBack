@@ -97,6 +97,8 @@ public class Weapon : MonoBehaviour, IEquipment {
         penetration += penetrationRanks * penetrationRankStep;
         spread += spreadRanks * spreadRankStep;
         statusDamage += statusRanks * statusRankStep;
+
+        if(statusRanks > 0) doesPoison = true;
     }
 
     public void Fire(Vector2 direction, TargetType targetType, int layer) {
@@ -195,5 +197,9 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public Vector2 GetBulletSpawn() {
         return bulletSpawnPoint.position;
+    }
+
+    public void DestroyEquipment() {
+        Destroy(gameObject);
     }
 }

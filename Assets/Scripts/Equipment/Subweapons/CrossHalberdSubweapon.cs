@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum HalberdUpgradeType {
+    DAMAGE,
+    SPEED,
+    PENETRATION,
+}
+
 public class CrossHalberdSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject crossHalberdPrefab;
 
     [SerializeField] private float speed;
+    [SerializeField] private int speedRankStep;
+    private int speedRanks;
+
     [SerializeField] private int penetration;
+    [SerializeField] private int penetrationRankStep;
+    private int penetrationRanks;
+
     [SerializeField] private float returnTimer;
 
     private bool weaponReturned = true;
@@ -20,7 +32,28 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         Assert.IsNotNull(crossHalberdPrefab);
     }
 
-    public override void Upgrade(int ranks) {}
+    public override void Upgrade(int ranks) {
+        for(int i = 0; i < ranks; i++) {
+            HalberdUpgradeType upgrade = (HalberdUpgradeType)Random.Range(0, System.Enum.GetValues(typeof(HalberdUpgradeType)).Length);
+
+            switch(upgrade) {
+            case HalberdUpgradeType.DAMAGE: 
+                damageRanks++;
+                break;
+            case HalberdUpgradeType.SPEED: 
+                speedRanks++;
+                break;
+            case HalberdUpgradeType.PENETRATION: 
+                penetrationRanks++;
+                break;
+            default: break;
+            }
+        }
+
+        damage += damageRanks * damageRankStep;
+        speed += speedRanks * speedRankStep;
+        penetration += penetrationRanks * penetrationRankStep;
+    }
     
     public override void UseSubweapon(Vector2 direction, int layer) {
         if(weaponReturned) {

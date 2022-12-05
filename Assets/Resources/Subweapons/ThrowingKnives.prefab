@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9a367703c8c7d43a0b9ba250dcd453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1000
+  damage: 800
+  damageRankStep: 0
   knivesPrefab: {fileID: 2279261080959988993, guid: e36872e5ea312c746b79ecd2b32df7eb, type: 3}
   knifeSpeed: 20

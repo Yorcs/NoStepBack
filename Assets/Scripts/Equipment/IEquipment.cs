@@ -16,4 +16,6 @@ public interface IEquipment {
 
     public void Upgrade(int ranks);
 
+    public void DestroyEquipment(); 
+
 }

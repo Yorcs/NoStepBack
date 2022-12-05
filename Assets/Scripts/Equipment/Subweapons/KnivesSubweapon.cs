@@ -24,7 +24,7 @@ public class KnivesSubweapon : AbstractSubweapon
     public override void UseSubweapon(Vector2 direction, int layer)
     {
         SpawnKnives(direction, layer);
-        uses --;
+        uses--;
         if(uses == 0) {
             Destroy(gameObject);
         }
