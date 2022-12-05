@@ -28,28 +28,28 @@ public class Weapon : MonoBehaviour, IEquipment {
     private float fireTimer = 0;
     [SerializeField] protected float fireRate;
     [SerializeField] private float fireRateRankStep;
-    [SerializeField] private int fireRateRankWeight = 1;
+    // [SerializeField] private int fireRateWeight = 1;
     private int fireRateRanks;
 
     [SerializeField] protected int criticalChance;
     [SerializeField] private int criticalRankStep;
-    [SerializeField] private int criticalRankWeight = 1;
+    // [SerializeField] private int criticalWeight = 1;
     private int criticalRanks;
 
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected int damage;
     [SerializeField] private int damageRankStep;
-    [SerializeField] private int damageRankWeight = 1;
+    // [SerializeField] private int damageWeight = 1;
     private int damageRanks;
 
     [SerializeField] protected float spread;
     [SerializeField] private float spreadRankStep;
-    [SerializeField] private int spreadRankWeight = 1;
+    // [SerializeField] private int spreadWeight = 1;
     private int spreadRanks;
 
     [SerializeField] protected int penetration;
     [SerializeField] private int penetrationRankStep;
-    [SerializeField] private int penetrationRankWeight = 1;
+    // [SerializeField] private int penetrationWeight = 1;
     private int penetrationRanks;
 
     [SerializeField] protected int weaponValue;
@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
     [SerializeField] private int statusRankStep;
-    [SerializeField] private int statusRankWeight = 1;
+    // [SerializeField] private int statusWeight = 1;
     private int statusRanks;
 
     private EnemyManager enemyManager;
@@ -75,6 +75,8 @@ public class Weapon : MonoBehaviour, IEquipment {
     public void Upgrade(int ranks) {
         for(int i = 0; i < ranks; i++) {
             UpgradeType upgrade = (UpgradeType)Random.Range(0, System.Enum.GetValues(typeof(UpgradeType)).Length);
+            
+            // GetUpgrade(new int[] {damageWeight, fireRateWeight, penetrationWeight, criticalWeight, spreadWeight, statusWeight});
 
             switch(upgrade) {
             case UpgradeType.DAMAGE: 
@@ -129,7 +131,6 @@ public class Weapon : MonoBehaviour, IEquipment {
         Vector3 target = Vector3.positiveInfinity;
         switch(targetType) {
             case TargetType.ENEMY :
-            Debug.Log(gameObject.name);
                 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
                 break;
             case TargetType.PVP :
@@ -207,6 +208,25 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public Vector2 GetBulletSpawn() {
         return bulletSpawnPoint.position;
+    }
+
+    // private int GetTotalWeight() {
+    //     return damageRankWeight + criticalRankWeight + fireRateRankWeight +
+    //         statusRankWeight + spreadRankWeight + penetrationRankWeight;
+    // }
+
+    public List<StatDisplay> GetStats() {
+        List<StatDisplay> stats = new()
+        {
+            new StatDisplay("Damage", damage, damageRanks),
+            new StatDisplay("Fire Rate", fireRate, fireRateRanks),
+            new StatDisplay("Critical", criticalChance, criticalRanks),
+            new StatDisplay("Accuracy", spread, spreadRanks),
+            new StatDisplay("Pierce", penetration, penetrationRanks),
+            new StatDisplay("Status", statusDamage, statusRanks)
+        };
+
+        return stats;
     }
 
     public void DestroyEquipment() {

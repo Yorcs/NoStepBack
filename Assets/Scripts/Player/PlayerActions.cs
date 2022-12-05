@@ -34,7 +34,7 @@ public class PlayerActions : MonoBehaviour {
     void Update() {
         if(currentPickups.Count > 0) {
             Pickup closestPickup = GetClosestPickup();
-            weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetDamage(), closestPickup.GetFireRate());
+            weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetStats());
         } else {
             weaponUI.HidePopup();
         }
