@@ -8,28 +8,15 @@ public enum EquipmentType {
     MOD,
 }
 
-public struct StatDisplay {
-    public string text;
-    public float value;
-    public int upgrades;
-    public StatDisplay(string text, float value, int upgrades) {
-        this.text = text;
-        this.value = value;
-        this.upgrades = upgrades;
-    }
-}
-
 public interface IEquipment {
     
-    EquipmentType GetEquipmentType();
-    int GetDamage();
-    float GetFireRate();
+    public EquipmentType GetEquipmentType();
+    public int GetDamage();
+    public float GetFireRate();
 
-    void Upgrade(int ranks);
-    Sprite GetEquipmentImage();
+    public void Upgrade(int ranks);
+    public Sprite GetEquipmentImage();
 
-    void DestroyEquipment(); 
-
-    List<StatDisplay> GetStats();
+    public void DestroyEquipment(); 
 
 }

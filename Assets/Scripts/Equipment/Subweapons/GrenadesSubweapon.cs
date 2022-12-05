@@ -84,15 +84,6 @@ public class GrenadesSubweapon : AbstractSubweapon {
         return newGrenade;
     }
 
-    public override List<StatDisplay> GetStats() {
-        List<StatDisplay> stats = new()
-        {
-            new StatDisplay("Damage", damage, damageRanks),
-            new StatDisplay("Radius", radius, radiusRanks),
-            new StatDisplay("Recharge Rate", fireRate, fireRateRanks)
-        };
-
-        return stats;
-    }
+    
 
 }

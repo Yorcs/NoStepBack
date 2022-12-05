@@ -80,17 +80,6 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         return newHalberd;
     }
 
-    public override List<StatDisplay> GetStats() {
-        List<StatDisplay> stats = new()
-        {
-            new StatDisplay("Damage", damage, damageRanks),
-            new StatDisplay("Speed", speed, speedRanks),
-            new StatDisplay("Pierce", penetration, penetrationRanks)
-        };
-
-        return stats;
-    }
-
     public void ReturnHalberd() {
         weaponReturned = true;
     }

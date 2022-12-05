@@ -34,8 +34,6 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
 
     public abstract void Upgrade(int ranks);
 
-    public abstract List<StatDisplay> GetStats();
-
     public void DestroyEquipment() {
         Destroy(gameObject);
     }

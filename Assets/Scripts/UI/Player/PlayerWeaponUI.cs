@@ -13,9 +13,8 @@ public class PlayerWeaponUI : MonoBehaviour {
 
     [SerializeField] private Image popupImage;
     private RectTransform popupTransform;
-    [SerializeField] private List<TextMeshProUGUI> textObjects;
-    // [SerializeField] private TextMeshProUGUI damageText;
-    // [SerializeField] private TextMeshProUGUI fireRateText; 
+    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI fireRateText; 
 
     private void Start() {
         weaponTransform = weaponImage.gameObject.GetComponent<RectTransform>();
@@ -32,38 +31,22 @@ public class PlayerWeaponUI : MonoBehaviour {
         subWeaponImage.sprite = subweaponSprite;
     }
 
-    public void ShowPopup(EquipmentType type, List<StatDisplay> stats) {
+    public void ShowPopup(EquipmentType type, int damage, float fireRate) {
         popupImage.gameObject.SetActive(true);
-
         switch(type) {
             case EquipmentType.WEAPON:
                 popupTransform.anchoredPosition = new Vector2(weaponTransform.anchoredPosition.x, popupTransform.anchoredPosition.y);
-                // damageText.text = damage.ToString();
-                // fireRateText.text = fireRate.ToString();
+                damageText.text = damage.ToString();
+                fireRateText.text = fireRate.ToString();
                 break;
             case EquipmentType.SUBWEAPON:
                 popupTransform.anchoredPosition = new Vector2(subweaponTransform.anchoredPosition.x, popupTransform.anchoredPosition.y);
-                // damageText.text = damage.ToString();
-                // fireRateText.text = "-";
+                damageText.text = damage.ToString();
+                fireRateText.text = "-";
                 break;
             case EquipmentType.MOD:
                 break;
         }
-
-        foreach(TextMeshProUGUI textMesh in textObjects) {
-            textMesh.text = "";
-        }
-
-        int textIndex = 0;
-        foreach(StatDisplay stat in stats) {
-            
-            if(stat.upgrades != 0){
-                textObjects[textIndex].text = stat.text + ": +" + stat.upgrades;
-                textIndex++;
-            }
-            
-        }
-    
         
     }
 
