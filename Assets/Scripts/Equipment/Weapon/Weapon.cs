@@ -193,7 +193,7 @@ public class Weapon : MonoBehaviour, IEquipment {
         return equipType;
     }
 
-    public Sprite GetWeaponImage() {
+    public Sprite GetEquipmentImage() {
         return weaponRenderer.sprite;
     }
 

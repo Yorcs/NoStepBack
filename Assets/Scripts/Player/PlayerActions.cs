@@ -119,7 +119,7 @@ public class PlayerActions : MonoBehaviour {
         newWeapon.gameObject.transform.SetParent(transform);
         newWeapon.gameObject.transform.position = weaponAttachPoint.position;
         weapon = newWeapon;
-        weaponUI.SetWeapon(weapon.GetWeaponImage());
+        weaponUI.SetWeapon(weapon.GetEquipmentImage());
         return true;
     }
 
@@ -153,7 +153,7 @@ public class PlayerActions : MonoBehaviour {
         newWeapon.gameObject.transform.SetParent(transform);
         newWeapon.gameObject.transform.position = weaponAttachPoint.position;
         weapon = newWeapon;
-        weaponUI.SetWeapon(weapon.GetWeaponImage());
+        weaponUI.SetWeapon(weapon.GetEquipmentImage());
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
