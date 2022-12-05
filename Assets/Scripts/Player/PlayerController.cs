@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     Camera mainCam;
 
     [SerializeField] private Vector2 movementInput;
-    private bool grounded;
+    private bool grounded = true;
     [SerializeField] private float jumpForce;
     private bool onPassableGround;
     private Collider2D passableGround;
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour {
 
 
         playerRB.AddForce(jump, ForceMode2D.Impulse);
+        animator.SetBool("IsJumping", true);
     }
 
     public void Respawn() {
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.tag.Equals("Ground")) {
             grounded = true;
             canWallJump = false;
+            animator.SetBool("IsJumping", false);
         }
 
         if(other.gameObject.tag.Equals("Walls")) {
@@ -146,10 +148,10 @@ public class PlayerController : MonoBehaviour {
                 onPassableGround = true;
                 canWallJump = false;
                 passableGround = other.collider;
+                animator.SetBool("IsJumping", false);
             }
             else {
                 Physics2D.IgnoreCollision(playerCollider, other.collider, true);
-
             }
         }
     }
