@@ -973,6 +973,7 @@ MonoBehaviour:
   - {fileID: 1648476981}
   - {fileID: 1523389258}
   - {fileID: 1739016826}
+  playerRespawnUI: {fileID: 488407675}
 --- !u!4 &332212623
 Transform:
   m_ObjectHideFlags: 0

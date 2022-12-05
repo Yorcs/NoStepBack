@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class PickupFactory : MonoBehaviour {
+    public static PickupFactory instance;
 
     public GameObject[] weapons;
     public GameObject[] subWeapons;
@@ -14,11 +15,25 @@ public class PickupFactory : MonoBehaviour {
     [SerializeField] GameObject money;
     private float randomNumber;
 
+    private void Awake() {
+        if(instance == null) {
+            instance = this;
+        }
+    }
+
     private void Start() {
         Assert.IsNotNull(weapons);
         weapons = Resources.LoadAll<GameObject>("Weapons");
         subWeapons = Resources.LoadAll<GameObject>("SubWeapons");
         // mods = Resources.LoadAll<GameObject>("Mods");
+    }
+
+    public void CreatePickupFromEquipment(Vector2 position, IEquipment item, Transform itemTransform) {
+        Pickup newPickup = CreatePickupObject(position);
+        newPickup.SetItem(item);
+        itemTransform.SetParent(newPickup.transform);
+        transform.position = position;
+        transform.rotation = Quaternion.identity;
     }
 
     public void CreatePickup(Vector2 position) {

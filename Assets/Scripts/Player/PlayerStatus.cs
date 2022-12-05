@@ -56,8 +56,10 @@ public class PlayerStatus : MonoBehaviour {
 
     private void CreateRespawn()
     {
+        if(respawner == null) {
             respawner = GetUI();
             respawner.SetPosition(transform.TransformPoint(transform.position));
+        }
     }
 
 
@@ -110,9 +112,10 @@ public class PlayerStatus : MonoBehaviour {
         }
     }
 
-    public void SetUI(PlayerHealthUI healthUI, PlayerMoneyUI moneyUI) {
+    public void SetUI(PlayerHealthUI healthUI, PlayerMoneyUI moneyUI, PlayerRespawnUI respawnUI) {
         this.healthUI = healthUI;
         this.moneyUI = moneyUI;
+        this.respawnUI = respawnUI;
     }
 
     public void SetPVP(bool inPVP) {

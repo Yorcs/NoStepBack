@@ -17,6 +17,7 @@ public class PlayerUISetup : MonoBehaviour {
     [SerializeField] private List<PlayerMoneyUI> moneyUIs = new();
 
     [SerializeField] private List<CharacterSelectUI> charSelUIs = new();
+    [SerializeField] private PlayerRespawnUI playerRespawnUI;
     private int nextUI = 0;
 
     private int numberOfPlayers = 0;
@@ -25,6 +26,7 @@ public class PlayerUISetup : MonoBehaviour {
     private void Start() {
         Assert.IsNotNull(gameFlowManager);
         Assert.IsNotNull(frame);
+        Assert.IsNotNull(playerRespawnUI);
     }
 
     public void OnPlayerJoined(PlayerInput input) {
@@ -32,7 +34,7 @@ public class PlayerUISetup : MonoBehaviour {
         PlayerStatus status = input.gameObject.GetComponent<PlayerStatus>();
         PlayerActions actions = input.gameObject.GetComponent<PlayerActions>();
         PlayerUIController uiController = input.gameObject.GetComponent<PlayerUIController>();
-        status.SetUI(healthUIs[nextUI], moneyUIs[nextUI]);
+        status.SetUI(healthUIs[nextUI], moneyUIs[nextUI], playerRespawnUI);
         actions.SetUI(weaponUIs[nextUI]);
 
         charSelUIs[nextUI].gameObject.SetActive(true);

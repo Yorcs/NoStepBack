@@ -112,10 +112,9 @@ public class PlayerActions : MonoBehaviour {
     //Todo: consistent offset for weapons
     private bool PickupWeapon(Weapon newWeapon) {
         //Todo: Drop as pickup
-        Destroy(weapon.gameObject);
+        PickupFactory.instance.CreatePickupFromEquipment(transform.position, weapon, weapon.transform);
 
         Vector2 direction = controller.GetDirection();
-        Debug.Log(direction);
         newWeapon.gameObject.transform.localScale = new Vector2(direction.x * Mathf.Abs(newWeapon.gameObject.transform.localScale.x), newWeapon.gameObject.transform.localScale.y);
         newWeapon.gameObject.transform.SetParent(transform);
         newWeapon.gameObject.transform.position = weaponAttachPoint.position;
@@ -127,7 +126,7 @@ public class PlayerActions : MonoBehaviour {
     private bool PickupSubweapon(AbstractSubweapon newSubweapon) {
         //Todo: Drop current as pickup
         if (subweapon != null) {
-            Destroy(subweapon.gameObject);
+            PickupFactory.instance.CreatePickupFromEquipment(transform.position, subweapon, subweapon.transform);
         }
         //Todo: fix size
         newSubweapon.gameObject.transform.SetParent(transform);

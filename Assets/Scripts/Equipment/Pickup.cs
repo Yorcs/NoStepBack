@@ -25,8 +25,7 @@ public class Pickup : MonoBehaviour {
         return equipment.GetFireRate();
     }
 
-    private void OnBecameInvisible() {
-        equipment.DestroyEquipment();
-        Destroy(gameObject);
-    }
+    // private void OnBecameInvisible() {
+    //     Destroy(gameObject);
+    // }
 }

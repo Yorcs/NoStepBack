@@ -102,6 +102,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     }
 
     public void Fire(Vector2 direction, TargetType targetType, int layer) {
+        
         fireTimer += Time.deltaTime;
         Vector3 target = GetTarget(direction, targetType, layer);
         TrackTarget(target, direction);
@@ -120,6 +121,7 @@ public class Weapon : MonoBehaviour, IEquipment {
         Vector3 target = Vector3.positiveInfinity;
         switch(targetType) {
             case TargetType.ENEMY :
+            Debug.Log(gameObject.name);
                 target = enemyManager.FindClosestVisibleEnemy(bulletSpawnPoint.position, direction);
                 break;
             case TargetType.PVP :
