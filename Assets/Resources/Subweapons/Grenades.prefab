@@ -97,8 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99a9709533481d49813149ff326294d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 150
+  damage: 100
+  damageRankStep: 25
   grenadePrefab: {fileID: 1994810697801410601, guid: 81dded4066513ec40812cfb82dd7f6e5, type: 3}
   fuse: 2
-  radius: 5
+  radius: 55
+  radiusRankStep: 10
   fireRate: 5
+  fireRateRankStep: -0.5
+  throwStrength: {x: 10, y: 5}

@@ -21,7 +21,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private float fireRateRankStep;
     private int fireRateRanks;
 
-    [SerializeField] private Vector2 throwStrength = new Vector2 (10,5);
+    [SerializeField] private Vector2 throwStrength = new Vector2 (20,8);
     private float fireTimer = 0;
 
 
@@ -78,6 +78,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
 
         newGrenade.SetFuse(fuse);
         newGrenade.SetDamage(damage);
+        newGrenade.SetRadius(radius);
         //Todo: No magic numbers
         newGrenade.SetVelocity(throwStrength * direction);
 

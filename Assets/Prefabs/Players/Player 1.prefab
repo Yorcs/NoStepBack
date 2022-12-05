@@ -265,9 +265,9 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7498730007862180785}
-        m_TargetAssemblyTypeName: PlayerUIController, Assembly-CSharp
-        m_MethodName: OnSelect
+      - m_Target: {fileID: 369792980854230290}
+        m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
+        m_MethodName: OnSpecial
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

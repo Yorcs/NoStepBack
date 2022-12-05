@@ -32,7 +32,7 @@ public class PlayerWeaponUI : MonoBehaviour {
         subWeaponImage.sprite = subweaponSprite;
     }
 
-    public void ShowPopup(EquipmentType type, List<StatDisplay> stats) {
+    public void ShowPopup(EquipmentType type, List<StatDisplay> newStats, List<StatDisplay> currentStats) {
         popupImage.gameObject.SetActive(true);
 
         switch(type) {
@@ -55,10 +55,24 @@ public class PlayerWeaponUI : MonoBehaviour {
         }
 
         int textIndex = 0;
-        foreach(StatDisplay stat in stats) {
+        foreach(StatDisplay stat in newStats) {
+
+            StatDisplay toCompare = new("", 0, 0);
+            foreach(StatDisplay currentStat in currentStats) {
+                if(stat.text.Equals(currentStat.text)) toCompare = currentStat;
+            }
             
-            if(stat.upgrades != 0){
-                textObjects[textIndex].text = stat.text + ": +" + stat.upgrades;
+            if(stat.upgrades != 0 || toCompare.upgrades != 0){
+                textObjects[textIndex].text = stat.text + ": +" + stat.upgrades + "\n";
+                Color newColor = Color.black;
+                if(stat.upgrades > toCompare.upgrades) {
+                    newColor = Color.blue;
+                }
+                if(stat.upgrades < toCompare.upgrades) {
+                    newColor = Color.red;
+                }
+
+                textObjects[textIndex].color = newColor;
                 textIndex++;
             }
             

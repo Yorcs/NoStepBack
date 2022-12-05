@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 public class Grenade : AbstractProjectile {
     private Rigidbody2D grenadeRB;
-    [SerializeField] Collider2D explosion;
+    [SerializeField] CircleCollider2D explosion;
     private float fuse;
     private float fuseTimer;
     [SerializeField] private GameObject explosionPrefab;
@@ -51,6 +51,10 @@ public class Grenade : AbstractProjectile {
 
     public void SetVelocity(Vector2 velocity) {
         grenadeRB.AddForce(velocity, ForceMode2D.Impulse);
+    }
+
+    public void SetRadius(float radius) {
+        explosion.radius = radius;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

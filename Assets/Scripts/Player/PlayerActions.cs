@@ -34,7 +34,14 @@ public class PlayerActions : MonoBehaviour {
     void Update() {
         if(currentPickups.Count > 0) {
             Pickup closestPickup = GetClosestPickup();
-            weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetStats());
+            EquipmentType newEquip = closestPickup.GetEquipmentType();
+            List<StatDisplay> currentStats = new();
+            if(newEquip == EquipmentType.WEAPON) currentStats = weapon.GetStats();
+            if(newEquip == EquipmentType.SUBWEAPON) {
+                if(subweapon != null) currentStats = subweapon.GetStats();
+            }
+
+            weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetStats(), currentStats);
         } else {
             weaponUI.HidePopup();
         }

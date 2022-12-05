@@ -40,7 +40,7 @@ public class PickupFactory : MonoBehaviour {
         //Todo: less hard code
         //Todo: implement more item variations
         //Todo: Drop tables probably
-
+        int upgradeRanks = Random.Range(0,10);
 
         randomNumber = Random.Range(1, 10);
         if (randomNumber < 3) { //30% chance
@@ -50,10 +50,8 @@ public class PickupFactory : MonoBehaviour {
             GameObject item = Instantiate(weapons[itemIndex], position, Quaternion.identity);
             IEquipment newEquip = item.GetComponent<IEquipment>();
             Assert.IsNotNull(newEquip);
-            int upgradeRanks = Random.Range(0,10);
             newPickup.SetItem(newEquip);
             newEquip.Upgrade(upgradeRanks);
-            Debug.Log("Upgrade Ranks: " + upgradeRanks);
         }
         else if (randomNumber < 5) { //20% chance
 
@@ -64,6 +62,7 @@ public class PickupFactory : MonoBehaviour {
             IEquipment newEquip = item.GetComponent<IEquipment>();
             Assert.IsNotNull(newEquip);
             newPickup.SetItem(newEquip);
+            newEquip.Upgrade(upgradeRanks);
         }
         else if (randomNumber < 8) { //40% chance
 
