@@ -10,6 +10,8 @@ public class PlayerStatus : MonoBehaviour {
     private int currentHitPoints;
 
     private PlayerHealthUI healthUI;
+    private PlayerRespawnUI respawnUI;
+    private PlayerRespawner respawner;
     private int money;
     private PlayerMoneyUI moneyUI;
 
@@ -35,12 +37,29 @@ public class PlayerStatus : MonoBehaviour {
         if(IsDead() && !inPVP) {
             
             respawnTimer += Time.deltaTime;
-            if(respawnTimer >= respawnDuration) {
+            respawner.SetRespawn(respawnTimer);
+            respawner.SetPosition(transform.TransformPoint(transform.position));
+            if (respawnTimer >= respawnDuration) {
+                Destroy(respawner.gameObject);
                 controller.Respawn();
                 Revive();
             }
         }
     }
+
+    public PlayerRespawner GetUI()
+    {
+        PlayerRespawner respawner = respawnUI.MakeRespawner(this);
+        Debug.Log("respawner created");
+        return respawner;
+    }
+
+    private void CreateRespawn()
+    {
+            respawner = GetUI();
+            respawner.SetPosition(transform.TransformPoint(transform.position));
+    }
+
 
     public bool IsDead() {
         return currentHitPoints <= 0;
@@ -85,6 +104,7 @@ public class PlayerStatus : MonoBehaviour {
         healthUI.SetHealth(currentHitPoints);
 
         if (IsDead()) {
+            CreateRespawn();
             Debug.Log("Dead!");
             animator.SetBool("IsDead", IsDead());
         }
