@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 
 
         playerRB.AddForce(jump, ForceMode2D.Impulse);
-        animator.SetBool("IsJumping", true);
+        animator.SetBool("Jumped", true);
     }
 
     public void Respawn() {
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.tag.Equals("Ground")) {
             grounded = true;
             canWallJump = false;
-            animator.SetBool("IsJumping", false);
+            animator.SetBool("Jumped", false);
         }
 
         if(other.gameObject.tag.Equals("Walls")) {
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour {
                 onPassableGround = true;
                 canWallJump = false;
                 passableGround = other.collider;
-                animator.SetBool("IsJumping", false);
+                animator.SetBool("Jumped", false);
             }
             else {
                 Physics2D.IgnoreCollision(playerCollider, other.collider, true);
