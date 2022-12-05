@@ -17,6 +17,10 @@ public class Pickup : MonoBehaviour {
         return equipment.GetEquipmentType();
     }
 
+    public List<StatDisplay> GetStats() {
+        return equipment.GetStats();
+    }
+
     public int GetDamage() {
         return equipment.GetDamage();
     }

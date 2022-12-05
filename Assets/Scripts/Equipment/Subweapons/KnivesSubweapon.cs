@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class KnivesSubweapon : AbstractSubweapon
 {
     [SerializeField] GameObject knivesPrefab;
-    [SerializeField] private float knifeSpeed;
+    [SerializeField] private float speed;
     private int uses = 1;
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class KnivesSubweapon : AbstractSubweapon
         subweaponRenderer = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(subweaponRenderer);
         damage = 1000;
-        knifeSpeed = 20f;
+        speed = 20f;
     }
 
     public override void Upgrade(int ranks) {}
@@ -40,9 +40,20 @@ public class KnivesSubweapon : AbstractSubweapon
         Assert.IsNotNull(newKnives);
 
         newKnives.SetDirection(direction);
-        newKnives.SetSpeed(knifeSpeed);
+        newKnives.SetSpeed(speed);
         newKnives.SetDamage(damage);
 
         return newKnives;
+    }
+
+    public override List<StatDisplay> GetStats() {
+        List<StatDisplay> stats = new()
+        {
+            new StatDisplay("Damage", damage, damageRanks),
+            // new StatDisplay("Speed", speed, speedRanks),
+            // new StatDisplay("Penetration", penetration, penetrationRanks)
+        };
+
+        return stats;
     }
 }
