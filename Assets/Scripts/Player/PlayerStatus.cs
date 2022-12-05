@@ -37,8 +37,8 @@ public class PlayerStatus : MonoBehaviour {
         if(IsDead() && !inPVP) {
             
             respawnTimer += Time.deltaTime;
-            respawner.SetRespawn(respawnTimer);
-            respawner.SetPosition(transform.TransformPoint(transform.position));
+            respawner.SetRespawn((int) respawnTimer);
+            respawner.SetPosition(transform.position);
             if (respawnTimer >= respawnDuration) {
                 Destroy(respawner.gameObject);
                 controller.Respawn();

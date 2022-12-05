@@ -11,6 +11,7 @@ public class PlayerRespawnUI : MonoBehaviour
     public PlayerRespawner MakeRespawner(PlayerStatus players)
     {
         GameObject go = Instantiate(respawnUIPrefab);
+        go.transform.SetParent(transform, false);
         PlayerRespawner respawnCounter = go.GetComponent<PlayerRespawner>();
         Assert.IsNotNull(respawnCounter);
 
