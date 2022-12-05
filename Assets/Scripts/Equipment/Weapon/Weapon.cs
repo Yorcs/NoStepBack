@@ -28,23 +28,28 @@ public class Weapon : MonoBehaviour, IEquipment {
     private float fireTimer = 0;
     [SerializeField] protected float fireRate;
     [SerializeField] private float fireRateRankStep;
+    [SerializeField] private int fireRateRankWeight = 1;
     private int fireRateRanks;
 
     [SerializeField] protected int criticalChance;
     [SerializeField] private int criticalRankStep;
+    [SerializeField] private int criticalRankWeight = 1;
     private int criticalRanks;
 
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected int damage;
     [SerializeField] private int damageRankStep;
+    [SerializeField] private int damageRankWeight = 1;
     private int damageRanks;
 
     [SerializeField] protected float spread;
     [SerializeField] private float spreadRankStep;
+    [SerializeField] private int spreadRankWeight = 1;
     private int spreadRanks;
 
     [SerializeField] protected int penetration;
     [SerializeField] private int penetrationRankStep;
+    [SerializeField] private int penetrationRankWeight = 1;
     private int penetrationRanks;
 
     //Status things to factor out later
@@ -52,6 +57,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     [SerializeField] protected float statusDuration = 0;
     [SerializeField] protected int statusDamage = 0;
     [SerializeField] private int statusRankStep;
+    [SerializeField] private int statusRankWeight = 1;
     private int statusRanks;
 
     private EnemyManager enemyManager;

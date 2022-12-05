@@ -19,7 +19,7 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
         return equipType;
     }
 
-    public Sprite GetSubweaponImage() {
+    public Sprite GetEquipmentImage() {
         return subweaponRenderer.sprite;
     }
 

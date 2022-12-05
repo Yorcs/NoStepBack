@@ -15,6 +15,7 @@ public interface IEquipment {
     public float GetFireRate();
 
     public void Upgrade(int ranks);
+    public Sprite GetEquipmentImage();
 
     public void DestroyEquipment(); 
 

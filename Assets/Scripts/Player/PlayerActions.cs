@@ -132,7 +132,7 @@ public class PlayerActions : MonoBehaviour {
         newSubweapon.gameObject.transform.SetParent(transform);
         newSubweapon.gameObject.transform.position = transform.position;
         subweapon = newSubweapon;
-        weaponUI.SetSubweapon(subweapon.GetSubweaponImage());
+        weaponUI.SetSubweapon(subweapon.GetEquipmentImage());
         return true;
     }
 
