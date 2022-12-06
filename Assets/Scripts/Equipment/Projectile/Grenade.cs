@@ -32,8 +32,13 @@ public class Grenade : AbstractProjectile {
 
     private void Explode() {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        var audioSource = GetComponent<AudioSource>();
+        //if (!audioSource.isPlaying) 
+        audioSource.Play();
+
         //enemies iterated backwards for deletion's sakes. Players are never deleted
-        for(int i = enemiesInRange.Count - 1; i >= 0; i--) {
+        for (int i = enemiesInRange.Count - 1; i >= 0; i--) {
             IEnemy enemy = enemiesInRange[i];
             enemy.TakeDamage(damage);
         }

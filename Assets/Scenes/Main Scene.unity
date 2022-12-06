@@ -344,6 +344,31 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4f88c8ae45fa0d44b8625df62992f3d9, type: 3}
     volume: 0.75
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlameLoop
+    clip: {fileID: 8300000, guid: 86a7dd0d120bf014582b6735cbcc29fd, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Track1
+    clip: {fileID: 8300000, guid: fc8ac83523a954b40a42de242525fafd, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Track2
+    clip: {fileID: 8300000, guid: ab194020d925f7649a0db10bb8ad4c6d, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Track3
+    clip: {fileID: 8300000, guid: fa5d13dcaf0c49746b71a9d4298b4c7d, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &105889569
 Transform:

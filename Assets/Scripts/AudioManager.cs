@@ -14,7 +14,7 @@ public partial class AudioManager : MonoBehaviour
 
     void Awake()
     {
-
+        //Keeps only one Audio Manager without cutting of audio that's already playing
         if (instance == null)
             instance = this;
         else
@@ -22,7 +22,6 @@ public partial class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
@@ -38,9 +37,10 @@ public partial class AudioManager : MonoBehaviour
 
     void Start()
     {
-        //Play("Theme");
-
+        Play("Track1");
     }
+
+    //public void 
 
     public void Play(string name)
     {
