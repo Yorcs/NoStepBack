@@ -62,6 +62,10 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
     }
 
     private CrossHalberd SpawnHalberd(Vector2 direction, int layer) {
+        //Play the weapon audio when it spawns to enhance the sound of the throw
+        var audioSource = GetComponent<AudioSource>();
+        if (!audioSource.isPlaying) audioSource.Play();
+
         GameObject GO = Instantiate(crossHalberdPrefab);
         GO.transform.position = transform.position;
         GO.layer = layer;

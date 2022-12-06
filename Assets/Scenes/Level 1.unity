@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 214939802707780890, guid: 11edb8fe17895b64e9d10379aceb4d1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 214939802707780894, guid: 11edb8fe17895b64e9d10379aceb4d1f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -50290,7 +50294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3909206798836973863, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3909206798836973864, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: m_RootOrder
@@ -50298,11 +50302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3909206798836973864, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 179.44739
+      value: 179.4
       objectReference: {fileID: 0}
     - target: {fileID: 3909206798836973864, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7198448
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 3909206798836973864, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58651,6 +58655,10 @@ PrefabInstance:
     - target: {fileID: 214939802707780890, guid: 11edb8fe17895b64e9d10379aceb4d1f, type: 3}
       propertyPath: m_Name
       value: Shotgun Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 214939802707780890, guid: 11edb8fe17895b64e9d10379aceb4d1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 214939802707780894, guid: 11edb8fe17895b64e9d10379aceb4d1f, type: 3}
       propertyPath: m_RootOrder

@@ -122,6 +122,8 @@ public class PVPManager : MonoBehaviour {
             foreach(PlayerStatus player in winningTeam) {
                 player.GainMoney(goldReward);
             }
+            //Play celebration sound
+            FindObjectOfType<AudioManager>().Play("Yay");
             EndPVP();
         }
     }

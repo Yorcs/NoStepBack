@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d9e6dd7b1a3248b77b88035034f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
+  bullet: {fileID: 2279261080959988993, guid: 498d3a1c6e51a58469e732a6591876c4, type: 3}
   bulletSpawnPoint: {fileID: 8737897571723624344}
   numBullets: 1
   fireRate: 0.1
@@ -157,10 +157,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6562146867658032944}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3792ea775d7984b409e134ca633767b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

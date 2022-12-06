@@ -102,6 +102,10 @@ public class PlayerStatus : MonoBehaviour {
     }
 
     public void TakeDamage(int damage) {
+        //Play hurt audio when hit
+        var audioSource = GetComponent<AudioSource>();
+        if (!audioSource.isPlaying) audioSource.Play();
+
         currentHitPoints -= damage;
         healthUI.SetHealth(currentHitPoints);
 

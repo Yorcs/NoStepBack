@@ -145,19 +145,10 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     private void TrackTarget(Vector3 target, Vector2 direction) {
         transform.rotation = Quaternion.identity;
-
-        //To do: probably put this somewhere else but I wasn't able to get that working ;-;
-        var audioSource = GetComponent<AudioSource>();
-
         if (IsEnemiesNear(target)) {
-            //Play the weapon audio only when being fired
-            if (!audioSource.isPlaying) audioSource.Play();
-
             transform.rotation = LookAt2D(target - transform.position);
             if (direction.x < 0) transform.Rotate(0, 0, 180);
         }
-        //Stop the weapon audio when weapon stops firing
-        else if (audioSource.isPlaying) audioSource.Pause();
     }
 
     public bool IsEnemiesNear(Vector3 target) {
@@ -165,6 +156,14 @@ public class Weapon : MonoBehaviour, IEquipment {
     }
 
     private void SpawnBullet(Vector3 target, int layer) {
+        //Play the weapon audio only when being fired
+        var audioSource = GetComponent<AudioSource>();
+        if (!audioSource.isPlaying) audioSource.Play();
+        //issue: only works well for slow firing weapons
+
+        //Stop the weapon audio when weapon stops firing
+        //else if (audioSource.isPlaying) audioSource.Pause();
+
         GameObject GO = Instantiate(bullet);
         GO.transform.position = bulletSpawnPoint.position;
         GO.transform.rotation = LookAt2D(target - bulletSpawnPoint.position);
