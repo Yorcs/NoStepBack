@@ -241,6 +241,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b32fb738-f853-40ac-80fb-118b479879a7",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dd4ac49d-e859-4e12-a131-03f4a9f6eefa",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -285,6 +296,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5bc5d427-a100-45ca-8ee6-b6300cb7b02a",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f0416eaa-5fb4-42f5-a6f6-082ef9c3526f",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -301,6 +323,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58cbefb7-a536-4f5b-a1e8-79add099f03f",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
