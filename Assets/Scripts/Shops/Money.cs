@@ -23,8 +23,10 @@ public class Money : MonoBehaviour
         {
             PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
             player.GainMoney(money);
+            
             //Play pickup sound
             FindObjectOfType<AudioManager>().Play("CoinPickup1");
+            
             Destroy(gameObject);
         }
     }

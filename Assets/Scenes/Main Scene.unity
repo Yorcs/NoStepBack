@@ -342,36 +342,70 @@ MonoBehaviour:
   sounds:
   - name: CoinPickup1
     clip: {fileID: 8300000, guid: 4f88c8ae45fa0d44b8625df62992f3d9, type: 3}
+    audioMixerGroup: {fileID: 0}
     volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: FlameLoop
     clip: {fileID: 8300000, guid: 86a7dd0d120bf014582b6735cbcc29fd, type: 3}
+    audioMixerGroup: {fileID: 0}
     volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Track1
     clip: {fileID: 8300000, guid: fc8ac83523a954b40a42de242525fafd, type: 3}
+    audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Track2
     clip: {fileID: 8300000, guid: ab194020d925f7649a0db10bb8ad4c6d, type: 3}
+    audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Track3
     clip: {fileID: 8300000, guid: fa5d13dcaf0c49746b71a9d4298b4c7d, type: 3}
+    audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Yay
     clip: {fileID: 8300000, guid: e627a69c63d0f7540a47a48a8ef7989f, type: 3}
+    audioMixerGroup: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PushBack
+    clip: {fileID: 8300000, guid: 189815d15f87a6448b9ebcc6624af45d, type: 3}
+    audioMixerGroup: {fileID: 8077712266919129562, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHurt
+    clip: {fileID: 8300000, guid: 69067759e8561da4b8c235283b026fa1, type: 3}
+    audioMixerGroup: {fileID: 113363413043326254, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 9dcb4b51aba91414aaf2abf7c112f93e, type: 3}
+    audioMixerGroup: {fileID: 113363413043326254, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Run
+    clip: {fileID: 8300000, guid: f07a804635bc1364a9a83eeb4d1e0a52, type: 3}
+    audioMixerGroup: {fileID: 113363413043326254, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 0

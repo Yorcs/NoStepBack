@@ -123,7 +123,7 @@ AudioMixerGroupController:
   - {fileID: 7112993535250531246}
   m_UserColorIndex: 0
   m_Mute: 0
-  m_Solo: 0
+  m_Solo: 1
   m_BypassEffects: 0
 --- !u!243 &669146501494043872
 AudioMixerGroupController:
@@ -131,7 +131,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Nade (needs a boost)
+  m_Name: Nade (needed a boost)
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 195e4a775c04d4c458b9901e3f79c325
   m_Children: []

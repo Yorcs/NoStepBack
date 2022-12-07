@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (!status.IsDead()) {
             Move();
+
+            //Play player running sound
+            //TO DO: fix it so it loops after playing the audio clip fully
+            //if (grounded) FindObjectOfType<AudioManager>().Play("Run");
         }
 
         if(wallJumpTime > 0) {
@@ -95,15 +99,18 @@ public class PlayerController : MonoBehaviour {
 
     public void Dash()
     {
-        if(status.IsDead()) return;
+        if (status.IsDead()) return;
         playerRB.velocity = Vector2.zero;
         playerRB.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
+
+        //Play dash sound
+        FindObjectOfType<AudioManager>().Play("Dash");
     }
 
     public void Jump() {
         Vector2 jump = Vector2.zero;
 
-        if(!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
+        if (!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
             Vector2 jumpDirection = wallJumpDirection + Vector2.up; 
             jump = jumpDirection * jumpForce;
             playerRB.velocity = new Vector2(playerRB.velocity.x, 0);
