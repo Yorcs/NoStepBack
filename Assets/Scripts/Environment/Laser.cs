@@ -7,7 +7,6 @@ public class Laser : MonoBehaviour
 {
     public GameObject cam;
     private float startPos;
-    private float damageDuration = 500f;
     [SerializeField] protected int damage;
 
     void Start()

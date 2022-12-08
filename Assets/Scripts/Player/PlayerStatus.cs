@@ -17,8 +17,6 @@ public class PlayerStatus : MonoBehaviour {
 
     private int pushBackDamage = 5;
 
-    private int laserPushedDamage = 50;
-
     private float respawnDuration = 10f;
     private float respawnTimer;
 
