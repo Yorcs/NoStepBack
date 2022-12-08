@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
     public void OnMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
 
-        if(context.started || context.canceled) return;
+        if(status.IsDead() || context.started || context.canceled) return;
         if(direction.x > 0 && movementInput.x < 0) TurnAround();
         if(direction.x < 0 && movementInput.x > 0) TurnAround();
 
@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour {
     public void Jump() {
         Vector2 jump = Vector2.zero;
 
+        if(status.IsDead()) return;
         if (!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
             Vector2 jumpDirection = wallJumpDirection + Vector2.up; 
             jump = jumpDirection * jumpForce;
