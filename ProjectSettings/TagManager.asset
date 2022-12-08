@@ -14,6 +14,7 @@ TagManager:
   - Walls
   - Money
   - Shop
+  - Lasers
   layers:
   - Default
   - TransparentFX

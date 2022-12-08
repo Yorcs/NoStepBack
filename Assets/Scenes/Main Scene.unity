@@ -1280,7 +1280,7 @@ Transform:
   - {fileID: 488407671}
   - {fileID: 209064868}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &339136638
 PrefabInstance:
@@ -1607,7 +1607,7 @@ Transform:
   m_Children:
   - {fileID: 921734400}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &398840940 stripped
 RectTransform:
@@ -4296,7 +4296,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255116887
 GameObject:
@@ -5831,7 +5831,7 @@ Transform:
   m_Children:
   - {fileID: 1173083822}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1944936378
 MonoBehaviour:
@@ -6360,7 +6360,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6709,7 +6709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_LocalScale.x
@@ -6769,7 +6769,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100246, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034150013193100246, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
+      propertyPath: m_TagString
+      value: Lasers
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100247, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: cam

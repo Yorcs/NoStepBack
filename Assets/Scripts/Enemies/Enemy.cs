@@ -158,6 +158,14 @@ public class Enemy : MonoBehaviour, IEnemy {
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag.Equals("Lasers"))
+        {
+            direction *= -1;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
+    }
+
     private void UpdateHealthUI() {
         float healthPercent = (float) currentHealth / (float) maxHealth;
         heart.SetHealthPercent(healthPercent);
