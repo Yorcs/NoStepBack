@@ -16,6 +16,7 @@ TagManager:
   - Shop
   - Lasers
   - Ceiling
+  - Veil
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - Walls
   - Lasers
   - Ceiling
-  - 
+  - Veil
   - 
   - 
   - 

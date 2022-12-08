@@ -152,12 +152,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (other.gameObject.tag.Equals("Ceiling")){
-            if (!grounded){
-
-            }
-        }
-
         if (other.gameObject.tag.Equals("PassableGround")) {
             if (AboveCollider(other.collider)) {
                 grounded = true;
@@ -167,7 +161,7 @@ public class PlayerController : MonoBehaviour {
                 animator.SetBool("Jumped", false);
             }
             else {
-                Physics2D.IgnoreCollision(playerCollider, other.collider, true);
+                if (!other.gameObject.tag.Equals("Ceiling")) Physics2D.IgnoreCollision(playerCollider, other.collider, true);
             }
         }
 
@@ -192,7 +186,7 @@ public class PlayerController : MonoBehaviour {
                 grounded = false;
             }
         }
-        if(other.gameObject.tag.Equals("Walls")) {
+        if(other.gameObject.tag.Equals("Walls") || (other.gameObject.tag.Equals("Ceiling"))) {
             canWallJump = false;
         }
     }
