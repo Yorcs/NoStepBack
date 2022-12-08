@@ -15,6 +15,7 @@ TagManager:
   - Money
   - Shop
   - Lasers
+  - Ceiling
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - Team 4
   - Walls
   - Lasers
-  - 
+  - Ceiling
   - 
   - 
   - 

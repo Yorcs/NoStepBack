@@ -6878,7 +6878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.199997
+      value: -33.55
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6932,5 +6932,9 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 707941026}
+    - target: {fileID: 9034150013193100247, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}

@@ -152,6 +152,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        if (other.gameObject.tag.Equals("Ceiling")){
+            if (!grounded){
+
+            }
+        }
+
         if (other.gameObject.tag.Equals("PassableGround")) {
             if (AboveCollider(other.collider)) {
                 grounded = true;

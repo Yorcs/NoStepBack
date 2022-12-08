@@ -153,11 +153,11 @@ public class Enemy : MonoBehaviour, IEnemy {
                 player.PushBackEnemy(this);
             }
         }
-        if(collision.gameObject.tag.Equals("Walls"))
-        {
+        if(collision.gameObject.tag.Equals("Walls")) {
             direction *= -1;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
+        if (collision.gameObject.tag.Equals("Ceiling")) Physics2D.IgnoreCollision(enemyCollider, collision.collider, true);
     }
 
     public void OnTriggerEnter2D(Collider2D other){
