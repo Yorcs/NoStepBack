@@ -4,18 +4,40 @@ using UnityEngine;
 
 public class VendingMachine : MonoBehaviour
 {
-    public IEquipment equipment;
+    public EquipmentFactory equipmentFactory;
     private Shop shop;
     private ShopUI shopUI;
+    private float randomNumber;
 
     public void Start()
     {
         shopUI = ShopUI.instance;
+        equipmentFactory = EquipmentFactory.instance;
+
     }
 
-    public void UpdateUIImage()
+    public void UpdateUIImage(IEquipment equipment)
     {
         shop.SetEquipmentSprite(equipment.GetEquipmentImage());
+    }
+
+    public void CreateShopItem(Vector2 position){
+        EquipmentType type;
+
+        randomNumber = Random.Range(1, 10);
+
+        if(randomNumber < 3){ //30% chance
+            type = EquipmentType.WEAPON;
+        }
+        else {
+            //TODO: Subweapon image is throwing a null.
+            type = EquipmentType.SUBWEAPON;
+        }
+
+        int upgradeRanks = Random.Range(0,10);
+
+        IEquipment newItem = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);
+        UpdateUIImage(newItem);
     }
 
     public Shop GetUI()
@@ -30,6 +52,7 @@ public class VendingMachine : MonoBehaviour
         {
             shop = GetUI();
             shop.SetPosition(transform.position);
+            CreateShopItem(transform.position);
         }
         shop.gameObject.SetActive(true);
     }

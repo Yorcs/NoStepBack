@@ -14,7 +14,6 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
 
     public abstract void UseSubweapon(Vector2 direction, int layer);
 
-
     public EquipmentType GetEquipmentType() {
         return equipType;
     }
