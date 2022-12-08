@@ -6,9 +6,7 @@ using UnityEngine.Assertions;
 public class PickupFactory : MonoBehaviour {
     public static PickupFactory instance;
 
-    public GameObject[] weapons;
-    public GameObject[] subWeapons;
-    public GameObject[] mods;
+    EquipmentFactory equipmentFactory;
 
 
     [SerializeField] GameObject pickup;
@@ -22,57 +20,40 @@ public class PickupFactory : MonoBehaviour {
     }
 
     private void Start() {
-        Assert.IsNotNull(weapons);
-        weapons = Resources.LoadAll<GameObject>("Weapons");
-        subWeapons = Resources.LoadAll<GameObject>("SubWeapons");
-        // mods = Resources.LoadAll<GameObject>("Mods");
+        equipmentFactory = EquipmentFactory.instance;
     }
 
     public void CreatePickupFromEquipment(Vector2 position, IEquipment item, Transform itemTransform) {
         Pickup newPickup = CreatePickupObject(position);
         newPickup.SetItem(item);
+        itemTransform.position = newPickup.transform.position;
+        itemTransform.rotation = Quaternion.identity;
         itemTransform.SetParent(newPickup.transform);
-        transform.position = position;
-        transform.rotation = Quaternion.identity;
     }
 
     public void CreatePickup(Vector2 position) {
         //Todo: less hard code
         //Todo: implement more item variations
         //Todo: Drop tables probably
-        int upgradeRanks = Random.Range(0,10);
+        EquipmentType type;
 
         randomNumber = Random.Range(1, 10);
-        if (randomNumber < 3) { //30% chance
-            Pickup newPickup = CreatePickupObject(position);
 
-            int itemIndex = Random.Range(0, weapons.Length);
-            GameObject item = Instantiate(weapons[itemIndex], position, Quaternion.identity);
-            IEquipment newEquip = item.GetComponent<IEquipment>();
-            Assert.IsNotNull(newEquip);
-            newPickup.SetItem(newEquip);
-            newEquip.Upgrade(upgradeRanks);
+        if (randomNumber < 3) { //30% chance
+            type = EquipmentType.WEAPON;
         }
         else if (randomNumber < 5) { //20% chance
-
-            Pickup newPickup = CreatePickupObject(position);
-            //SubWeapons
-            int itemIndex = Random.Range(0, subWeapons.Length);
-            GameObject item = Instantiate(subWeapons[itemIndex], position, Quaternion.identity);
-            IEquipment newEquip = item.GetComponent<IEquipment>();
-            Assert.IsNotNull(newEquip);
-            newPickup.SetItem(newEquip);
-            newEquip.Upgrade(upgradeRanks);
+            type = EquipmentType.SUBWEAPON;
         }
-        else if (randomNumber < 8) { //40% chance
-
-            //Mods
-            // int itemIndex = Random.Range(0, mods.Length);
-            // GameObject item = Instantiate(mods[itemIndex]);           
-            // item.transform.position = position;
-            // newPickup.SetItem(item);  
+        else {
+            return;
         }
 
+        int upgradeRanks = Random.Range(0,10);
+
+        Pickup newPickup = CreatePickupObject(position);
+        IEquipment newEquip = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);
+        newPickup.SetItem(newEquip);
     }
 
     private Pickup CreatePickupObject(Vector2 position)

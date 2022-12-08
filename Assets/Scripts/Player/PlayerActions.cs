@@ -75,24 +75,8 @@ public class PlayerActions : MonoBehaviour {
         if (currentPickups.Count > 0) {
             Pickup closestPickup = GetClosestPickup();
 
-            bool itemTaken = false;
             IEquipment newItem = closestPickup.GetItem();
-            switch (newItem.GetEquipmentType()) {
-                case EquipmentType.WEAPON:
-                    Weapon newWeapon = (Weapon)newItem;
-                    itemTaken = PickupWeapon(newWeapon);
-                    break;
-                case EquipmentType.SUBWEAPON:
-                    AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
-                    itemTaken = PickupSubweapon(newSubweapon);
-                    break;
-                case EquipmentType.MOD:
-                    //take Mod
-                    break;
-                default:
-                    Debug.Log("Invalid Item");
-                    break;
-            }
+            bool itemTaken = EquipItem(newItem);
 
             if (itemTaken) {
                 currentPickups.Remove(closestPickup);
@@ -100,6 +84,29 @@ public class PlayerActions : MonoBehaviour {
             }
 
         }
+    }
+
+    public bool EquipItem(IEquipment newItem) {
+        bool itemTaken = false;
+
+        switch (newItem.GetEquipmentType()) {
+            case EquipmentType.WEAPON:
+                Weapon newWeapon = (Weapon)newItem;
+                itemTaken = PickupWeapon(newWeapon);
+                break;
+            case EquipmentType.SUBWEAPON:
+                AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
+                itemTaken = PickupSubweapon(newSubweapon);
+                break;
+            case EquipmentType.MOD:
+                //take Mod
+                break;
+            default:
+                Debug.Log("Invalid Item");
+                break;
+        }
+
+        return itemTaken;
     }
 
     private Pickup GetClosestPickup() {
@@ -118,7 +125,6 @@ public class PlayerActions : MonoBehaviour {
 
     //Todo: consistent offset for weapons
     private bool PickupWeapon(Weapon newWeapon) {
-        //Todo: Drop as pickup
         PickupFactory.instance.CreatePickupFromEquipment(transform.position, weapon, weapon.transform);
 
         Vector2 direction = controller.GetDirection();
