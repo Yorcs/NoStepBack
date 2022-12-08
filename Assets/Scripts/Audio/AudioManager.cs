@@ -6,11 +6,8 @@ using UnityEngine;
 
 public partial class AudioManager : MonoBehaviour
 {
-
     public Sound[] sounds;
-
     public static AudioManager instance;
-    //AudioManager
 
     void Awake()
     {
@@ -34,12 +31,6 @@ public partial class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-    }
-
-    void Start()
-    {
-        // TO DO: set menu/level music according to game state
-        Play("Track1");
     }
 
     public void Play(string name)

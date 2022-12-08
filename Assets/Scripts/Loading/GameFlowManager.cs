@@ -14,6 +14,7 @@ public class GameFlowManager : MonoBehaviour {
 
     Elevator elevator;
     [SerializeField] private Laser laser;
+    [SerializeField] private AudioManager audio;
 
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
@@ -39,6 +40,10 @@ public class GameFlowManager : MonoBehaviour {
         Assert.IsNotNull(bgManager);
         Assert.IsNotNull(cam);
         Assert.IsNotNull(pvp);
+        Assert.IsNotNull(laser);
+        Assert.IsNotNull(audio);
+
+        audio.Play("MenuMusic");
     }
 
     public void StartPVP() {
@@ -55,6 +60,9 @@ public class GameFlowManager : MonoBehaviour {
     public void StartLevel() {
         switch(gameState) {
         case 0:
+            audio.Stop("MenuMusic");
+            audio.Play("Track1");
+            
             SceneManager.LoadScene(levels[0], LoadSceneMode.Additive);
             elevator = FindObjectOfType<Elevator>();
             Assert.IsNotNull(elevator);
@@ -73,9 +81,12 @@ public class GameFlowManager : MonoBehaviour {
         //     break;
 
         case 1:
+            audio.Stop("Track1");
+            audio.Play("Track2");
+
             //SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[1], LoadSceneMode.Additive);
-                elevator.OpenDoor();
+            elevator.OpenDoor();
             UnlockCamera();
             laser.LaserOn();
                 bgManager.changeBackground(gameState);
@@ -89,6 +100,9 @@ public class GameFlowManager : MonoBehaviour {
         //     break;
 
         case 2:
+            audio.Stop("Track2");
+            audio.Play("Track3");
+
             SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[2], LoadSceneMode.Additive);
                 elevator.OpenDoor();
