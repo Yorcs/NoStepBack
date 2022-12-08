@@ -99,12 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  damageRankStep: 0
+  damageRankStep: 15
+  weaponValue: 30
+  rankValueStep: 15
   crossHalberdPrefab: {fileID: 1986499631005053459, guid: 22340ea6b4a545a46bc4403071885297, type: 3}
   speed: 12
-  speedRankStep: 0
+  speedRankStep: 3
   penetration: 3
-  penetrationRankStep: 0
+  penetrationRankStep: 1
   returnTimer: 5
 --- !u!82 &-3397167182017535736
 AudioSource:

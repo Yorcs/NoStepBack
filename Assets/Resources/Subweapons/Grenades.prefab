@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   damageRankStep: 25
+  weaponValue: 50
+  rankValueStep: 10
   grenadePrefab: {fileID: 1994810697801410601, guid: 81dded4066513ec40812cfb82dd7f6e5, type: 3}
   fuse: 2
   radius: 55
