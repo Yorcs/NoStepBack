@@ -11,7 +11,6 @@ public enum HalberdUpgradeType {
 
 public class CrossHalberdSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject crossHalberdPrefab;
-    private SpriteRenderer subweaponRenderer;
 
     [SerializeField] private float speed;
     [SerializeField] private int speedRankStep;
