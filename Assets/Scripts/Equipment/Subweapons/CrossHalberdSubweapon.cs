@@ -51,6 +51,7 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
         damage += damageRanks * damageRankStep;
         speed += speedRanks * speedRankStep;
         penetration += penetrationRanks * penetrationRankStep;
+        weaponValue += ranks * rankValueStep;
     }
     
     public override void UseSubweapon(Vector2 direction, int layer) {

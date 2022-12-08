@@ -53,7 +53,6 @@ public class PickupFactory : MonoBehaviour {
         int minRanks = (level - 1) * 3;
         int maxRanks = level * 5;
         int upgradeRanks = Random.Range(minRanks,maxRanks);
-        Debug.Log("Ranks: " + minRanks + "-" + maxRanks + ", Final Roll: " + upgradeRanks);
 
         Pickup newPickup = CreatePickupObject(position);
         IEquipment newEquip = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);

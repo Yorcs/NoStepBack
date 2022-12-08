@@ -34,7 +34,10 @@ public class VendingMachine : MonoBehaviour
             type = EquipmentType.SUBWEAPON;
         }
 
-        int upgradeRanks = Random.Range(0,10);
+        int level = GameFlowManager.instance.GetLevel();
+        int minRanks = level * 3;
+        int maxRanks = (level + 1) * 5;
+        int upgradeRanks = Random.Range(minRanks,maxRanks);
 
         IEquipment newItem = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);
         UpdateUIImage(newItem);

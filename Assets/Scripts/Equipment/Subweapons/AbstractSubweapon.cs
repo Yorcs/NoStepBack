@@ -6,11 +6,14 @@ using UnityEngine.Assertions;
 public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
     private EquipmentType equipType = EquipmentType.SUBWEAPON;
     private SpriteRenderer subweaponRenderer;
-    
+    protected int totalRanks;
 
     [SerializeField] protected int damage;
     [SerializeField] protected int damageRankStep;
     protected int damageRanks;
+
+    [SerializeField] protected int weaponValue;
+    [SerializeField] protected int rankValueStep;
 
     private void Awake() {
         subweaponRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -43,5 +46,22 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
 
     public void DestroyEquipment() {
         Destroy(gameObject);
+    }
+
+    public int GetPrice() {
+        return weaponValue;
+    }
+
+    public Rarity GetRarity() {
+        if(totalRanks <= 4) {
+            return Rarity.COMMON;
+        }
+        if(totalRanks <= 9) {
+            return Rarity.UNCOMMON;
+        }
+        if(totalRanks < 13) {
+            return Rarity.RARE;
+        }
+        return Rarity.LEGENDARY;
     }
 }

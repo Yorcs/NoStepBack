@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour, IEquipment {
     private EquipmentType equipType = EquipmentType.WEAPON;
     private SpriteRenderer weaponRenderer;
     [SerializeField] private Transform bulletSpawnPoint;
+    private int totalRanks;
     [SerializeField] protected int numBullets = 1;
 
     private float fireTimer = 0;
@@ -52,7 +53,8 @@ public class Weapon : MonoBehaviour, IEquipment {
     // [SerializeField] private int penetrationWeight = 1;
     private int penetrationRanks;
 
-    [SerializeField] protected int weaponValue;
+    [SerializeField] private int weaponValue;
+    [SerializeField] private int rankValueStep;
 
     //Status things to factor out later
     [SerializeField] protected bool doesFreeze, doesPoison = false;
@@ -101,12 +103,15 @@ public class Weapon : MonoBehaviour, IEquipment {
             }
         }
 
+        totalRanks = ranks;
+
         damage += damageRanks * damageRankStep;
         fireRate += fireRateRanks * fireRateRankStep;
         criticalChance += criticalRanks * criticalRankStep;
         penetration += penetrationRanks * penetrationRankStep;
         spread += spreadRanks * spreadRankStep;
         statusDamage += statusRanks * statusRankStep;
+        weaponValue += ranks * rankValueStep;
 
         if(statusRanks > 0) doesPoison = true;
     }
@@ -238,5 +243,22 @@ public class Weapon : MonoBehaviour, IEquipment {
 
     public void DestroyEquipment() {
         Destroy(gameObject);
+    }
+
+    public int GetPrice() {
+        return weaponValue;
+    }
+
+    public Rarity GetRarity() {
+        if(totalRanks <= 4) {
+            return Rarity.COMMON;
+        }
+        if(totalRanks <= 9) {
+            return Rarity.UNCOMMON;
+        }
+        if(totalRanks < 13) {
+            return Rarity.RARE;
+        }
+        return Rarity.LEGENDARY;
     }
 }

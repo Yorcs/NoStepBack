@@ -8,6 +8,13 @@ public enum EquipmentType {
     MOD,
 }
 
+public enum Rarity {
+    COMMON,
+    UNCOMMON,
+    RARE,
+    LEGENDARY
+}
+
 public struct StatDisplay {
     public string text;
     public float value;
@@ -31,5 +38,9 @@ public interface IEquipment {
     void DestroyEquipment(); 
 
     List<StatDisplay> GetStats();
+
+    int GetPrice();
+
+    Rarity GetRarity();
 
 }

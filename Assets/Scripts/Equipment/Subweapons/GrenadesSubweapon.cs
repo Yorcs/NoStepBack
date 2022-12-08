@@ -49,6 +49,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
         damage += damageRanks * damageRankStep;
         fireRate += fireRateRanks * fireRateRankStep;
         radius += radiusRanks * radiusRankStep;
+        weaponValue += ranks * rankValueStep;
     }
 
     private void Update() {
