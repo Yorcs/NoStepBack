@@ -2,7 +2,7 @@ using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
-//Credit to Brackeys youtube tutorial on Audio managers, as the majority of this code and learning how to use it was made by him.
+//Credit to Brackeys youtube tutorial on Audio managers for the majority of this code and learning how to use it
 
 public partial class AudioManager : MonoBehaviour
 {
@@ -28,6 +28,7 @@ public partial class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.audioMixerGroup;
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -37,10 +38,9 @@ public partial class AudioManager : MonoBehaviour
 
     void Start()
     {
+        // TO DO: set menu/level music according to game state
         Play("Track1");
     }
-
-    //public void 
 
     public void Play(string name)
     {

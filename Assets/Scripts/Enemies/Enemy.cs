@@ -137,6 +137,9 @@ public class Enemy : MonoBehaviour, IEnemy {
 
     public void PushBack(int damage) {
         enemyRB.velocity = Vector2.right * 10;
+
+        //Play pushback sound
+        FindObjectOfType<AudioManager>().Play("PushBack");
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
