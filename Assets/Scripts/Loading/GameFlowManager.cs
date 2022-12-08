@@ -19,6 +19,7 @@ public class GameFlowManager : MonoBehaviour {
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
 
+
     private List<PlayerStatus> players = new();
     private int gameState = 0;
 
@@ -36,11 +37,11 @@ public class GameFlowManager : MonoBehaviour {
 
     private void Start() {
         cam = Camera.main.GetComponent<CameraMovement>();
+        Assert.IsNotNull(laser);
         laser.LaserOff();
         Assert.IsNotNull(bgManager);
         Assert.IsNotNull(cam);
         Assert.IsNotNull(pvp);
-        Assert.IsNotNull(laser);
         Assert.IsNotNull(audioManager);
 
         audioManager.Play("MenuMusic");
@@ -120,6 +121,10 @@ public class GameFlowManager : MonoBehaviour {
         }
         gameState++;
     }
+
+    // public int GetLevel() {
+
+    // }
 
     public void UnlockCamera() {
         cam.SetLocked(false);

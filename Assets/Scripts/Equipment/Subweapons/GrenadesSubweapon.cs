@@ -11,8 +11,6 @@ public enum GrenadeUpgradeType {
 
 public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject grenadePrefab;
-    private SpriteRenderer subweaponRenderer;
-
     [SerializeField] private float fuse;
     [SerializeField] private float radius;
     [SerializeField] private float radiusRankStep;
