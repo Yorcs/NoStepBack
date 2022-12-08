@@ -11,6 +11,7 @@ public enum GrenadeUpgradeType {
 
 public class GrenadesSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject grenadePrefab;
+    private SpriteRenderer subweaponRenderer;
 
     [SerializeField] private float fuse;
     [SerializeField] private float radius;
@@ -26,8 +27,6 @@ public class GrenadesSubweapon : AbstractSubweapon {
 
 
     private void Start() {
-        subweaponRenderer = GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(subweaponRenderer);
         Assert.IsNotNull(grenadePrefab);
     }
 

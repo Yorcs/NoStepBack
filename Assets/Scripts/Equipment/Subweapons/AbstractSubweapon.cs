@@ -5,14 +5,20 @@ using UnityEngine.Assertions;
 
 public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
     private EquipmentType equipType = EquipmentType.SUBWEAPON;
-    protected SpriteRenderer subweaponRenderer;
+    private SpriteRenderer subweaponRenderer;
     
 
     [SerializeField] protected int damage;
     [SerializeField] protected int damageRankStep;
     protected int damageRanks;
 
+    private void Awake() {
+        subweaponRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(subweaponRenderer);
+    }
+    
     public abstract void UseSubweapon(Vector2 direction, int layer);
+
 
     public EquipmentType GetEquipmentType() {
         return equipType;

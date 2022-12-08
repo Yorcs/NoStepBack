@@ -6,14 +6,14 @@ using UnityEngine.Assertions;
 public class KnivesSubweapon : AbstractSubweapon
 {
     [SerializeField] GameObject knivesPrefab;
+    
     [SerializeField] private float speed;
     private int uses = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        subweaponRenderer = GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(subweaponRenderer);
+        Assert.IsNotNull(knivesPrefab);
         damage = 1000;
         speed = 20f;
     }
@@ -56,4 +56,5 @@ public class KnivesSubweapon : AbstractSubweapon
 
         return stats;
     }
+
 }

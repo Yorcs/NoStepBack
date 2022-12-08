@@ -11,6 +11,7 @@ public enum HalberdUpgradeType {
 
 public class CrossHalberdSubweapon : AbstractSubweapon {
     [SerializeField] private GameObject crossHalberdPrefab;
+    private SpriteRenderer subweaponRenderer;
 
     [SerializeField] private float speed;
     [SerializeField] private int speedRankStep;
@@ -27,8 +28,6 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
 
     // Start is called before the first frame update
     void Start() {
-        subweaponRenderer = GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(subweaponRenderer);
         Assert.IsNotNull(crossHalberdPrefab);
     }
 

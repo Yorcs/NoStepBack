@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor.Animations;
+
 
 public class PlayerSpriteManager : MonoBehaviour {
     public Sprite[] sprites;
-    public AnimatorController[] controllers;
+    public RuntimeAnimatorController[] controllers;
     private int spriteIndex;
 
     // public void OnPlayerJoined(PlayerInput input) {
@@ -25,7 +25,7 @@ public class PlayerSpriteManager : MonoBehaviour {
         return sprites[index];
     }
 
-    public AnimatorController GetAnimator(int index) {
+    public RuntimeAnimatorController GetAnimator(int index) {
         return controllers[index];
     }
 
