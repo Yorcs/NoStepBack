@@ -22,6 +22,9 @@ public class GameFlowManager : MonoBehaviour {
 
     private List<PlayerStatus> players = new();
     private int gameState = 0;
+    private int gameStateLevel1 = 0;
+    private int gameStateLevel2 = 1;
+    private int gameStateLevel3 = 2;
 
     private int Level1BossPosition = 159;
     private int Level2ElevatorPosition = 244;
@@ -122,9 +125,15 @@ public class GameFlowManager : MonoBehaviour {
         gameState++;
     }
 
-    // public int GetLevel() {
-
-    // }
+    public int GetLevel() {
+        if(gameState <= gameStateLevel2) {
+            return 1;
+        }
+        if(gameState <= gameStateLevel3) {
+            return 2;
+        }
+        return 3;
+    }
 
     public void UnlockCamera() {
         cam.SetLocked(false);
