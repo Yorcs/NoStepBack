@@ -13,6 +13,7 @@ public class GameFlowManager : MonoBehaviour {
     [SerializeField] private BackgroundManager bgManager;
 
     Elevator elevator;
+    [SerializeField] private Laser laser;
 
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
@@ -40,12 +41,13 @@ public class GameFlowManager : MonoBehaviour {
     }
 
     public void StartPVP() {
+        laser.LaserOff();
         cam.SetLocked(true);
 
         pvp.TriggerPVPCountdown();
     }
 
-    public void EndPVP() {
+    public void EndPVP() {   
         StartLevel();
     }
 
@@ -58,6 +60,7 @@ public class GameFlowManager : MonoBehaviour {
 
             elevator.OpenDoor();
                 UnlockCamera();
+                laser.LaserOn();
                 bgManager.changeBackground(gameState);
                 cam.SetMaxPosition(Level1BossPosition);
             break;
@@ -73,6 +76,7 @@ public class GameFlowManager : MonoBehaviour {
             SceneManager.LoadScene(levels[1], LoadSceneMode.Additive);
                 elevator.OpenDoor();
             UnlockCamera();
+            laser.LaserOn();
                 bgManager.changeBackground(gameState);
                 cam.SetMaxPosition(Level2BossPosition);
             break;
@@ -88,6 +92,7 @@ public class GameFlowManager : MonoBehaviour {
             SceneManager.LoadScene(levels[2], LoadSceneMode.Additive);
                 elevator.OpenDoor();
             UnlockCamera();
+            laser.LaserOn();
                 bgManager.changeBackground(gameState);
                 cam.SetMaxPosition(Level3BossPosition);
             break;

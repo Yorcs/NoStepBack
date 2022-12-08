@@ -17,6 +17,8 @@ public class PlayerStatus : MonoBehaviour {
 
     private int pushBackDamage = 5;
 
+    private int laserPushedDamage = 50;
+
     private float respawnDuration = 10f;
     private float respawnTimer;
 
@@ -99,6 +101,10 @@ public class PlayerStatus : MonoBehaviour {
 
     public void PushBackEnemy(IEnemy enemy) {
         enemy.PushBack(pushBackDamage);
+    }
+
+    public void PushBack(int damage) {
+        controller.playerRB.velocity = Vector2.right * 12;
     }
 
     public void TakeDamage(int damage) {

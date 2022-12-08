@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     private float dashSpeed = 20f;
     private PlayerStatus status;
     private Collider2D playerCollider;
-    private Rigidbody2D playerRB;
+    public Rigidbody2D playerRB;
     public float movementSpeed;
     private Vector2 direction = Vector2.right;
 
@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour {
     public void Respawn() {
         transform.position = mainCam.ScreenToWorldPoint(new Vector2(Screen.width / 5, (Screen.height * 4) / 5));
     }
+
 
     //Change to use Ground Collider?
     private void OnCollisionEnter2D(Collision2D other) {

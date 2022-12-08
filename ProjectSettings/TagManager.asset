@@ -33,7 +33,7 @@ TagManager:
   - Team 3
   - Team 4
   - Walls
-  - 
+  - Lasers
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Laser
+    uniqueID: 3280133449
     locked: 0
   - name: UI
     uniqueID: 4245658085
