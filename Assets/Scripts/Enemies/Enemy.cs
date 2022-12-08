@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IEnemy {
     [SerializeField] private bool IsBoss = false;
 
     Rigidbody2D enemyRB;
+    private Collider2D enemyCollider;
     protected EnemyManager manager;
     private int damage = 55;
 
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour, IEnemy {
         }
 
         enemyRB = GetComponent<Rigidbody2D>();
+        enemyCollider = GetComponent<Collider2D>();
         manager = EnemyManager.instance;
         Assert.IsNotNull(enemyRB);
         Assert.IsNotNull(manager);
@@ -146,10 +148,10 @@ public class Enemy : MonoBehaviour, IEnemy {
         if(collision.gameObject.tag.Equals("Player")) {
             PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
             Assert.IsNotNull(player);
-
-            player.TakeDamage(damage);
-
-            player.PushBackEnemy(this);
+            if(!player.IsDead()){
+                player.TakeDamage(damage);
+                player.PushBackEnemy(this);
+            }
         }
         if(collision.gameObject.tag.Equals("Walls"))
         {

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D playerRB;
     public float movementSpeed;
     private Vector2 direction = Vector2.right;
+    private Collider2D enemyCollider;
 
     Camera mainCam;
 
@@ -161,6 +162,16 @@ public class PlayerController : MonoBehaviour {
             }
             else {
                 Physics2D.IgnoreCollision(playerCollider, other.collider, true);
+            }
+        }
+
+        if (other.gameObject.tag.Equals("Enemy")){
+            if(status.IsDead()){
+                enemyCollider = other.collider;
+                Physics2D.IgnoreCollision(playerCollider, other.collider, true);
+            }
+            else{
+                Physics2D.IgnoreCollision(playerCollider, other.collider, false);
             }
         }
     }
