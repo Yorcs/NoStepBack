@@ -35,6 +35,7 @@ public class GameFlowManager : MonoBehaviour {
 
     private void Start() {
         cam = Camera.main.GetComponent<CameraMovement>();
+        laser.LaserOff();
         Assert.IsNotNull(bgManager);
         Assert.IsNotNull(cam);
         Assert.IsNotNull(pvp);
