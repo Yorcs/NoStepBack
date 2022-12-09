@@ -40,6 +40,8 @@ public class KnivesSubweapon : AbstractSubweapon
             }
         }
 
+        totalRanks = ranks;
+
         damage += damageRanks * damageRankStep;
         fireRate += fireRateRanks * fireRateRankStep;
         weaponValue += ranks * rankValueStep;

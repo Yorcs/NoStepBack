@@ -45,6 +45,8 @@ public class GrenadesSubweapon : AbstractSubweapon {
             default: break;
             }
         }
+        
+        totalRanks = ranks;
 
         damage += damageRanks * damageRankStep;
         fireRate += fireRateRanks * fireRateRankStep;

@@ -250,13 +250,13 @@ public class Weapon : MonoBehaviour, IEquipment {
     }
 
     public Rarity GetRarity() {
-        if(totalRanks <= 4) {
+        if(totalRanks <= 3) {
             return Rarity.COMMON;
         }
         if(totalRanks <= 9) {
             return Rarity.UNCOMMON;
         }
-        if(totalRanks < 13) {
+        if(totalRanks <= 13) {
             return Rarity.RARE;
         }
         return Rarity.LEGENDARY;
