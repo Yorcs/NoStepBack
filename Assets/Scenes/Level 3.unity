@@ -57688,6 +57688,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 274432271}
     m_Modifications:
+    - target: {fileID: 2529418258434658190, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 931fb26359d6d6d4f9368ba07ded2da6, type: 2}
     - target: {fileID: 3909206798836973863, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: moveSpeed
       value: -30
@@ -57736,6 +57740,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3909206798836973865, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d4d8813cba048844b1e494d4c7927bb, type: 3}
     - target: {fileID: 3909206798836973868, guid: 96095ba48b54afb49a36be8c72882dcd, type: 3}
       propertyPath: m_Name
       value: Boss Enemy Variant
