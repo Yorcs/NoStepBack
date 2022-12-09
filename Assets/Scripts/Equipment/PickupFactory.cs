@@ -81,7 +81,7 @@ public class PickupFactory : MonoBehaviour {
 
             int level = GameFlowManager.instance.GetLevel();
             int minimumMoney = level;
-            int maximumMoney = level * 4;
+            int maximumMoney = level * 2;
 
             money.SetMoney(Random.Range(minimumMoney, maximumMoney));
         }

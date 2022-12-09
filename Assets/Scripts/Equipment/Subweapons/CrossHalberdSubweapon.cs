@@ -48,6 +48,8 @@ public class CrossHalberdSubweapon : AbstractSubweapon {
             }
         }
 
+        totalRanks = ranks;
+
         damage += damageRanks * damageRankStep;
         speed += speedRanks * speedRankStep;
         penetration += penetrationRanks * penetrationRankStep;
