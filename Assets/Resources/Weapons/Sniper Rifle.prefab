@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d9e6dd7b1a3248b77b88035034f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2279261080959988993, guid: be8f5c73a5262804897dab837c32a2c4, type: 3}
+  bullet: {fileID: 2279261080959988993, guid: f31dcda8b69fd9b49b7899facba7c77d, type: 3}
   bulletSpawnPoint: {fileID: 709654588243409073}
   numBullets: 1
   fireRate: 3

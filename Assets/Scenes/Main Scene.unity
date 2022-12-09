@@ -558,6 +558,13 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: GameOverMusic
+    clip: {fileID: 8300000, guid: 0d16fdfe5890b1b48a970c015c6b42e2, type: 3}
+    audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: Track1
     clip: {fileID: 8300000, guid: fc8ac83523a954b40a42de242525fafd, type: 3}
     audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
@@ -586,10 +593,10 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: FlameLoop
-    clip: {fileID: 8300000, guid: 86a7dd0d120bf014582b6735cbcc29fd, type: 3}
-    audioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    volume: 0.75
+  - name: Purchase
+    clip: {fileID: 8300000, guid: 8eb96d24437e9e04f97748d900815470, type: 3}
+    audioMixerGroup: {fileID: 5493416201551894880, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -611,6 +618,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 69067759e8561da4b8c235283b026fa1, type: 3}
     audioMixerGroup: {fileID: 113363413043326254, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlameLoop
+    clip: {fileID: 8300000, guid: 86a7dd0d120bf014582b6735cbcc29fd, type: 3}
+    audioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -663,16 +677,16 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Purchase
-    clip: {fileID: 8300000, guid: 8eb96d24437e9e04f97748d900815470, type: 3}
+  - name: Heart
+    clip: {fileID: 8300000, guid: cd7d6a6c1a14d20429608a8f3b5a23fa, type: 3}
     audioMixerGroup: {fileID: 5493416201551894880, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Heart
-    clip: {fileID: 8300000, guid: cd7d6a6c1a14d20429608a8f3b5a23fa, type: 3}
-    audioMixerGroup: {fileID: 5493416201551894880, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
+  - name: Elevator
+    clip: {fileID: 8300000, guid: 0d16fdfe5890b1b48a970c015c6b42e2, type: 3}
+    audioMixerGroup: {fileID: 6339008870052753300, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     volume: 1
     pitch: 1
     loop: 0
@@ -8550,7 +8564,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 6339008870052753300, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a51f6a758500db4088297e2bee5da43, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0

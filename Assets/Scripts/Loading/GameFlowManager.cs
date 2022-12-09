@@ -208,6 +208,7 @@ public class GameFlowManager : MonoBehaviour {
 
         case 18:
             //show ending screen
+            FindObjectOfType<AudioManager>().Play("GameOverMusic");
             foreach(Score scorePanel in scorePanels) {
                 scorePanel.gameObject.SetActive(true);
                 scorePanel.DisplayScore();
