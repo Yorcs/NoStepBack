@@ -181,6 +181,13 @@ public class PlayerActions : MonoBehaviour {
         weaponUI.SetWeapon(weapon.GetEquipmentImage());
     }
     
+    public Weapon GetWeapon() {
+        return weapon;
+    }
+
+    public AbstractSubweapon GetSubweapon() {
+        return subweapon;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag.Equals("Pickup")) {
