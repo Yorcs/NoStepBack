@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e367659ced09944b91004eee4e47ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRB: {fileID: 0}
   movementSpeed: 15
   movementInput: {x: 0, y: 0}
   jumpForce: 26

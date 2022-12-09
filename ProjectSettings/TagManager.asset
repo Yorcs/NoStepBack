@@ -17,6 +17,7 @@ TagManager:
   - Lasers
   - Ceiling
   - Veil
+  - Elevator
   layers:
   - Default
   - TransparentFX

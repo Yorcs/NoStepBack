@@ -6,57 +6,27 @@ using UnityEngine.Assertions;
 
 public class CutsceneUI : MonoBehaviour
 {
-    [SerializeField] private GameObject cutsceneUIPrefab;
+    [SerializeField] private Cutscene cutscene;
 
-    public Cutscene MakeCutscene(int gameState, int textState){
-        GameObject go = Instantiate(cutsceneUIPrefab);
-        go.transform.SetParent(transform, false);
-        Cutscene cutscene = go.GetComponent<Cutscene>();
-        switch(gameState){
-            case 0:
-            switch(textState){
-                case 0:
-                    //cutscene.SetSpriteImage();
-                    //cutscene.SetText();
-                    break;
-                case 1:
-                    //cutscene.SetSpriteImage();
-                    //cutscene.SetText();
-                    break;
-                case 2:
-                    break;
-            }
-                break;
-            case 1:
-            switch(textState){
-                case 0:
-                    // cutscene.SetSpriteImage();
-                    // cutscene.SetText();
-                    break;
-                case 1:
-                    //cutscene.SetSpriteImage();
-                    //cutscene.SetText();
-                    break;
-                case 2:
-                    break;
-            }
-                break;
-            case 2:
-            switch(textState){
-                case 0:
-                    // cutscene.SetSpriteImage();
-                    // cutscene.SetText();
-                    break;
-                case 1:
-                    // cutscene.SetSpriteImage();
-                    // cutscene.SetText();
-                    break;
-                case 2:
-                    break;
-            }
-                break;
-        }
+    public void Awake() {
         Assert.IsNotNull(cutscene);
-        return cutscene;
+        cutscene.gameObject.SetActive(false);
+    }
+
+    public void PlayCutscene(CutsceneSO cutsceneScript){
+        cutscene.gameObject.SetActive(true);
+        cutscene.SetScript(cutsceneScript);
+    }
+
+    public void AdvanceCutscene() {
+        if(cutscene.gameObject.activeInHierarchy == false) return;
+
+        if(cutscene.IsCutsceneOver()) {
+            GameFlowManager.instance.StartLevel();
+            cutscene.gameObject.SetActive(false);
+            return;
+        }
+
+        cutscene.AdvanceCutscene();
     }
 }

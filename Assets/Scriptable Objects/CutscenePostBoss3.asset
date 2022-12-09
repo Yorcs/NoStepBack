@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabbc702d2523a4297ed3fb06da8498, type: 3}
+  m_Name: CutscenePostBoss3
+  m_EditorClassIdentifier: 
+  characterImage: {fileID: 21300000, guid: c1b5996c804ca0546825ef03b97c85a8, type: 3}
+  text:
+  - Guess what, none of you signed a contract!
+  - "So I don\u2019t actually have to pay you for this job."
+  - "But, out of the kindness of my heart, I\u2019ll give a little something to whichever
+    one of you is left standing."
+  - It's cheaper to pay off just one of you, after all!

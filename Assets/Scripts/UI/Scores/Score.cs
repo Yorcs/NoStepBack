@@ -34,41 +34,56 @@ public class Score : MonoBehaviour
         subweaponTransform = subweaponImage.gameObject.GetComponent<RectTransform>();
     }
 
-    public void GetPlayerStatus(PlayerStatus status, PlayerActions actions){
+    public void SetPlayerStatus(PlayerStatus status, PlayerActions actions){
         this.status = status;
         this.actions = actions;
     }
+    
+    public void DisplayScore() {
+        UpdateWeapon();
+        UpdateCurrentWeaponImage();
+        UpdateWeaponScore();
 
-    public void UpdateWeaponScore(){
+        UpdateSubweapon();
+        UpdateCurrentSubweaponImage();
+        UpdateSubweaponScore();
+
+        UpdateCurrentMoney();
+        
+        UpdateTotalScore();
+    }
+
+
+    private void UpdateWeaponScore(){
         weaponValueText.text = weapons.GetPrice().ToString();
     }
 
-    public void UpdateSubweaponScore(){
+    private void UpdateSubweaponScore(){
         subweaponValueText.text = subweapon.GetPrice().ToString();
     }
 
-    public void UpdateCurrentMoney(){
+    private void UpdateCurrentMoney(){
         currentMoneyText.text = status.GetMoney().ToString();
     }
 
-    public void UpdateCurrentWeaponImage(){
+    private void UpdateCurrentWeaponImage(){
         weaponImage.sprite = weapons.GetEquipmentImage();
     }
 
-    public void UpdateCurrentSubweaponImage(){
+    private void UpdateCurrentSubweaponImage(){
         subweaponImage.sprite = subweapon.GetEquipmentImage();
     }
 
-    public void SetTotalScore(){
+    private void UpdateTotalScore(){
         int total = weapons.GetPrice() + subweapon.GetPrice() + status.GetMoney();
         totalScoreText.text = total.ToString();
     }
 
-    public void UpdateWeapon(){
+    private void UpdateWeapon(){
         weapons = actions.GetWeapon();
     }
 
-    public void UpdateSubweapon(){
+    private void UpdateSubweapon(){
         subweapon = actions.GetSubweapon();
     }
 }

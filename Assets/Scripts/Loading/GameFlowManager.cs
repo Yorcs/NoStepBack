@@ -15,16 +15,16 @@ public class GameFlowManager : MonoBehaviour {
     Elevator elevator;
     [SerializeField] private Laser laser;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private CutsceneUI cutscenePlayer;
 
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
+    [SerializeField] private List<CutsceneSO> cutscenes;
 
 
     private List<PlayerStatus> players = new();
     private int gameState = 0;
-    private int gameStateLevel1 = 0;
-    private int gameStateLevel2 = 1;
-    private int gameStateLevel3 = 2;
+    private int level = 0;
 
     private int Level1BossPosition = 159;
     private int Level2ElevatorPosition = 244;
@@ -46,6 +46,7 @@ public class GameFlowManager : MonoBehaviour {
         Assert.IsNotNull(cam);
         Assert.IsNotNull(pvp);
         Assert.IsNotNull(audioManager);
+        Assert.IsNotNull(cutscenePlayer);
 
         audioManager.Play("MenuMusic");
     }
@@ -64,6 +65,22 @@ public class GameFlowManager : MonoBehaviour {
     public void StartLevel() {
         switch(gameState) {
         case 0:
+            //Cutscene Pre-PVP 1
+            cutscenePlayer.PlayCutscene(cutscenes[0]);
+            break;
+        
+        case 1:
+            //trigger PVP 1
+            StartPVP();
+            break;
+
+        case 2:
+            //Cutscene Post-PVP 1
+            cutscenePlayer.PlayCutscene(cutscenes[1]);
+            break;
+
+        case 3:
+            //Begin level 1
             audioManager.Stop("MenuMusic");
             audioManager.Play("Track1");
             
@@ -72,19 +89,44 @@ public class GameFlowManager : MonoBehaviour {
             Assert.IsNotNull(elevator);
 
             elevator.OpenDoor();
-                UnlockCamera();
-                laser.LaserOn();
-                bgManager.changeBackground(gameState);
-                cam.SetMaxPosition(Level1BossPosition);
+            UnlockCamera();
+            laser.LaserOn();
+            bgManager.changeBackground(level - 1);
+            cam.SetMaxPosition(Level1BossPosition);
+            
+            level = 1;
             break;
 
-        // case 1:
-        //     elevator.OpenDoor();
-        //     UnlockCamera();
-        //     cam.SetMaxPosition(Level2ElevatorPosition);
-        //     break;
+        case 4:
+            //Cutscene PostBoss 1
+            cutscenePlayer.PlayCutscene(cutscenes[2]);
+            break;
 
-        case 1:
+        case 5:
+            // Trigger PVP 2
+            StartPVP();
+            break;
+
+        case 6:
+            //release Players into elevator
+            // elevator.OpenDoor();
+            UnlockCamera();
+            cam.SetMaxPosition(Level2ElevatorPosition);
+            break;
+        
+        case 7:
+            //Post level 1 UI
+            elevator.CloseDoor();
+
+            break;
+
+        case 8:
+            //Cutscene ElevatorToLevel2
+            cutscenePlayer.PlayCutscene(cutscenes[3]);
+            break;
+
+        case 9: 
+            //Level 2
             audioManager.Stop("Track1");
             audioManager.Play("Track2");
 
@@ -92,32 +134,68 @@ public class GameFlowManager : MonoBehaviour {
             SceneManager.LoadScene(levels[1], LoadSceneMode.Additive);
             elevator.OpenDoor();
             UnlockCamera();
+            cam.SetMaxPosition(Level2BossPosition);
             laser.LaserOn();
-                bgManager.changeBackground(gameState);
-                cam.SetMaxPosition(Level2BossPosition);
+            bgManager.changeBackground(level - 1);
+
+            level = 2;
             break;
 
-        // case 3:
-        //     elevator.OpenDoor();
-        //     UnlockCamera();
-        //     cam.SetMaxPosition(Level3ElevatorPosition);
-        //     break;
+        case 10:
+            //cutscene Postboss 2
+            cutscenePlayer.PlayCutscene(cutscenes[4]);
+            break;
 
-        case 2:
+        case 11:
+            //trigger PVP 3
+            StartPVP();
+            break;
+
+        case 12:
+        //     elevator.OpenDoor();
+            UnlockCamera();
+            cam.SetMaxPosition(Level3ElevatorPosition);
+            break;
+
+        case 13:
+            //Show post Level 2 UI
+            elevator.CloseDoor();
+
+            break;
+            
+        case 14:
+            //Cutscene Elevator to level 3
+            cutscenePlayer.PlayCutscene(cutscenes[5]);
+            break;
+
+        case 15:
             audioManager.Stop("Track2");
             audioManager.Play("Track3");
 
             SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[2], LoadSceneMode.Additive);
-                elevator.OpenDoor();
+            elevator.OpenDoor();
             UnlockCamera();
+            cam.SetMaxPosition(Level3BossPosition);
             laser.LaserOn();
-                bgManager.changeBackground(gameState);
-                cam.SetMaxPosition(Level3BossPosition);
+            bgManager.changeBackground(level - 1); //this is magic, but its Right
+
+            level = 3;
             break;
-        
-        //Case 5 ends the game
-        //show ending screen
+
+        case 16:
+            //cutscene postboss 3
+            cutscenePlayer.PlayCutscene(cutscenes[6]);
+            break;
+
+        case 17:
+            // trigger PVP final
+            StartPVP();
+            break;
+
+        case 18:
+            //show ending screen
+
 
         default:
             break;
@@ -126,13 +204,7 @@ public class GameFlowManager : MonoBehaviour {
     }
 
     public int GetLevel() {
-        if(gameState <= gameStateLevel2) {
-            return 1;
-        }
-        if(gameState <= gameStateLevel3) {
-            return 2;
-        }
-        return 3;
+        return level;
     }
 
     public void UnlockCamera() {

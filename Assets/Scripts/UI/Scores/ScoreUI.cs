@@ -7,13 +7,15 @@ public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private GameObject scoreUIPrefab;
 
-    public Score MakeScoreDisplay(PlayerStatus players, PlayerActions actions)
+    public Score MakeScoreDisplay(PlayerStatus status, PlayerActions action)
     {
         GameObject go = Instantiate(scoreUIPrefab);
         go.transform.SetParent(transform, false);
         Score score = go.GetComponent<Score>();
-        score.SetTotalScore();
+        // score.SetTotalScore();
         Assert.IsNotNull(score);
+        score.SetPlayerStatus(status, action);
+        
 
         return score;
     }

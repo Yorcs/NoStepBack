@@ -7,6 +7,7 @@ public class PlayerUIController : MonoBehaviour {
     bool active = false;
     
     private CharacterSelectUI characterSelect;
+    private CutsceneUI cutscenePlayer;
 
 
     public void OnDirection(InputAction.CallbackContext context) {
@@ -22,15 +23,17 @@ public class PlayerUIController : MonoBehaviour {
     }
 
     public void OnSelect(InputAction.CallbackContext context) {
-        if(!active) return;
         if(context.started || context.canceled) return;
+        cutscenePlayer.AdvanceCutscene();
+        if(!active) return;
 
         characterSelect.Select();
     }
 
-    public void SetUI(CharacterSelectUI characterSelect) {
+    public void SetUI(CharacterSelectUI characterSelect, CutsceneUI cutscenePlayer) {
         this.characterSelect = characterSelect;
         characterSelect.Setup(this);
+        this.cutscenePlayer = cutscenePlayer;
     }
 
     public void SetActive(bool active) {

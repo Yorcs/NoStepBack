@@ -18,6 +18,7 @@ public class PlayerUISetup : MonoBehaviour {
 
     [SerializeField] private List<CharacterSelectUI> charSelUIs = new();
     [SerializeField] private PlayerRespawnUI playerRespawnUI;
+    [SerializeField] private CutsceneUI cutscenePlayer;
     private int nextUI = 0;
 
     private int numberOfPlayers = 0;
@@ -39,7 +40,7 @@ public class PlayerUISetup : MonoBehaviour {
 
         charSelUIs[nextUI].gameObject.SetActive(true);
         charSelUIs[nextUI].SetPlayerNumber(nextUI);
-        uiController.SetUI(charSelUIs[nextUI]);
+        uiController.SetUI(charSelUIs[nextUI], cutscenePlayer);
         uiController.SetActive(true);
 
         
@@ -63,6 +64,6 @@ public class PlayerUISetup : MonoBehaviour {
     public void Ready() {
         ready = true;
         frame.gameObject.SetActive(false);
-        gameFlowManager.StartPVP();
+        gameFlowManager.StartLevel();
     }
 }

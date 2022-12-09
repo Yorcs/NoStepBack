@@ -95,7 +95,7 @@ public class PVPManager : MonoBehaviour {
 
         if(pvpCountdown > 0) {
             pvpCountdown -= Time.deltaTime;
-            pvpCounter.text = pvpCountdown.ToString();
+            pvpCounter.text = ((int)pvpCountdown).ToString();
         }
 
         if(pvpCountdown <= 0 && pvpTriggered) {

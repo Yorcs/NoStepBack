@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Elevator : MonoBehaviour {
     [SerializeField] private Tilemap door;
 
-    private List<Collider2D> playersInElevator = new();
+    
 
     private bool closed;
     private float closedTimer = 5f;
@@ -32,20 +32,5 @@ public class Elevator : MonoBehaviour {
         door.gameObject.SetActive(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            playersInElevator.Add(other);
-            if(playersInElevator.Count >= GameFlowManager.instance.GetPlayerCount()) {
-                //all players in Elevator
-                CloseDoor();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            if(playersInElevator.Contains(other))
-                playersInElevator.Remove(other);
-        }
-    }
+    
 }

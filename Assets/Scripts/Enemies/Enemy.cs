@@ -62,6 +62,19 @@ public class Enemy : MonoBehaviour, IEnemy {
                 DoPoisonTick();
             }
         }
+        
+        if (IsDead()) {
+            //todo: Drops/Pickups
+            manager.LootDrop(transform.position);
+            manager.MoneyDrop(transform.position);
+            //TODO: remove this
+            if(IsBoss) {
+                manager.BossDefeated();
+            }
+            Destroy(heart.gameObject);
+            manager.RemoveEnemy(this);
+            Destroy(gameObject);
+        }
     }
 
     private void DoPoisonTick() {
@@ -88,18 +101,7 @@ public class Enemy : MonoBehaviour, IEnemy {
         CreateHeart();
         currentHealth -= damage;
         UpdateHealthUI();
-        if (IsDead()) {
-            //todo: Drops/Pickups
-            manager.LootDrop(transform.position);
-            manager.MoneyDrop(transform.position);
-            //TODO: remove this
-            if(IsBoss) {
-                manager.BossDefeated();
-            }
-            Destroy(heart.gameObject);
-            manager.RemoveEnemy(this);
-            Destroy(gameObject);
-        }
+        
     }
 
     private bool IsDead() {
