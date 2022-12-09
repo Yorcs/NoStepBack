@@ -5,18 +5,14 @@ using UnityEngine.Assertions;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private GameObject scoreUIPrefab;
+    [SerializeField] private List<Score> ScorePanels;
+    private int scoreIndex = 0;
 
-    public Score MakeScoreDisplay(PlayerStatus status, PlayerActions action)
+    public Score GetScoreDisplay(PlayerStatus status, PlayerActions action)
     {
-        GameObject go = Instantiate(scoreUIPrefab);
-        go.transform.SetParent(transform, false);
-        Score score = go.GetComponent<Score>();
-        // score.SetTotalScore();
-        Assert.IsNotNull(score);
-        score.SetPlayerStatus(status, action);
-        
-
-        return score;
+        Score scorePanel = ScorePanels[scoreIndex];
+        scorePanel.SetPlayerStatus(status, action);
+        scoreIndex ++;
+        return scorePanel;
     }
 }

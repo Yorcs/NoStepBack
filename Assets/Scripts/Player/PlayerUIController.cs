@@ -8,6 +8,7 @@ public class PlayerUIController : MonoBehaviour {
     
     private CharacterSelectUI characterSelect;
     private CutsceneUI cutscenePlayer;
+    private Score scorePanel;
 
 
     public void OnDirection(InputAction.CallbackContext context) {
@@ -25,14 +26,17 @@ public class PlayerUIController : MonoBehaviour {
     public void OnSelect(InputAction.CallbackContext context) {
         if(context.started || context.canceled) return;
         cutscenePlayer.AdvanceCutscene();
+        if(scorePanel.gameObject.activeInHierarchy) scorePanel.ClosePanel();
         if(!active) return;
 
         characterSelect.Select();
     }
 
-    public void SetUI(CharacterSelectUI characterSelect, CutsceneUI cutscenePlayer) {
+    public void SetUI(CharacterSelectUI characterSelect, Score scorePanel, CutsceneUI cutscenePlayer) {
         this.characterSelect = characterSelect;
         characterSelect.Setup(this);
+        this.scorePanel = scorePanel;
+        scorePanel.gameObject.SetActive(false);
         this.cutscenePlayer = cutscenePlayer;
     }
 

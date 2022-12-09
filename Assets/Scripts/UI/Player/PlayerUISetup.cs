@@ -17,6 +17,7 @@ public class PlayerUISetup : MonoBehaviour {
     [SerializeField] private List<PlayerMoneyUI> moneyUIs = new();
 
     [SerializeField] private List<CharacterSelectUI> charSelUIs = new();
+    [SerializeField] private List<Score> scorePanels = new();
     [SerializeField] private PlayerRespawnUI playerRespawnUI;
     [SerializeField] private CutsceneUI cutscenePlayer;
     private int nextUI = 0;
@@ -38,12 +39,13 @@ public class PlayerUISetup : MonoBehaviour {
         status.SetUI(healthUIs[nextUI], moneyUIs[nextUI], playerRespawnUI);
         actions.SetUI(weaponUIs[nextUI]);
 
+        scorePanels[nextUI].SetPlayerStatus(status, actions);
         charSelUIs[nextUI].gameObject.SetActive(true);
         charSelUIs[nextUI].SetPlayerNumber(nextUI);
-        uiController.SetUI(charSelUIs[nextUI], cutscenePlayer);
+        uiController.SetUI(charSelUIs[nextUI], scorePanels[nextUI], cutscenePlayer);
         uiController.SetActive(true);
 
-        
+        gameFlowManager.AddScorePanel(scorePanels[nextUI]);
         nextUI++;
         numberOfPlayers++;
     }

@@ -20,6 +20,9 @@ public class GameFlowManager : MonoBehaviour {
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
     [SerializeField] private List<CutsceneSO> cutscenes;
+    [SerializeField] private ScoreUI scoreUIManager;
+    private List<Score> scorePanels = new();
+    private int OpenScorePanels = 0;
 
 
     private List<PlayerStatus> players = new();
@@ -117,7 +120,11 @@ public class GameFlowManager : MonoBehaviour {
         case 7:
             //Post level 1 UI
             elevator.CloseDoor();
-
+            foreach(Score scorePanel in scorePanels) {
+                scorePanel.gameObject.SetActive(true);
+                scorePanel.DisplayScore();
+                OpenScorePanels++;
+            }
             break;
 
         case 8:
@@ -160,7 +167,11 @@ public class GameFlowManager : MonoBehaviour {
         case 13:
             //Show post Level 2 UI
             elevator.CloseDoor();
-
+            foreach(Score scorePanel in scorePanels) {
+                scorePanel.gameObject.SetActive(true);
+                scorePanel.DisplayScore();
+                OpenScorePanels++;
+            }
             break;
             
         case 14:
@@ -195,9 +206,15 @@ public class GameFlowManager : MonoBehaviour {
 
         case 18:
             //show ending screen
-
+            foreach(Score scorePanel in scorePanels) {
+                scorePanel.gameObject.SetActive(true);
+                scorePanel.DisplayScore();
+                OpenScorePanels++;
+            }
+            break;
 
         default:
+            SceneManager.LoadScene("Main Menu");
             break;
         }
         gameState++;
@@ -216,9 +233,21 @@ public class GameFlowManager : MonoBehaviour {
     }
 
     public void OnPlayerJoined(PlayerInput input) {
-        PlayerStatus player = input.gameObject.GetComponent<PlayerStatus>();
-        Assert.IsNotNull(player);
-        players.Add(player);
+        PlayerStatus playerStatus = input.gameObject.GetComponent<PlayerStatus>();
+        Assert.IsNotNull(playerStatus);
+        players.Add(playerStatus);
+    }
+
+    public void AddScorePanel(Score panel) {
+        scorePanels.Add(panel);
+    }
+
+    public void CloseScorePanel(Score panel) {
+        panel.gameObject.SetActive(false);
+        OpenScorePanels--;
+        if(OpenScorePanels <= 0) {
+            StartLevel();
+        }
     }
 
 }

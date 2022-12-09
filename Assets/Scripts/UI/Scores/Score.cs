@@ -49,7 +49,7 @@ public class Score : MonoBehaviour
         UpdateSubweaponScore();
 
         UpdateCurrentMoney();
-        
+
         UpdateTotalScore();
     }
 
@@ -85,5 +85,9 @@ public class Score : MonoBehaviour
 
     private void UpdateSubweapon(){
         subweapon = actions.GetSubweapon();
+    }
+
+    public void ClosePanel() {
+        GameFlowManager.instance.CloseScorePanel(this);
     }
 }

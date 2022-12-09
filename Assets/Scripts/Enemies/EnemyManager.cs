@@ -69,7 +69,7 @@ public class EnemyManager : MonoBehaviour {
     }
 
     public void BossDefeated() {
-        gameFlowManager.StartPVP();
+        gameFlowManager.StartLevel();
     }
 
     public Vector3 FindClosestVisibleEnemy(Vector3 position, Vector2 direction) {
