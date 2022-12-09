@@ -47,13 +47,9 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (!status.IsDead()) {
             Move();
-
-            //Play player running sound
-            //TO DO: fix it so it loops after playing the audio clip fully
-            //if (grounded) FindObjectOfType<AudioManager>().Play("Run");
         }
 
-        if(wallJumpTime > 0) {
+        if (wallJumpTime > 0) {
             wallJumpTime -= Time.deltaTime;
         }
     }
@@ -68,6 +64,12 @@ public class PlayerController : MonoBehaviour {
         if (movementInput.y < 0) {
             Crouch();
         }
+
+        //Play player running sound
+        var audioSource = GetComponent<AudioSource>();
+        //audioSource.Play();
+        if (!audioSource.isPlaying) audioSource.Play();
+        //else if (audioSource.isPlaying) audioSource.Pause();
     }
 
     private void TurnAround () {
@@ -110,8 +112,11 @@ public class PlayerController : MonoBehaviour {
 
     public void Jump() {
         Vector2 jump = Vector2.zero;
+        //
+        var audioSource = GetComponent<AudioSource>();
+        if (audioSource.isPlaying) audioSource.Pause();
 
-        if(status.IsDead()) return;
+        if (status.IsDead()) return;
         if (!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
             Vector2 jumpDirection = wallJumpDirection + Vector2.up; 
             jump = jumpDirection * jumpForce;
