@@ -12,7 +12,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private Image cutsceneImage;
     [SerializeField] private RectTransform imageRect;
 
-    public void Awake(){
+    public void Start(){
         textRect = cutsceneText.gameObject.GetComponent<RectTransform>();
         imageRect = cutsceneImage.gameObject.GetComponent<RectTransform>();
     }

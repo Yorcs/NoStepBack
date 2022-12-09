@@ -40,15 +40,15 @@ public class EquipmentFactory : MonoBehaviour {
     }
 
     public Color GetRarityColor(Rarity rarity) {
-        if(rarity == Rarity.COMMON) {
-            return Color.yellow;
-        }
-        if(rarity == Rarity.UNCOMMON) {
-            return Color.green;
-        }
-        if(rarity == Rarity.RARE) {
-            return Color.blue;
-        }
-        return Color.magenta;
+        var color = rarity switch
+        {
+            Rarity.COMMON => Color.yellow,
+            Rarity.UNCOMMON => Color.green,
+            Rarity.RARE => Color.blue,
+            Rarity.LEGENDARY => Color.magenta,
+            _ => Color.yellow,
+        };
+        color.a = .6f;
+        return color;
     }
 }

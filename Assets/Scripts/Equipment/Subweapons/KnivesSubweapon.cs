@@ -78,7 +78,7 @@ public class KnivesSubweapon : AbstractSubweapon
         List<StatDisplay> stats = new()
         {
             new StatDisplay("Damage", damage, damageRanks),
-            new StatDisplay("Fire Rate", fireRate, fireRateRanks)
+            new StatDisplay("Recharge", fireRate, fireRateRanks)
         };
 
         return stats;

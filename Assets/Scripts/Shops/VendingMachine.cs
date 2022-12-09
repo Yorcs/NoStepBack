@@ -19,7 +19,8 @@ public class VendingMachine : MonoBehaviour
 
     public void UpdateUIImage()
     {
-        shop.SetEquipmentSprite(item.GetEquipmentImage());
+        Color color = EquipmentFactory.instance.GetRarityColor(item.GetRarity());
+        shop.SetEquipmentSprite(item.GetEquipmentImage(), color);
     }
 
     public void UpdateUIPrice()

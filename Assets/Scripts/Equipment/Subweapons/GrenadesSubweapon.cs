@@ -45,7 +45,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
             default: break;
             }
         }
-        
+
         totalRanks = ranks;
 
         damage += damageRanks * damageRankStep;
@@ -90,7 +90,7 @@ public class GrenadesSubweapon : AbstractSubweapon {
         {
             new StatDisplay("Damage", damage, damageRanks),
             new StatDisplay("Radius", radius, radiusRanks),
-            new StatDisplay("Recharge Rate", fireRate, fireRateRanks)
+            new StatDisplay("Recharge", fireRate, fireRateRanks)
         };
 
         return stats;
