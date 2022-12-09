@@ -15,6 +15,7 @@ public class PlayerActions : MonoBehaviour {
     private PlayerWeaponUI weaponUI;
 
     private List<Pickup> currentPickups = new List<Pickup>();
+    private VendingMachine currentVendingMachine;
 
     //private bool autoFireActive = true;
 
@@ -68,6 +69,9 @@ public class PlayerActions : MonoBehaviour {
 
     public void OnPickup(InputAction.CallbackContext context) {
         if(status.IsDead() || context.started || context.canceled) return;
+        if(currentVendingMachine) {
+            BuyItem();
+        }
         PickupItem();
     }
 
@@ -84,6 +88,10 @@ public class PlayerActions : MonoBehaviour {
             }
 
         }
+    }
+
+    private void BuyItem() {
+        currentVendingMachine.Purchase(this, status);
     }
 
     public bool EquipItem(IEquipment newItem) {
@@ -180,6 +188,7 @@ public class PlayerActions : MonoBehaviour {
             Debug.Log("Entered Shop");
             VendingMachine vendingMachine = collision.gameObject.GetComponent<VendingMachine>();
             vendingMachine.CreatePopup();
+            currentVendingMachine = vendingMachine;
         }
     }
 
@@ -194,6 +203,7 @@ public class PlayerActions : MonoBehaviour {
         {
             VendingMachine vendingMachine = collision.gameObject.GetComponent<VendingMachine>();
             vendingMachine.HidePopup();
+            currentVendingMachine = null;
         }
     }
 }
