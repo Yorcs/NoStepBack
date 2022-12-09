@@ -44,9 +44,11 @@ public class Score : MonoBehaviour
         UpdateCurrentWeaponImage();
         UpdateWeaponScore();
 
-        UpdateSubweapon();
-        UpdateCurrentSubweaponImage();
-        UpdateSubweaponScore();
+        if(subweapon != null) {
+            UpdateSubweapon();
+            UpdateCurrentSubweaponImage();
+            UpdateSubweaponScore();
+        }
 
         UpdateCurrentMoney();
 
@@ -75,7 +77,8 @@ public class Score : MonoBehaviour
     }
 
     private void UpdateTotalScore(){
-        int total = weapons.GetPrice() + subweapon.GetPrice() + status.GetMoney();
+        int total = weapons.GetPrice() + status.GetMoney();
+        if(subweapon != null) total += subweapon.GetPrice();
         totalScoreText.text = total.ToString();
     }
 

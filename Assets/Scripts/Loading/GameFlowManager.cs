@@ -20,9 +20,10 @@ public class GameFlowManager : MonoBehaviour {
     //Todo: there's probably better options here
     [SerializeField] private List<string> levels;
     [SerializeField] private List<CutsceneSO> cutscenes;
-    [SerializeField] private ScoreUI scoreUIManager;
     private List<Score> scorePanels = new();
     private int OpenScorePanels = 0;
+    [SerializeField] private GameOver gameOverScreen;
+    bool gameOver = false;
 
 
     private List<PlayerStatus> players = new();
@@ -66,6 +67,7 @@ public class GameFlowManager : MonoBehaviour {
     }
 
     public void StartLevel() {
+        if(gameOver) SceneManager.LoadScene("Main Menu");
         switch(gameState) {
         case 0:
             //Cutscene Pre-PVP 1
@@ -216,6 +218,7 @@ public class GameFlowManager : MonoBehaviour {
         default:
             SceneManager.LoadScene("Main Menu");
             break;
+
         }
         gameState++;
     }
@@ -247,6 +250,27 @@ public class GameFlowManager : MonoBehaviour {
         OpenScorePanels--;
         if(OpenScorePanels <= 0) {
             StartLevel();
+        }
+    }
+
+    public void CheckPlayerDeaths() {
+        bool allPlayersDead = true;
+        foreach(PlayerStatus player in players) {
+            if(!player.IsDead()) {
+                allPlayersDead = false;
+            }
+        }
+        if(allPlayersDead) {
+            gameOver = true;
+            gameOverScreen.GameOverOn();
+            foreach(Score scorePanel in scorePanels) {
+                scorePanel.gameObject.SetActive(true);
+                scorePanel.DisplayScore();
+                OpenScorePanels++;
+            }
+            foreach (PlayerStatus player in players) {
+                player.SetTeamWipe();
+            }
         }
     }
 

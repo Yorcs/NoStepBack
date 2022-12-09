@@ -1684,8 +1684,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -49309211
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1001 &339136638
 PrefabInstance:
@@ -3830,7 +3830,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1f021c6d658cc240b68d68d8e4543cc, type: 2}
   - {fileID: 11400000, guid: 2acef67342c87464cab2e350f489cdaf, type: 2}
   - {fileID: 11400000, guid: c30e0a301275a1a42a1b985ac4b2b852, type: 2}
-  scoreUIManager: {fileID: 0}
+  gameOverScreen: {fileID: 1349641726}
 --- !u!4 &766206447
 Transform:
   m_ObjectHideFlags: 0
@@ -5959,8 +5959,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -49309211
+  m_SortingOrder: 98
   m_TargetDisplay: 0
 --- !u!114 &1349641726
 MonoBehaviour:
@@ -5974,6 +5974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31c869bf1074ce4dae04e3b38df603e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverScreen: {fileID: 372877640}
 --- !u!1 &1365163073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6633,10 +6634,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8911533193676278920, guid: cf3e8530a5ef39f40b5cbdaf074b9215, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dba92ad1590e92e4ca98f01888bfe4e3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf3e8530a5ef39f40b5cbdaf074b9215, type: 3}
 --- !u!224 &1605050302 stripped
@@ -7245,7 +7242,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 707941028}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 99
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

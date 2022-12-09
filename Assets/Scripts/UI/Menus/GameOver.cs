@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    [SerializeField] Image gameOverScreen;
     public void GameOverOn()
     {
-        gameObject.SetActive(true);
+        gameOverScreen.gameObject.SetActive(true);
     }
 
     public void NotGameOver()
     {
-        gameObject.SetActive(false);
+        gameOverScreen.gameObject.SetActive(false);
     }
 }

@@ -19,6 +19,7 @@ public class PlayerStatus : MonoBehaviour {
 
     private float respawnDuration = 10f;
     private float respawnTimer;
+    private bool teamWipe = false;
 
     private bool inPVP;
     private Animator animator;
@@ -40,7 +41,6 @@ public class PlayerStatus : MonoBehaviour {
             respawner.SetRespawn((int) respawnTimer);
             respawner.SetPosition(transform.position);
             if (respawnTimer >= respawnDuration) {
-                Destroy(respawner.gameObject);
                 controller.Respawn();
                 Revive();
             }
@@ -73,7 +73,8 @@ public class PlayerStatus : MonoBehaviour {
 
     //Todo: Steal Money
     public void Revive() {
-        if(!IsDead() || inPVP) return;
+        if(!IsDead() || inPVP || teamWipe) return;
+        Destroy(respawner.gameObject);
         currentHitPoints = maxHitpoints;
         healthUI.SetHealth(currentHitPoints);
         respawnTimer = 0;
@@ -126,6 +127,7 @@ public class PlayerStatus : MonoBehaviour {
             CreateRespawn();
             Debug.Log("Dead!");
             animator.SetBool("IsDead", IsDead());
+            GameFlowManager.instance.CheckPlayerDeaths();
         }
     }
 
@@ -141,6 +143,10 @@ public class PlayerStatus : MonoBehaviour {
 
     public Vector3 GetPosition() {
         return transform.position;
+    }
+
+    public void SetTeamWipe() {
+        teamWipe = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
