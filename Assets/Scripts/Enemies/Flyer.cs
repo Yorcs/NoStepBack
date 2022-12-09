@@ -20,8 +20,7 @@ public class Flyer : Enemy {
 
         base.FixedUpdate();
 
-        if(IsActive())
-            weapon.Fire(direction, TargetType.PLAYER, gameObject.layer);
+        if (IsActive()) weapon.Fire(direction, TargetType.PLAYER, gameObject.layer);
     }
 
     //TODO: Swoop melee attack?

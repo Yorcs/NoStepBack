@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &326667064332077154
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2372821620000123909, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: money
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -418.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.22836515
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057013089510052093, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348323078180869494, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348323078180869494, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348323078180869494, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348323078180869494, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_SleepingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840599389838766188, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840599389838766188, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840599389838766188, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840599389838766188, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840599389838766188, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Color.r
+      value: 0.82551837
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816531743621886741, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
+      propertyPath: m_Name
+      value: Mega Coin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bff7879f0036cb54eb6269825e2cd6b1, type: 3}
