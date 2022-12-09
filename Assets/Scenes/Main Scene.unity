@@ -554,7 +554,7 @@ MonoBehaviour:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: e1a5c37f468dfef46bb1b7a4f780ae56, type: 3}
     audioMixerGroup: {fileID: 8568942582242505559, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -624,7 +624,7 @@ MonoBehaviour:
   - name: FlameLoop
     clip: {fileID: 8300000, guid: 86a7dd0d120bf014582b6735cbcc29fd, type: 3}
     audioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    volume: 0.75
+    volume: 0
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -666,14 +666,14 @@ MonoBehaviour:
   - name: Coc1
     clip: {fileID: 8300000, guid: dd7400ec58806f44aae49976fbb5d675, type: 3}
     audioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    volume: 1
+    volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Coc2
     clip: {fileID: 8300000, guid: fa72604eab7953b4d9cb516d0b3a06e3, type: 3}
     audioMixerGroup: {fileID: 8830778990081443281, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    volume: 1
+    volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -5511,11 +5511,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1149651508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9034150013193100246, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-  m_PrefabInstance: {fileID: 9034150011635607032}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1173083821
 GameObject:
   m_ObjectHideFlags: 0
@@ -8794,108 +8789,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9034150013193100247, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
   m_PrefabInstance: {fileID: 9034150011635607032}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149651508}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec74296b711d0e2438a0357b05554a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &2094448176
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149651508}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 6339008870052753300, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0a51f6a758500db4088297e2bee5da43, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.6
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &2101122372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9322,29 +9221,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9034150013193100234, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100234, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1014833847
+    - target: {fileID: 2094448176, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_RootOrder
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.872659
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.872659
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.872659
       objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100235, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9390,21 +9273,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100246, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_Layer
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034150013193100246, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: m_TagString
-      value: Lasers
-      objectReference: {fileID: 0}
     - target: {fileID: 9034150013193100247, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 707941026}
-    - target: {fileID: 9034150013193100247, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}
-      propertyPath: damage
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa234cea6bda5442a236e4e458b3d44, type: 3}

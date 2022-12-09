@@ -7,73 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6891606954005823569}
     m_Modifications:
-    - target: {fileID: -8544178820087341699, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8544178820087341699, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b0904a00aec42a6429192685ce60d55e, type: 3}
-    - target: {fileID: -8544178820087341699, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 8077712266919129562, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
-    - target: {fileID: 709654588243409073, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.79
-      objectReference: {fileID: 0}
     - target: {fileID: 3909630260467302110, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
       propertyPath: m_Name
       value: Blaster
       objectReference: {fileID: 0}
-    - target: {fileID: 4287832194311161055, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 2279261080959988993, guid: 4accf54333a2a34419beb36fb713cc8a, type: 3}
-    - target: {fileID: 4287832194311161055, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: damage
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4287832194311161055, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: fireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4287832194311161055, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: bulletSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4287832194311161055, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: criticalChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628230680390584712, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628230680390584712, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8cb8d97be9bdb994f94d97d3eaf3fe83, type: 3}
-    - target: {fileID: 5628230680390584712, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 8077712266919129562, guid: ca02f96457c36214998dce302ac7e5aa, type: 2}
     - target: {fileID: 5771601798904850711, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5771601798904850711, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5771601798904850711, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5771601798904850711, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5771601798904850711, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
       propertyPath: m_LocalPosition.x
@@ -115,10 +55,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8656856116728522385, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 77d6b138ca40caf42a07ec5e581bf068, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c4f7cb874075064f8380b08731ad804, type: 3}
 --- !u!1001 &7630121267241763193
