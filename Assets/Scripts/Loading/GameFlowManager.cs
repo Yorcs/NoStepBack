@@ -72,6 +72,7 @@ public class GameFlowManager : MonoBehaviour {
         case 0:
             //Cutscene Pre-PVP 1
             cutscenePlayer.PlayCutscene(cutscenes[0]);
+            audioManager.Play("Talk1");
             break;
         
         case 1:
@@ -82,6 +83,7 @@ public class GameFlowManager : MonoBehaviour {
         case 2:
             //Cutscene Post-PVP 1
             cutscenePlayer.PlayCutscene(cutscenes[1]);
+            audioManager.Play("Talk2");
             break;
 
         case 3:
@@ -100,11 +102,13 @@ public class GameFlowManager : MonoBehaviour {
             cam.SetMaxPosition(Level1BossPosition);
             
             level = 1;
+            Debug.Log("Level 1");
             break;
 
         case 4:
             //Cutscene PostBoss 1
             cutscenePlayer.PlayCutscene(cutscenes[2]);
+            audioManager.Play("Talk3");
             break;
 
         case 5:
@@ -132,6 +136,7 @@ public class GameFlowManager : MonoBehaviour {
         case 8:
             //Cutscene ElevatorToLevel2
             cutscenePlayer.PlayCutscene(cutscenes[3]);
+            audioManager.Play("Talk4");
             break;
 
         case 9: 
@@ -148,11 +153,13 @@ public class GameFlowManager : MonoBehaviour {
             bgManager.changeBackground(level - 1);
 
             level = 2;
+            Debug.Log("Level 2");
             break;
 
         case 10:
             //cutscene Postboss 2
             cutscenePlayer.PlayCutscene(cutscenes[4]);
+            audioManager.Play("Talk5");
             break;
 
         case 11:
@@ -161,7 +168,7 @@ public class GameFlowManager : MonoBehaviour {
             break;
 
         case 12:
-        //     elevator.OpenDoor();
+            //elevator.OpenDoor();
             UnlockCamera();
             cam.SetMaxPosition(Level3ElevatorPosition);
             break;
@@ -178,13 +185,15 @@ public class GameFlowManager : MonoBehaviour {
             
         case 14:
             //Cutscene Elevator to level 3
+            Debug.Log("Cutscene Elevator to Lvl 3");
             cutscenePlayer.PlayCutscene(cutscenes[5]);
+            audioManager.Play("Talk6");
             break;
 
         case 15:
             audioManager.Stop("Track2");
             audioManager.Play("Track3");
-
+            Debug.Log("Level 3");
             SceneManager.UnloadSceneAsync(levels[0]);
             SceneManager.LoadScene(levels[2], LoadSceneMode.Additive);
             elevator.OpenDoor();
@@ -198,16 +207,23 @@ public class GameFlowManager : MonoBehaviour {
 
         case 16:
             //cutscene postboss 3
+            Debug.Log("Cutscene Postboss 3");
             cutscenePlayer.PlayCutscene(cutscenes[6]);
+            audioManager.Play("Talk3");
             break;
 
         case 17:
             // trigger PVP final
+            Debug.Log("Final PVP");
             StartPVP();
             break;
 
         case 18:
             //show ending screen
+            Debug.Log("End Screen");
+            FindObjectOfType<AudioManager>().Stop("Track1");
+            FindObjectOfType<AudioManager>().Stop("Track2");
+            FindObjectOfType<AudioManager>().Stop("Track3");
             FindObjectOfType<AudioManager>().Play("GameOverMusic");
             foreach(Score scorePanel in scorePanels) {
                 scorePanel.gameObject.SetActive(true);
@@ -218,6 +234,7 @@ public class GameFlowManager : MonoBehaviour {
 
         default:
             SceneManager.LoadScene("Main Menu");
+            audioManager.Play("MenuMusic");
             break;
 
         }

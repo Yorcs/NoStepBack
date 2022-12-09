@@ -24,7 +24,7 @@ public class Grenade : AbstractProjectile {
 
     private void FixedUpdate() {
         fuseTimer += Time.deltaTime;
-        Debug.Log(playersInRange.Count);
+        //Debug.Log(playersInRange.Count);
         if (fuseTimer > fuse) {
             Explode();
         }

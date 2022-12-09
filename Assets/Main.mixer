@@ -14,6 +14,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-5964091751550461067
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: d009ae12df931114e8cc8ec7eecf43d8
+  m_EffectName: Attenuation
+  m_MixLevel: 75895e6d1db14324bb88646f12572129
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-4197993564917065075
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cutscenes
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 0e09eaef489b36440a3d8cfb2b07afb0
+  m_Children: []
+  m_Volume: 85e19cb9371138b4286439765956cb03
+  m_Pitch: cf2f0088bf4502942a32b556f183b00e
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -5964091751550461067}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-3721298914213498356
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -68,6 +101,7 @@ AudioMixerController:
     - 195e4a775c04d4c458b9901e3f79c325
     - dd1e1c0ae94245640b92c5b6ecbd679c
     - 354c38fbc1b8d6b498a76fabe8f965aa
+    - 0e09eaef489b36440a3d8cfb2b07afb0
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -84,6 +118,7 @@ AudioMixerGroupController:
   - {fileID: 8568942582242505559}
   - {fileID: 113363413043326254}
   - {fileID: 8077712266919129562}
+  - {fileID: -4197993564917065075}
   - {fileID: 6339008870052753300}
   m_Volume: b23181d3f34a2af4aa6d11e590dfaa6b
   m_Pitch: 1e68f22f443270142adac41a1e8a3d0d
