@@ -17,7 +17,6 @@ public class Pickup : MonoBehaviour {
 
     public void SetRarityColor(IEquipment equipment) {
         Color color = EquipmentFactory.instance.GetRarityColor(equipment.GetRarity());
-        color.a = 0.5f;
         spriteRenderer.color = color;
     }
 

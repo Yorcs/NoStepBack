@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
 {
     private float yOffset = 6f;
     private VendingMachine vendingMachine;
+    [SerializeField] private Image glowImage;
     [SerializeField] private Image popupImage;
     private RectTransform popupTransform;
     [SerializeField] private Image equipmentImage;
@@ -27,9 +28,10 @@ public class Shop : MonoBehaviour
         priceText.text = price.ToString();
     }
 
-    public void SetEquipmentSprite(Sprite equipmentSprite)
+    public void SetEquipmentSprite(Sprite equipmentSprite, Color color)
     {
         equipmentImage.sprite = equipmentSprite;
+        glowImage.color = color;
     }
 
     public void SetPosition(Vector2 position)
