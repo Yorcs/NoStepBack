@@ -24,7 +24,7 @@ public class PVPManager : MonoBehaviour {
 
     private bool pvpActive = false;
 
-    public int goldReward = 200;
+    public int goldReward = 100;
     [SerializeField] Canvas pvpUI;
 
     [SerializeField] TextMeshProUGUI pvpText;
@@ -148,6 +148,7 @@ public class PVPManager : MonoBehaviour {
         pvpActive = false;
         pvpUI.gameObject.SetActive(false);
         gameFlowManager.EndPVP();
+        goldReward *= 2;
     }
 
     public Vector3 FindClosestVisibleOpponent(Vector3 position, Vector2 direction, int layer) {
