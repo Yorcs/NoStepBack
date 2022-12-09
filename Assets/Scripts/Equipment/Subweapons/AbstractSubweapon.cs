@@ -64,4 +64,11 @@ public abstract class AbstractSubweapon : MonoBehaviour, IEquipment {
         }
         return Rarity.LEGENDARY;
     }
+
+    public void ShowWeapon() {
+        subweaponRenderer.enabled = true;
+    }
+    public void HideWeapon() {
+        subweaponRenderer.enabled = false;
+    }
 }

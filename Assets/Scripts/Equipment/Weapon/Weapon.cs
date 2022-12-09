@@ -261,4 +261,11 @@ public class Weapon : MonoBehaviour, IEquipment {
         }
         return Rarity.LEGENDARY;
     }
+
+    public void ShowWeapon() {
+        weaponRenderer.enabled = true;
+    }
+    public void HideWeapon() {
+        weaponRenderer.enabled = false;
+    }
 }

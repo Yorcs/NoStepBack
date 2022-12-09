@@ -39,10 +39,10 @@ public class PickupFactory : MonoBehaviour {
 
         randomNumber = Random.Range(1, 10);
 
-        if (randomNumber < 3) { //30% chance
+        if (randomNumber < 4) { //40% chance
             type = EquipmentType.WEAPON;
         }
-        else if (randomNumber < 5) { //20% chance
+        else if (randomNumber < 8) { //30% chance
             type = EquipmentType.SUBWEAPON;
         }
         else {
@@ -76,7 +76,12 @@ public class PickupFactory : MonoBehaviour {
             Money money = CreateMoneyObject(position);
             Vector2 force = new Vector2(Random.Range(-10, 10), Random.Range(0, 8));
             money.SetForce(force);
-            money.SetMoney(1);
+
+            int level = GameFlowManager.instance.GetLevel();
+            int minimumMoney = level;
+            int maximumMoney = level * 4;
+
+            money.SetMoney(Random.Range(minimumMoney, maximumMoney));
         }
     }
 

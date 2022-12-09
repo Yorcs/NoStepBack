@@ -144,7 +144,8 @@ MonoBehaviour:
   spreadRankStep: -1
   penetration: 1
   penetrationRankStep: 1
-  weaponValue: 0
+  weaponValue: 30
+  rankValueStep: 12
   doesFreeze: 0
   doesPoison: 0
   statusDuration: 0

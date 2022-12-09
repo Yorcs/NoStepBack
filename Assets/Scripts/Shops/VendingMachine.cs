@@ -5,6 +5,7 @@ using UnityEngine;
 public class VendingMachine : MonoBehaviour
 {
     public EquipmentFactory equipmentFactory;
+    private IEquipment item;
     private Shop shop;
     private ShopUI shopUI;
     private float randomNumber;
@@ -13,12 +14,17 @@ public class VendingMachine : MonoBehaviour
     {
         shopUI = ShopUI.instance;
         equipmentFactory = EquipmentFactory.instance;
-
+        CreateShopItem(transform.position);
     }
 
-    public void UpdateUIImage(IEquipment equipment)
+    public void UpdateUIImage()
     {
-        shop.SetEquipmentSprite(equipment.GetEquipmentImage());
+        shop.SetEquipmentSprite(item.GetEquipmentImage());
+    }
+
+    public void UpdateUIPrice()
+    {
+        shop.SetPrice(item.GetPrice());
     }
 
     public void CreateShopItem(Vector2 position){
@@ -26,7 +32,7 @@ public class VendingMachine : MonoBehaviour
 
         randomNumber = Random.Range(1, 10);
 
-        if(randomNumber < 3){ //30% chance
+        if(randomNumber < 5){ //30% chance
             type = EquipmentType.WEAPON;
         }
         else {
@@ -40,7 +46,9 @@ public class VendingMachine : MonoBehaviour
         int upgradeRanks = Random.Range(minRanks,maxRanks);
 
         IEquipment newItem = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);
-        UpdateUIImage(newItem);
+        newItem.HideWeapon();
+        item = newItem;
+        
     }
 
     public Shop GetUI()
@@ -55,7 +63,8 @@ public class VendingMachine : MonoBehaviour
         {
             shop = GetUI();
             shop.SetPosition(transform.position);
-            CreateShopItem(transform.position);
+            UpdateUIImage();
+            UpdateUIPrice();
         }
         shop.gameObject.SetActive(true);
     }
@@ -68,10 +77,16 @@ public class VendingMachine : MonoBehaviour
         }
     }
 
-    //public void Purchase(PlayerStatus money)
-    //{
-        //if the player's money is bigger or equal to the price, allow purchase.
-    //}
-
-    //method that can return price
+    public void Purchase(PlayerActions playerActions, PlayerStatus playerStatus)
+    {
+        int value = item.GetPrice();
+        if(playerStatus.GetMoney() >= value) {
+            playerStatus.SpendMoney(value);
+            item.ShowWeapon();
+            playerActions.EquipItem(item);
+            CreateShopItem(transform.position);
+            UpdateUIImage();
+            UpdateUIPrice();
+        }
+    }
 }

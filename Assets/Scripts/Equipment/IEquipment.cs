@@ -43,4 +43,7 @@ public interface IEquipment {
 
     Rarity GetRarity();
 
+    void ShowWeapon();
+    void HideWeapon();
+
 }
