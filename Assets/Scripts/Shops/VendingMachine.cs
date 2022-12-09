@@ -89,4 +89,12 @@ public class VendingMachine : MonoBehaviour
             UpdateUIPrice();
         }
     }
+
+    public EquipmentType GetEquipmentType() {
+        return item.GetEquipmentType();
+    }
+
+    public List<StatDisplay> GetStats() {
+        return item.GetStats();
+    }
 }

@@ -43,7 +43,11 @@ public class PlayerActions : MonoBehaviour {
             }
 
             weaponUI.ShowPopup(closestPickup.GetEquipmentType(), closestPickup.GetStats(), currentStats);
-        } else {
+        } else if (currentVendingMachine) {
+            List<StatDisplay> currentStats = new();
+            weaponUI.ShowPopup(currentVendingMachine.GetEquipmentType(), currentVendingMachine.GetStats(), currentStats);
+        }
+        else {
             weaponUI.HidePopup();
         }
         if(status.IsDead()) return;
