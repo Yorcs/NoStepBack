@@ -38,4 +38,17 @@ public class EquipmentFactory : MonoBehaviour {
 
         return newEquip;
     }
+
+    public Color GetRarityColor(Rarity rarity) {
+        if(rarity == Rarity.COMMON) {
+            return Color.yellow;
+        }
+        if(rarity == Rarity.UNCOMMON) {
+            return Color.green;
+        }
+        if(rarity == Rarity.RARE) {
+            return Color.blue;
+        }
+        return Color.magenta;
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour {
     public IEquipment equipment;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public IEquipment GetItem() {
         return equipment;
@@ -11,6 +12,13 @@ public class Pickup : MonoBehaviour {
 
     public void SetItem(IEquipment equipment) {
         this.equipment = equipment;
+        SetRarityColor(equipment);
+    }
+
+    public void SetRarityColor(IEquipment equipment) {
+        Color color = EquipmentFactory.instance.GetRarityColor(equipment.GetRarity());
+        color.a = 0.5f;
+        spriteRenderer.color = color;
     }
 
     public EquipmentType GetEquipmentType() {

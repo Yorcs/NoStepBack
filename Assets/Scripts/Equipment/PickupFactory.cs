@@ -29,6 +29,7 @@ public class PickupFactory : MonoBehaviour {
         itemTransform.position = newPickup.transform.position;
         itemTransform.rotation = Quaternion.identity;
         itemTransform.SetParent(newPickup.transform);
+        newPickup.SetItem(item);
     }
 
     public void CreatePickup(Vector2 position) {
@@ -56,6 +57,7 @@ public class PickupFactory : MonoBehaviour {
 
         Pickup newPickup = CreatePickupObject(position);
         IEquipment newEquip = equipmentFactory.CreateRandomEquipment(type, upgradeRanks, position);
+        
         newPickup.SetItem(newEquip);
     }
 
