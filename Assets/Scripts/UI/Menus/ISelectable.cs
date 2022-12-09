@@ -10,5 +10,5 @@ public interface ISelectable {
     void MoveLeft();
     void MoveRight();
     void Select();
-    void Confirm();
+    bool Confirm();
 }

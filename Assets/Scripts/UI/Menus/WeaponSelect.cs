@@ -55,7 +55,8 @@ public class WeaponSelect : MonoBehaviour, ISelectable {
 
     //TODO: Set HealthUI color
     //ensure no duplicate players
-    public void Confirm() {
+    public bool Confirm() {
         playerActions.SetWeapon(weaponManager.GetWeapon(spriteIndex));
+        return true;
     }
 }

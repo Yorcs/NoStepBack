@@ -1221,6 +1221,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -275.80835
       objectReference: {fileID: 0}
+    - target: {fileID: 4043507791648801783, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1040833889}
     - target: {fileID: 4043507792626348575, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1951,6 +1955,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -275.80835
       objectReference: {fileID: 0}
+    - target: {fileID: 4043507791648801783, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 663157344}
     - target: {fileID: 4043507792626348575, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4059,6 +4067,11 @@ MonoBehaviour:
   - {fileID: 9100000, guid: f18f76cf02a5414469054097aa2d99e7, type: 2}
   - {fileID: 9100000, guid: efda57080c5c9d54b94367bd4518e41b, type: 2}
   - {fileID: 9100000, guid: 8003239b30f0de84e987823852dd2f4e, type: 2}
+  characterColors:
+  - {r: 0.59092885, g: 0.15948732, b: 0.754717, a: 1}
+  - {r: 0.735849, g: 0.30128157, b: 0.625232, a: 1}
+  - {r: 0.745283, g: 0.5297164, b: 0.19264857, a: 1}
+  - {r: 0.26528352, g: 0.754717, b: 0.1666073, a: 1}
 --- !u!114 &817608739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4555,6 +4568,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1365163074}
     m_Modifications:
+    - target: {fileID: 7671936144993120069, guid: b8ef046d18b2d024f8972ae6d131723d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671936144993120073, guid: b8ef046d18b2d024f8972ae6d131723d, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7671936145407474852, guid: b8ef046d18b2d024f8972ae6d131723d, type: 3}
       propertyPath: m_Name
       value: HeartsUI Player 1
@@ -7129,6 +7150,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -275.80835
       objectReference: {fileID: 0}
+    - target: {fileID: 4043507791648801783, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 59336617}
     - target: {fileID: 4043507792626348575, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8930,6 +8955,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4043507791648801783, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 970488790}
     - target: {fileID: 4043507792626348572, guid: 5d71057f6dbca8d4e8128d21b925205e, type: 3}
       propertyPath: m_Color.b
       value: 1

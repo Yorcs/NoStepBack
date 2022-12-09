@@ -38,5 +38,5 @@ public class ReadyButton : MonoBehaviour, ISelectable {
         characterSelect.CloseUI();
     }
 
-    public void Confirm() {}
+    public bool Confirm() { return true;}
 }

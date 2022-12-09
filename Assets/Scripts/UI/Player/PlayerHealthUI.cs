@@ -22,4 +22,11 @@ public class PlayerHealthUI : MonoBehaviour {
         }
     }
 
+    public void SetHeartColor(Color color) {
+        color.a = 1;
+        foreach(Image heart in hearts) {
+            heart.color = color;
+        }
+    }
+
 }

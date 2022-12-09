@@ -7,6 +7,7 @@ public class CharacterSelectUI : MonoBehaviour {
     private PlayerUIController playerUIController;
     private PlayerUISetup uiManager;
     private List<ISelectable> options = new();
+    
 
     private int currentSelection = 0;
     private int playerIndex = 0;
@@ -62,10 +63,16 @@ public class CharacterSelectUI : MonoBehaviour {
 
     public void CloseUI() {
         Debug.Log("Close");
+        bool confirmed = true;
         foreach(ISelectable option in options) {
-            option.Confirm();
+            bool optionConfirmed = option.Confirm();
+            if(!optionConfirmed) {
+                confirmed = false;
+            }
         }
-        playerUIController.SetActive(false);
-        uiManager.ActivateGameUI(playerIndex);
+        if(confirmed) {
+            playerUIController.SetActive(false);
+            uiManager.ActivateGameUI(playerIndex);
+        }
     }
 }

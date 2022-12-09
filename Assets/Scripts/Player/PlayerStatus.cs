@@ -127,7 +127,8 @@ public class PlayerStatus : MonoBehaviour {
             CreateRespawn();
             Debug.Log("Dead!");
             animator.SetBool("IsDead", IsDead());
-            GameFlowManager.instance.CheckPlayerDeaths();
+            if(!inPVP)
+                GameFlowManager.instance.CheckPlayerDeaths();
         }
     }
 
