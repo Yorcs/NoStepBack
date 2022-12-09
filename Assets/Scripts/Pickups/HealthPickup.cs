@@ -22,6 +22,9 @@ public class HealthPickup : MonoBehaviour {
         {
             PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
             player.GainHealth(healthRestored);
+
+            FindObjectOfType<AudioManager>().Play("Heart");
+
             Destroy(gameObject);
         }
     }

@@ -88,6 +88,8 @@ public class VendingMachine : MonoBehaviour
             CreateShopItem(transform.position);
             UpdateUIImage();
             UpdateUIPrice();
+
+            FindObjectOfType<AudioManager>().Play("Purchase");
         }
     }
 

@@ -155,6 +155,8 @@ public class PlayerStatus : MonoBehaviour {
             PlayerReviver reviver = collision.gameObject.GetComponent<PlayerReviver>();
             Assert.IsNotNull(reviver);
             reviver.RevivePlayer();
+
+            FindObjectOfType<AudioManager>().Play("Revive");
         }
     }
 }

@@ -30,6 +30,8 @@ public class Elevator : MonoBehaviour {
         closed = true;
         closedTimer = 5f;
         door.gameObject.SetActive(true);
+
+        FindObjectOfType<AudioManager>().Play("Elevator");
     }
 
     

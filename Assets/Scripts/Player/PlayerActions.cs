@@ -105,10 +105,12 @@ public class PlayerActions : MonoBehaviour {
             case EquipmentType.WEAPON:
                 Weapon newWeapon = (Weapon)newItem;
                 itemTaken = PickupWeapon(newWeapon);
+                FindObjectOfType<AudioManager>().Play("Coc2");
                 break;
             case EquipmentType.SUBWEAPON:
                 AbstractSubweapon newSubweapon = (AbstractSubweapon)newItem;
                 itemTaken = PickupSubweapon(newSubweapon);
+                FindObjectOfType<AudioManager>().Play("Coc1");
                 break;
             case EquipmentType.MOD:
                 //take Mod

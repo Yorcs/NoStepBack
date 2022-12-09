@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour {
             Crouch();
         }
 
-        //Play player running sound
+        /*//Play player running sound
         var audioSource = GetComponent<AudioSource>();
         //audioSource.Play();
         if (!audioSource.isPlaying) audioSource.Play();
-        //else if (audioSource.isPlaying) audioSource.Pause();
+        //else if (audioSource.isPlaying) audioSource.Pause();*/
     }
 
     private void TurnAround () {
@@ -112,9 +112,11 @@ public class PlayerController : MonoBehaviour {
 
     public void Jump() {
         Vector2 jump = Vector2.zero;
-        //
-        var audioSource = GetComponent<AudioSource>();
-        if (audioSource.isPlaying) audioSource.Pause();
+
+        //FindObjectOfType<AudioManager>().Play("PlayerJump");
+        
+        /*var audioSource = GetComponent<AudioSource>();
+        if (audioSource.isPlaying) audioSource.Pause();*/
 
         if (status.IsDead()) return;
         if (!status.IsDead() && (canWallJump || wallJumpTime > 0)) {
